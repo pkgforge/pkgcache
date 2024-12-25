@@ -4560,7 +4560,7 @@ Descr: View the OvGU Mensa Menu in a small GTK App
 -----------------------------
 NAME: Ignition
 APP_ID: io.github.flattool.Ignition
-Descr: Create and edit startup apps and scripts
+Descr: Manage startup apps and scripts
 -----------------------------
 NAME: Warehouse
 APP_ID: io.github.flattool.Warehouse.desktop
@@ -7989,10 +7989,6 @@ Descr: Create crossword puzzles
 NAME: Crosswords
 APP_ID: org.gnome.Crosswords
 Descr: Solve crossword puzzles
------------------------------
-NAME: Eolie
-APP_ID: org.gnome.Eolie
-Descr: Web browser
 -----------------------------
 NAME: Getting Things GNOME!
 APP_ID: org.gnome.GTG

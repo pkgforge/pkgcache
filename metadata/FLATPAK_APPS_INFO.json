@@ -2845,11 +2845,6 @@
     "description": "FOSS, cross-platform 2FA app"
   },
   {
-    "pkg": "Eolie",
-    "app_id": "org.gnome.Eolie",
-    "description": "Web browser"
-  },
-  {
     "pkg": "Epic Asset Manager",
     "app_id": "io.github.achetagames.epic_asset_manager",
     "description": "Manage your Epic assets"
@@ -4852,7 +4847,7 @@
   {
     "pkg": "Ignition",
     "app_id": "io.github.flattool.Ignition",
-    "description": "Create and edit startup apps and scripts"
+    "description": "Manage startup apps and scripts"
   },
   {
     "pkg": "Ikona",
