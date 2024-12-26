@@ -4830,7 +4830,7 @@ NAME: PySimpleCV
 APP_ID: io.github.kevinsmia1939.PySimpleCV
 Descr: Plot Cyclic voltammogram and battery cycling
 -----------------------------
-NAME: TubeSync
+NAME: Syncara
 APP_ID: io.github.khaled_0.TubeSync
 Descr: Sync YouTube playlists offline
 -----------------------------

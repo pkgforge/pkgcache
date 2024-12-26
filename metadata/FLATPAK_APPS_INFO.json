@@ -12210,6 +12210,11 @@
     "description": "SyncThingy = Syncthing + simple tray indicator"
   },
   {
+    "pkg": "Syncara",
+    "app_id": "io.github.khaled_0.TubeSync",
+    "description": "Sync YouTube playlists offline"
+  },
+  {
     "pkg": "Syncthing GTK",
     "app_id": "me.kozec.syncthingtk",
     "description": "GUI and notification area icon for Syncthing"
@@ -13018,11 +13023,6 @@
     "pkg": "Tsuki-tag",
     "app_id": "eu.ngdevelopment.tsukitag",
     "description": "Anime imageboard browser, aggregator, downloader, tagger, converter, collection manager. Browse and create your own collections, configure workspaces for image downloads with templating support."
-  },
-  {
-    "pkg": "TubeSync",
-    "app_id": "io.github.khaled_0.TubeSync",
-    "description": "Sync YouTube playlists offline"
   },
   {
     "pkg": "Tuhi",
