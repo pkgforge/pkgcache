@@ -2402,6 +2402,7 @@ org.kde.yakuake
 org.keepassxc.KeePassXC
 org.kekikakademi.eFatura
 org.kekikakademi.ntvHaber
+org.keystore_explorer.KeyStoreExplorer
 org.kicad.KiCad
 org.kiwix.desktop
 org.kryogenix.Pick

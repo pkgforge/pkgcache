@@ -300,7 +300,7 @@ Descr: An open-source tool for writers
 -----------------------------
 NAME: Threema
 APP_ID: ch.threema.threema-web-desktop
-Descr: Threema for desktop is a desktop client for Threema, a  privacy-focused end-to-end encrypted mobile messenger hosted and developed in Switzerland. UNOFFICIAL PACKAGE.
+Descr: Threema for desktop is a desktop client for Threema, a privacy-focused end-to-end encrypted mobile messenger hosted and developed in Switzerland. UNOFFICIAL PACKAGE.
 -----------------------------
 NAME: TigerJython
 APP_ID: ch.tigerjython.TigerJython2
@@ -8293,6 +8293,10 @@ Descr: E-Invoice Usage Inquiry from Tax or TR Identity Number
 NAME: ntvHaber
 APP_ID: org.kekikakademi.ntvHaber.desktop
 Descr: Breaking News in Turkish from NTV.com.tr
+-----------------------------
+NAME: KeyStore Explorer
+APP_ID: org.keystore_explorer.KeyStoreExplorer
+Descr: Multipurpose keystore and certificate tool
 -----------------------------
 NAME: Kiwix
 APP_ID: org.kiwix.desktop

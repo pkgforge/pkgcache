@@ -5415,6 +5415,11 @@
     "description": "Configurator for KeyForge devices"
   },
   {
+    "pkg": "KeyStore Explorer",
+    "app_id": "org.keystore_explorer.KeyStoreExplorer",
+    "description": "Multipurpose keystore and certificate tool"
+  },
+  {
     "pkg": "Keyboard App Builder",
     "app_id": "org.sil.keyboard-app-builder",
     "description": "Build apps with Keyman keyboards"
@@ -12697,7 +12702,7 @@
   {
     "pkg": "Threema",
     "app_id": "ch.threema.threema-web-desktop",
-    "description": "Threema for desktop is a desktop client for Threema, a  privacy-focused end-to-end encrypted mobile messenger hosted and developed in Switzerland. UNOFFICIAL PACKAGE."
+    "description": "Threema for desktop is a desktop client for Threema, a privacy-focused end-to-end encrypted mobile messenger hosted and developed in Switzerland. UNOFFICIAL PACKAGE."
   },
   {
     "pkg": "Thrive",
