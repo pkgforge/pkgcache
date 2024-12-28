@@ -2192,7 +2192,7 @@
   {
     "pkg": "DBeaver Community",
     "app_id": "io.dbeaver.DBeaverCommunity",
-    "description": "Universal Database Manager"
+    "description": "Free Universal Database Tool"
   },
   {
     "pkg": "DDNet",
@@ -3942,7 +3942,7 @@
   {
     "pkg": "GZDoom",
     "app_id": "org.zdoom.GZDoom",
-    "description": "Classic first-person-shooter engine for all classical Id games"
+    "description": "Game engine for Classic Doom"
   },
   {
     "pkg": "GabTag",
@@ -5327,7 +5327,7 @@
   {
     "pkg": "Kando",
     "app_id": "menu.kando.Kando",
-    "description": "Cross-Platform Pie Menu"
+    "description": "Do things with utmost efficiency"
   },
   {
     "pkg": "KapitonovPluginsPack",

@@ -3960,7 +3960,7 @@ Descr: A beautiful and fully-featured desktop client for Apache Kafka
 -----------------------------
 NAME: DBeaver Community
 APP_ID: io.dbeaver.DBeaverCommunity
-Descr: Universal Database Manager
+Descr: Free Universal Database Tool
 -----------------------------
 NAME: Franz
 APP_ID: io.defn.Franz
@@ -6320,7 +6320,7 @@ Descr: The open media solution
 -----------------------------
 NAME: Kando
 APP_ID: menu.kando.Kando
-Descr: Cross-Platform Pie Menu
+Descr: Do things with utmost efficiency
 -----------------------------
 NAME: Lemonade
 APP_ID: ml.mdwalters.Lemonade
@@ -9456,7 +9456,7 @@ Descr: A popular free security tool
 -----------------------------
 NAME: GZDoom
 APP_ID: org.zdoom.GZDoom
-Descr: Classic first-person-shooter engine for all classical Id games
+Descr: Game engine for Classic Doom
 -----------------------------
 NAME: Raze
 APP_ID: org.zdoom.Raze
