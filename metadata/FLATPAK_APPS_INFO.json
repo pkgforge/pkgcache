@@ -2290,11 +2290,6 @@
     "description": "IntelliJ-based IDE for databases and SQL"
   },
   {
-    "pkg": "Datcord",
-    "app_id": "io.github.gamingdoom.Datcord",
-    "description": "An open-source Discord client that uses Firefox"
-  },
-  {
     "pkg": "Datovka",
     "app_id": "org.cznic.Datovka",
     "description": "Access your data boxes"
@@ -3058,11 +3053,6 @@
     "pkg": "Fightcade",
     "app_id": "com.fightcade.Fightcade",
     "description": "Play arcade games online"
-  },
-  {
-    "pkg": "Figma for Linux",
-    "app_id": "io.github.Figma_Linux.figma_linux",
-    "description": "Web-based collaborative design tool"
   },
   {
     "pkg": "File Manager",
@@ -4727,7 +4717,7 @@
   {
     "pkg": "Hunt",
     "app_id": "io.github.swordpuffin.hunt",
-    "description": "A simple word search game"
+    "description": "Find every word"
   },
   {
     "pkg": "Hurrican",
@@ -5643,6 +5633,11 @@
     "pkg": "LPairs2",
     "app_id": "net.sourceforge.lgames.LPairs2",
     "description": "Classic memory game"
+  },
+  {
+    "pkg": "LPub3D",
+    "app_id": "trackballs.desktop",
+    "description": "LPub3D - An LDraw Building Instruction Editor"
   },
   {
     "pkg": "LPub3D",
@@ -6833,11 +6828,6 @@
     "pkg": "Mirror Hall",
     "app_id": "eu.nokun.MirrorHall",
     "description": "Use Linux devices as second screens"
-  },
-  {
-    "pkg": "Miru",
-    "app_id": "io.github.thaunknown.miru",
-    "description": "Bittorrent anime streaming software for cats"
   },
   {
     "pkg": "Missile Math",
@@ -11923,16 +11913,6 @@
     "pkg": "Steam Link",
     "app_id": "com.valvesoftware.SteamLink",
     "description": "Stream games from another computer with Steam"
-  },
-  {
-    "pkg": "Steam Metadata Editor",
-    "app_id": "trackballs.desktop",
-    "description": "An easy to use GUI that edits the metadata of your Steam Apps"
-  },
-  {
-    "pkg": "Steam Metadata Editor",
-    "app_id": "io.github.tralph3.Steam_Metadata_Editor",
-    "description": "An easy to use GUI that edits the metadata of your Steam Apps"
   },
   {
     "pkg": "Steam ROM Manager",

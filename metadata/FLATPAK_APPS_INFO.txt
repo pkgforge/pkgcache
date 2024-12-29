@@ -4050,10 +4050,6 @@ NAME: EventRecorder
 APP_ID: io.github.FedericoCalzoni.EventRecorder
 Descr: Record Timed Events
 -----------------------------
-NAME: Figma for Linux
-APP_ID: io.github.Figma_Linux.figma_linux
-Descr: Web-based collaborative design tool
------------------------------
 NAME: Clash for Windows
 APP_ID: io.github.Fndroid.clash_for_windows
 Descr: Clash&apos;s graphical client, based on Electron.
@@ -4601,10 +4597,6 @@ Descr: First-person shooter based on the Doom engine
 NAME: Freedoom: Phase 2
 APP_ID: io.github.freedoom.Phase2
 Descr: First-person shooter based on the Doom engine
------------------------------
-NAME: Datcord
-APP_ID: io.github.gamingdoom.Datcord
-Descr: An open-source Discord client that uses Firefox
 -----------------------------
 NAME: Gargoyle
 APP_ID: io.github.garglk.Gargoyle
@@ -5484,7 +5476,7 @@ Descr: Simple audio/video player and karaoke app written in Python and GTK4
 -----------------------------
 NAME: Hunt
 APP_ID: io.github.swordpuffin.hunt
-Descr: A simple word search game
+Descr: Find every word
 -----------------------------
 NAME: Splices
 APP_ID: io.github.swordpuffin.splices
@@ -5513,10 +5505,6 @@ Descr: Dither your images
 NAME: Flood It
 APP_ID: io.github.tfuxu.floodit
 Descr: Flood the board
------------------------------
-NAME: Miru
-APP_ID: io.github.thaunknown.miru
-Descr: Bittorrent anime streaming software for cats
 -----------------------------
 NAME: The Force Engine
 APP_ID: io.github.theforceengine.tfe
@@ -5550,13 +5538,9 @@ NAME: Trackballs
 APP_ID: io.github.trackballs.Trackballs
 Descr: Steer a marble ball through a labyrinth
 -----------------------------
-NAME: Steam Metadata Editor
+NAME: LPub3D
 APP_ID: trackballs.desktop
-Descr: An easy to use GUI that edits the metadata of your Steam Apps
------------------------------
-NAME: Steam Metadata Editor
-APP_ID: io.github.tralph3.Steam_Metadata_Editor
-Descr: An easy to use GUI that edits the metadata of your Steam Apps
+Descr: LPub3D - An LDraw Building Instruction Editor
 -----------------------------
 NAME: LPub3D
 APP_ID: io.github.trevorsandy.LPub3D

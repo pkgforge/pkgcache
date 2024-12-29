@@ -1043,7 +1043,6 @@ io.github.Cockatrice.cockatrice
 io.github.Dretch.MonomerFlatpakExample
 io.github.FailurePoint.RandomNumberFive
 io.github.FedericoCalzoni.EventRecorder
-io.github.Figma_Linux.figma_linux
 io.github.Fndroid.clash_for_windows
 io.github.Foldex.AdwSteamGtk
 io.github.GoldenGnu.jEveAssets
@@ -1195,7 +1194,6 @@ io.github.freedoom.FreeDM
 io.github.freedoom.Phase1
 io.github.freedoom.Phase2
 io.github.fsobolev.TimeSwitch
-io.github.gamingdoom.Datcord
 io.github.garglk.Gargoyle
 io.github.gen2brain.cbconvert
 io.github.georgewoodall82.jsymphonic
@@ -1429,7 +1427,6 @@ io.github.tcobbs.LDView
 io.github.technic.e2designer
 io.github.tfuxu.Halftone
 io.github.tfuxu.floodit
-io.github.thaunknown.miru
 io.github.theforceengine.tfe
 io.github.thetumultuousunicornofdarkness.cpu-x
 io.github.thiefmd.themegenerator
@@ -1438,7 +1435,6 @@ io.github.tntwise.REAL-Video-Enhancer
 io.github.tomluchowski.OpenDungeonsPlus
 io.github.torrent_file_editor.Torrent-file-editor
 io.github.trackballs.Trackballs
-io.github.tralph3.Steam_Metadata_Editor
 io.github.trevorsandy.LPub3D
 io.github.trigg.discover_overlay
 io.github.troyeguo.koodo-reader
