@@ -1626,10 +1626,6 @@ NAME: Remote Touchpad
 APP_ID: com.github.unrud.RemoteTouchpad
 Descr: Control mouse and keyboard from a smartphone
 -----------------------------
-NAME: Scans to PDF
-APP_ID: com.github.unrud.djpdf
-Descr: Create small, searchable PDFs from scanned documents
------------------------------
 NAME: Image Scan
 APP_ID: com.github.utsushi.Utsushi
 Descr: Image acquisition utilities for Epson
@@ -5126,7 +5122,7 @@ NAME: Near Infinity
 APP_ID: io.github.nearinfinitybrowser.nearinfinity
 Descr: An Infinity Engine Resource Browser and Editor
 -----------------------------
-NAME: pocket-sync
+NAME: Pocket Sync
 APP_ID: io.github.neil_morrison44.pocket-sync
 Descr: A GUI to do stuff with the Analogue Pocket
 -----------------------------

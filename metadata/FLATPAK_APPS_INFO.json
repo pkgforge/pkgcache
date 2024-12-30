@@ -9495,6 +9495,11 @@
     "description": "Online podcast player"
   },
   {
+    "pkg": "Pocket Sync",
+    "app_id": "io.github.neil_morrison44.pocket-sync",
+    "description": "A GUI to do stuff with the Analogue Pocket"
+  },
+  {
     "pkg": "Podman",
     "app_id": "com.visualstudio.code.tool.podman",
     "description": "A tool for managing OCI containers and pods"
@@ -11088,11 +11093,6 @@
     "pkg": "ScanTailor Advanced",
     "app_id": "com.github._4lex4.ScanTailor-Advanced",
     "description": "Interactive post-processing tool for scanned pages"
-  },
-  {
-    "pkg": "Scans to PDF",
-    "app_id": "com.github.unrud.djpdf",
-    "description": "Create small, searchable PDFs from scanned documents"
   },
   {
     "pkg": "Schemes",
@@ -15458,11 +15458,6 @@
     "pkg": "pixyne",
     "app_id": "io.github.vinser.pixyne",
     "description": "Quickly review photo folders, safely delete bad and similar shots, fix the shooting dates"
-  },
-  {
-    "pkg": "pocket-sync",
-    "app_id": "io.github.neil_morrison44.pocket-sync",
-    "description": "A GUI to do stuff with the Analogue Pocket"
   },
   {
     "pkg": "pomodorolm",
