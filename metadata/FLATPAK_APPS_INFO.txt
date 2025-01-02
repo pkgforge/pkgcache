@@ -3376,7 +3376,7 @@ Descr: Launcher &amp; seamless Linux integration for Final Fantasy XIV Online
 -----------------------------
 NAME: HDOS
 APP_ID: dev.hdos.HDOS
-Descr: High Detail Old School Runescape Client
+Descr: HDOS Client
 -----------------------------
 NAME: Window Painter
 APP_ID: dev.jamiethalacker.window_painter.desktop
@@ -4452,7 +4452,7 @@ Descr: 2D CAD for GNOME
 -----------------------------
 NAME: Rare
 APP_ID: io.github.dummerle.rare
-Descr: A GUI for legendary, an open source Epic Games alternative
+Descr: Open source alternative for Epic Games Launcher, using Legendary
 -----------------------------
 NAME: BoxBuddy
 APP_ID: io.github.dvlv.boxbuddyrs
@@ -5289,6 +5289,14 @@ Descr: A High Appearance Third-Party Netease CloudMusic Player
 NAME: QNapi
 APP_ID: io.github.qnapi
 Descr: A software for downloading and automatic matching subtitles to movies
+-----------------------------
+NAME: qTox
+APP_ID: qnapi.desktop
+Descr: Powerful Tox chat client that follows the Tox design guidelines.
+-----------------------------
+NAME: qTox
+APP_ID: io.github.qtox.qTox
+Descr: Powerful Tox chat client that follows the Tox design guidelines.
 -----------------------------
 NAME: Newelle
 APP_ID: io.github.qwersyk.Newelle.desktop

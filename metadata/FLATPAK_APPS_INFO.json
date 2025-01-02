@@ -4477,7 +4477,7 @@
   {
     "pkg": "HDOS",
     "app_id": "dev.hdos.HDOS",
-    "description": "High Detail Old School Runescape Client"
+    "description": "HDOS Client"
   },
   {
     "pkg": "HTMLDOC",
@@ -10432,7 +10432,7 @@
   {
     "pkg": "Rare",
     "app_id": "io.github.dummerle.rare",
-    "description": "A GUI for legendary, an open source Epic Games alternative"
+    "description": "Open source alternative for Epic Games Launcher, using Legendary"
   },
   {
     "pkg": "Raspberry Pi Imager",
@@ -15523,6 +15523,16 @@
     "pkg": "qMasterPassword",
     "app_id": "io.github.bkueng.qMasterPassword",
     "description": "Stateless Master Password Manager"
+  },
+  {
+    "pkg": "qTox",
+    "app_id": "qnapi.desktop",
+    "description": "Powerful Tox chat client that follows the Tox design guidelines."
+  },
+  {
+    "pkg": "qTox",
+    "app_id": "io.github.qtox.qTox",
+    "description": "Powerful Tox chat client that follows the Tox design guidelines."
   },
   {
     "pkg": "qTsConverter",

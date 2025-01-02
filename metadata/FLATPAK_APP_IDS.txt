@@ -1371,6 +1371,7 @@ io.github.pyfa_org.Pyfa
 io.github.qcanvas.QCanvasApp
 io.github.qier222.YesPlayMusic
 io.github.qnapi
+io.github.qtox.qTox
 io.github.quodlibet.ExFalso
 io.github.quodlibet.QuodLibet
 io.github.qwersyk.Newelle
