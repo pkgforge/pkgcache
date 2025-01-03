@@ -727,6 +727,7 @@ com.usebruno.Bruno
 com.vagueentertainment.Framed
 com.valvesoftware.Steam
 com.valvesoftware.SteamLink
+com.vargary.focal
 com.varnamproject.Varnam
 com.vba_m.visualboyadvance-m
 com.vesc_project.VescTool
@@ -807,6 +808,7 @@ de.blobbyvolley.BlobbyVolley2
 de.breitbandmessung.Breitbandmessung
 de.bund.ausweisapp.ausweisapp2
 de.create3000.titania
+de.danielnoethen.butt
 de.fabrik19.mos-Launcher
 de.finnik.PassVault
 de.flinkebits.AvaEmailArchivar
@@ -833,7 +835,6 @@ de.peterge.combined
 de.philippun1.Snoop
 de.philippun1.turtle
 de.renew.Renew
-de.rwth_aachen.ient.RDPlot
 de.rwth_aachen.ient.YUView
 de.schmidhuberj.DieBahn
 de.schmidhuberj.Flare
@@ -1231,6 +1232,7 @@ io.github.igorlogius.scr2ppm
 io.github.ihhub.Fheroes2
 io.github.ilius.pyglossary
 io.github.insilmaril.vym
+io.github.iptux_src.iptux
 io.github.itprojects.MasVisGtk
 io.github.ja2_stracciatella.JA2-Stracciatella
 io.github.jacalz.rymdport
@@ -1269,6 +1271,7 @@ io.github.lainsce.Khronos
 io.github.lainsce.Notejot
 io.github.lavenderdotpet.LibreQuake
 io.github.lawstorant.boxflat
+io.github.leolost2605.emergency-alerts
 io.github.leolost2605.gradebook
 io.github.leonardschardijn.Chirurgien
 io.github.lethal_guitar.RigelEngine
@@ -1372,6 +1375,7 @@ io.github.qcanvas.QCanvasApp
 io.github.qier222.YesPlayMusic
 io.github.qnapi
 io.github.qtox.qTox
+io.github.quantum_mutnauq.fast_reader_gtk
 io.github.quodlibet.ExFalso
 io.github.quodlibet.QuodLibet
 io.github.qwersyk.Newelle
@@ -1423,6 +1427,7 @@ io.github.subhra74.Muon
 io.github.swanux.hbud
 io.github.swordpuffin.hunt
 io.github.swordpuffin.splices
+io.github.sxyazi.yazi
 io.github.tareksander.StoryReader
 io.github.tcobbs.LDView
 io.github.technic.e2designer
@@ -2733,6 +2738,7 @@ page.codeberg.tpikonen.satellite
 page.codeberg.yeldham.Librerama
 page.kramo.Cartridges
 page.kramo.Sly
+page.tesk.Refine
 party.supertux.supertuxparty
 pl.art.lach.slawek.V2BlankBrowser
 pl.nieto.fityk

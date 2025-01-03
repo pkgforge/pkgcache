@@ -2814,6 +2814,10 @@ NAME: Steam Link
 APP_ID: com.valvesoftware.SteamLink
 Descr: Stream games from another computer with Steam
 -----------------------------
+NAME: Focal
+APP_ID: com.vargary.focal
+Descr: Organize tasks and notes in a tree structure for focus and productivity.
+-----------------------------
 NAME: Varnam Editor
 APP_ID: com.varnamproject.Varnam
 Descr: Easily type Indic languages
@@ -3146,6 +3150,10 @@ NAME: Titania X3D Editor
 APP_ID: de.create3000.titania
 Descr: Edit, view, and navigate in X3D and VRML worlds
 -----------------------------
+NAME: butt
+APP_ID: de.danielnoethen.butt
+Descr: Icecast and Shoutcast streaming client
+-----------------------------
 NAME: mos.launcher
 APP_ID: de.fabrik19.mos-Launcher
 Descr: Used for mobile app development with Mobility Suite mos.
@@ -3245,10 +3253,6 @@ Descr: Manage your git repositories
 NAME: Renew
 APP_ID: de.renew.Renew
 Descr: Petri net editor and simulator
------------------------------
-NAME: RDPlot
-APP_ID: de.rwth_aachen.ient.RDPlot
-Descr: RDPlot is a tool for plotting rate distortion curves
 -----------------------------
 NAME: YUView
 APP_ID: de.rwth_aachen.ient.YUView
@@ -3573,10 +3577,6 @@ Descr: Make HTTP requests and test APIs
 NAME: Wallpaper Downloader
 APP_ID: es.estoes.wallpaperDownloader
 Descr: Download, manage and change your wallpapers automatically from the Internet
------------------------------
-NAME: LogarithmPlotter
-APP_ID: eu.ad5001.LogarithmPlotter.desktop
-Descr: 2D logarithmic-scaled plotter software to make Bode plots, sequences and distribution functions
 -----------------------------
 NAME: LogarithmPlotter
 APP_ID: eu.ad5001.LogarithmPlotter
@@ -4886,6 +4886,10 @@ NAME: Boxflat
 APP_ID: io.github.lawstorant.boxflat
 Descr: Configure Moza Racing hardware
 -----------------------------
+NAME: Emergency Alerts
+APP_ID: io.github.leolost2605.emergency-alerts
+Descr: Receive emergency alerts
+-----------------------------
 NAME: Gradebook
 APP_ID: io.github.leolost2605.gradebook
 Descr: Keep track of your grades
@@ -5298,6 +5302,10 @@ NAME: qTox
 APP_ID: io.github.qtox.qTox
 Descr: Powerful Tox chat client that follows the Tox design guidelines.
 -----------------------------
+NAME: Fast Reader
+APP_ID: io.github.quantum_mutnauq.fast_reader_gtk
+Descr: Fast Reader helps you read quickly by displaying only one word at a time
+-----------------------------
 NAME: Newelle
 APP_ID: io.github.qwersyk.Newelle.desktop
 Descr: Your AI-Powered System Assistant
@@ -5485,6 +5493,10 @@ Descr: Find every word
 NAME: Splices
 APP_ID: io.github.swordpuffin.splices
 Descr: A word making game
+-----------------------------
+NAME: Yazi
+APP_ID: io.github.sxyazi.yazi
+Descr: Terminal file manager
 -----------------------------
 NAME: StoryReader
 APP_ID: io.github.tareksander.StoryReader
@@ -9594,6 +9606,10 @@ NAME: Sly
 APP_ID: page.kramo.Sly
 Descr: Edit your images easily
 -----------------------------
+NAME: Refine
+APP_ID: page.tesk.Refine
+Descr: Tweak various aspects of GNOME
+-----------------------------
 NAME: Super Tux Party
 APP_ID: party.supertux.supertuxparty
 Descr: A party game starring FLOSS mascots
@@ -10825,10 +10841,6 @@ Descr: Git extension for versioning large files
 NAME: Podman
 APP_ID: com.visualstudio.code.tool.podman
 Descr: A tool for managing OCI containers and pods
------------------------------
-NAME: TexLive Plugin
-APP_ID: de.wolfvollprecht.UberWriter.Plugin.TexLive
-Descr: Allows to export to pdf and to show formulas in the inline preview
 -----------------------------
 NAME: Battle
 APP_ID: dev.tchx84.Gameeky.ThematicPack.Battle

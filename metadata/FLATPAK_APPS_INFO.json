@@ -2775,6 +2775,11 @@
     "description": "The open media solution"
   },
   {
+    "pkg": "Emergency Alerts",
+    "app_id": "io.github.leolost2605.emergency-alerts",
+    "description": "Receive emergency alerts"
+  },
+  {
     "pkg": "Emoji Mart",
     "app_id": "io.github.vemonet.EmojiMart",
     "description": "A modern popup emoji picker"
@@ -3003,6 +3008,11 @@
     "pkg": "FamiStudio",
     "app_id": "org.famistudio.FamiStudio",
     "description": "FamiStudio NES Music Editor"
+  },
+  {
+    "pkg": "Fast Reader",
+    "app_id": "io.github.quantum_mutnauq.fast_reader_gtk",
+    "description": "Fast Reader helps you read quickly by displaying only one word at a time"
   },
   {
     "pkg": "Fava",
@@ -3473,6 +3483,11 @@
     "pkg": "Flycast",
     "app_id": "org.flycast.Flycast",
     "description": "Sega Dreamcast, Naomi and Atomiswave emulator"
+  },
+  {
+    "pkg": "Focal",
+    "app_id": "com.vargary.focal",
+    "description": "Organize tasks and notes in a tree structure for focus and productivity."
   },
   {
     "pkg": "FocusBlur",
@@ -5958,11 +5973,6 @@
     "pkg": "LocalSend",
     "app_id": "org.localsend.localsend_app",
     "description": "Share files to nearby devices"
-  },
-  {
-    "pkg": "LogarithmPlotter",
-    "app_id": "eu.ad5001.LogarithmPlotter.desktop",
-    "description": "2D logarithmic-scaled plotter software to make Bode plots, sequences and distribution functions"
   },
   {
     "pkg": "LogarithmPlotter",
@@ -10325,11 +10335,6 @@
     "description": "A modernization effort of DOOM-3-BFG"
   },
   {
-    "pkg": "RDPlot",
-    "app_id": "de.rwth_aachen.ient.RDPlot",
-    "description": "RDPlot is a tool for plotting rate distortion curves"
-  },
-  {
     "pkg": "REAL Video Enhancer",
     "app_id": "io.github.tntwise.REAL-Video-Enhancer",
     "description": "Free and Open Source Video Enhancement Tool"
@@ -10573,6 +10578,11 @@
     "pkg": "Redis Insight",
     "app_id": "com.redis.RedisInsight",
     "description": "Developer GUI for Redis, by Redis"
+  },
+  {
+    "pkg": "Refine",
+    "app_id": "page.tesk.Refine",
+    "description": "Tweak various aspects of GNOME"
   },
   {
     "pkg": "Regex Tester",
@@ -12548,11 +12558,6 @@
     "pkg": "TetraSwap",
     "app_id": "xyz.eclipium.TetraSwap",
     "description": "A simple but challenging futuristic puzzle game!"
-  },
-  {
-    "pkg": "TexLive Plugin",
-    "app_id": "de.wolfvollprecht.UberWriter.Plugin.TexLive",
-    "description": "Allows to export to pdf and to show formulas in the inline preview"
   },
   {
     "pkg": "TexLive Plugin",
@@ -14535,6 +14540,11 @@
     "description": "Yaru-sage-dark theme"
   },
   {
+    "pkg": "Yazi",
+    "app_id": "io.github.sxyazi.yazi",
+    "description": "Terminal file manager"
+  },
+  {
     "pkg": "YesPlayMusic",
     "app_id": "io.github.qier222.YesPlayMusic",
     "description": "A High Appearance Third-Party Netease CloudMusic Player"
@@ -14768,6 +14778,11 @@
     "pkg": "burnfix",
     "app_id": "io.github.vinser.burnfix",
     "description": "Try to fix screen image retentions and burn in, look for screen defects"
+  },
+  {
+    "pkg": "butt",
+    "app_id": "de.danielnoethen.butt",
+    "description": "Icecast and Shoutcast streaming client"
   },
   {
     "pkg": "calibre",
