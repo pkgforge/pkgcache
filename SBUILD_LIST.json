@@ -1,0 +1,210 @@
+[
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "0ad",
+      "description": "A FOSS historical Real Time Strategy (RTS) game [prerelease]",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/0ad/appimage/0ad-matters/prerelease",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/0ad/appimage.0ad-matters.prerelease.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "0ad",
+      "description": "A FOSS historical Real Time Strategy (RTS) game",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/0ad/appimage/0ad-matters/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/0ad/appimage.0ad-matters.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "86box",
+      "description": "Emulator of x86-based machines",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/86box/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/86box/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "9launcher",
+      "description": "An actively maintained and cross platform remake of Touhou Relauncher",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/9launcher/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/9launcher/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aaaaxy",
+      "description": "A nonlinear 2D puzzle platformer taking place in impossible spaces",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/aaaaxy/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/aaaaxy/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "abiword",
+      "description": "A nonlinear 2D puzzle platformer taking place in impossible spaces",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/abiword/appimage/ivan-hc/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/abiword/appimage.ivan-hc.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "acreom",
+      "description": "An IDE based Knowledge Base using Markdown",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/acreom/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/acreom/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "actual",
+      "description": "Privacy-focused app for managing your finances",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/actual/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/actual/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "advanced-passgen",
+      "description": "Advanced Password Generator",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/advanced-passgen/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/advanced-passgen/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "advanced-rest-client",
+      "description": "A developer tool to test a HTTP request",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/advanced-rest-client/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/advanced-rest-client/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "affine",
+      "description": "FOSS Knowledge Base with fully merged docs, whiteboards and databases [canary-1]",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/affine/appimage/official/canary-1",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/affine/appimage.official.canary-1.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "affine",
+      "description": "FOSS Knowledge Base with fully merged docs, whiteboards and databases [canary-2]",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/affine/appimage/official/canary-2",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/affine/appimage.official.canary-2.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "affine",
+      "description": "FOSS Knowledge Base with fully merged docs, whiteboards and databases",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/affine/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/affine/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "agregore",
+      "description": "A minimal browser for the distributed web",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/agregore/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/agregore/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "air-controller-desktop",
+      "description": "A new handy and powerful Android phone assistant",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/air-controller-desktop/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/air-controller-desktop/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aisleriot",
+      "description": "Collection of solitaire and other card games",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/aisleriot/appimage/ivan-hc/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/aisleriot/appimage.ivan-hc.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "akuse",
+      "description": "Simple and easy to use anime streaming desktop app without ads",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/akuse/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/akuse/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "allusion",
+      "description": "A free and open source desktop application for managing your visual library",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/allusion/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/allusion/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "altair",
+      "description": "A beautiful feature-rich GraphQL Client",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/altair/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/altair/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "altus",
+      "description": "Desktop client for WhatsApp Web with themes, notifications and multiple account support",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/altus/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/altus/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "amdgpu_top",
+      "description": "Tool to display AMDGPU usage",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/amdgpu_top/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/amdgpu_top/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "android-messages",
+      "description": "Android Messages as a Cross-platform Desktop App",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/android-messages/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/android-messages/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "ghostty",
+      "description": "Fast, native, feature-rich terminal emulator pushing modern features",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "player432hz",
+      "description": "A suite of Audio/Video Tools",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/player432hz/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/player432hz/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "telegram-desktop",
+      "description": "Official desktop version of Telegram messaging app",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/telegram-desktop/dynamic/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/telegram-desktop/dynamic.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "vesktop",
+      "description": "A custom Discord App aiming to give you better performance and improve linux support",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vesktop/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vesktop/appimage.official.stable.yaml"
+    }
+  ]

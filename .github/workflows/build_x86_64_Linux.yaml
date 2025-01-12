@@ -1,0 +1,359 @@
+name: 🛍️ Build 📀 (Pkgcache-x86_64-Linux) Packages 📦📀
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+  
+on:
+  workflow_dispatch:
+  #schedule:
+  #  - cron: "30 18 * * 1" # 06:30 PM UTC (12:15 AM NPT Mrng Every Tuesday)
+env:
+  FORCE_REBUILD_ALL: "NO" #YES--> Force Rebuild everything, will take several tries & fail several times
+  KEEP_LOGS: "NO" #YES--> Keeps Dirs & Files
+  NOTIFY_DISCORD: "NO" #NO--> Don't send Notifications to Discord
+jobs:
+#------------------------------------------------------------------------------------#
+  presetup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: main
+          filter: "blob:none"
+#------------------------------------------------------------------------------------#        
+      - name: Install Addons
+        run: |
+          #presets
+          set -x ; set +e
+          #-------------#
+          #bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
+          sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)/rclone" -o "/usr/local/bin/rclone" && sudo chmod +x "/usr/local/bin/rclone"
+        continue-on-error: true
+#------------------------------------------------------------------------------------#        
+      - name: Setup Env
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##CoreUtils
+          sudo apt update -y
+          sudo apt install bc coreutils curl dos2unix fdupes jq moreutils wget -y
+          sudo apt-get install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt-get update -y 2>/dev/null
+          ##tmp
+          SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+          #GH ENV
+          echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
+          #GH Dirs
+          mkdir -p "${GITHUB_WORKSPACE}/main/x86_64-Linux"
+          #-------------#
+          mkdir -p "${HOME}/bin"
+          sudo apt update -y
+          sudo apt install dos2unix -y
+          ##Setup rClone
+          mkdir -p "${HOME}/.config/rclone"
+          echo "${{ secrets.RCLONE_CF_R2_PUB }}" > "${HOME}/.config/rclone/rclone.conf"
+          ##User-Agent
+          USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+          echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: Sanity Check
+        run: |
+          # Presets
+          set +x ; set +e
+          #--------------#
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+           PKG_COUNT="$(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/SBUILD_LIST.json" | jq -r '.[] | .pkg_family' | wc -l | tr -d '[:space:]')"
+           if [[ "${PKG_COUNT}" -le 10 ]]; then
+             echo -e "\n[+] FATAL: Too few Packages to Build\n"
+            exit 1
+           fi
+          popd >/dev/null 2>&1
+        continue-on-error: false
+
+      - name: Set TZ to (Asia/Kathmandu)
+        run: |
+          # Presets
+          set +x ; set +e
+          #--------------#        
+          sudo apt-get update -y && sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata
+          sudo ln -fs "/usr/share/zoneinfo/Asia/Kathmandu" "/etc/localtime"
+          sudo dpkg-reconfigure --frontend noninteractive tzdata
+          sudo apt-get install apt-utils software-properties-common -y           
+          sudo apt-get update -y
+        continue-on-error: true
+#------------------------------------------------------------------------------------#
+      - name: rClone BackUp Repo ("https://pub.ajam.dev/repos/${GITHUB_REPOSITORY}")
+        run: |
+          # Presets
+          set +x ; set +e
+          #--------------#
+          #copy & chdir to Repo
+          cp -fr "${GITHUB_WORKSPACE}/main" "${SYSTMP}/REPO" && cd "${SYSTMP}/REPO"
+          #Git pull
+          git pull origin main --no-edit 2>/dev/null
+          #Del Bloat
+          rm -rf "$(pwd)/.git"
+          #Upload to Pub
+          echo -e "[+] Syncing ${GITHUB_REPOSITORY} to pub.ajam.dev/repos/${GITHUB_REPOSITORY} \n"
+          rclone sync "." "r2:/pub/repos/${GITHUB_REPOSITORY}/" --user-agent="${USER_AGENT}" --buffer-size="10M" --s3-upload-concurrency="50" --s3-chunk-size="10M" --multi-thread-streams="50" --checkers="2000" --transfers="100" --retries="10" --check-first --checksum --copy-links --fast-list --progress
+        continue-on-error: true
+#------------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------#
+  build-fetch-packages:
+    #runs-on: ubuntu-latest
+    runs-on: amd64-linux-pkgcache
+    needs: [presetup]
+    timeout-minutes: 3200
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
+      packages: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: main
+          filter: "blob:none"
+
+      #- name: Install Addons
+      #  run: |
+      #    #presets
+      #    set -x ; set +e
+      #    #-------------#
+      #    bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
+      #  continue-on-error: true
+#------------------------------------------------------------------------------------#        
+      - name: Setup Env
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##CoreUtils
+          sudo apt update -y
+          sudo apt install bc coreutils curl dos2unix fdupes jq moreutils wget -y
+          sudo apt-get install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt-get update -y 2>/dev/null
+          ##tmp
+          SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+          #GH ENV
+          echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
+          #GH Dirs
+          mkdir -p "${GITHUB_WORKSPACE}/main/x86_64-Linux"
+          #-------------#
+          mkdir -p "${HOME}/bin"
+          sudo apt update -y
+          sudo apt install dos2unix -y
+          ##Setup Minisign
+          mkdir -pv "${HOME}/.minisign"
+          echo "${{ secrets.MINISIGN_SIGKEY }}" > "${HOME}/.minisign/pkgforge.key"
+          ##Setup rClone
+          mkdir -pv "${HOME}/.config/rclone"
+          echo "${{ secrets.CF_META }}" > "${HOME}/.config/rclone/rclone.conf"
+          ##User-Agent
+          USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+          echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      #- name: Cache Container Images
+      #  run: |
+      #    ##presets
+      #    set +x ; set +e
+      #    #-------------#          
+      #    for img in "ghcr.io/pkgforge/devscripts/alpine-builder:latest" "ghcr.io/pkgforge/devscripts/alpine-builder-mimalloc:stable" "ghcr.io/pkgforge/devscripts/archlinux-builder:latest" "ghcr.io/pkgforge/devscripts/debian-builder-unstable:latest" "ghcr.io/pkgforge/devscripts/ubuntu-builder:latest"; do docker pull $img & done; wait
+      #  continue-on-error: true
+
+      - name: Notify (Discord) [Trigger]
+        if: env.NOTIFY_DISCORD != 'NO'
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+          #Setup Config
+           sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)/notify" -o "/usr/local/bin/notify" && sudo chmod +x "/usr/local/bin/notify"
+           echo 'discord:' > "./notify.yaml"
+           echo '  - id: "portable-apps"' >> "./notify.yaml"
+           echo '    discord_channel: "main"' >> "./notify.yaml"
+           echo '    discord_username: "pkgforge-bot"' >> "./notify.yaml"
+           echo '    discord_format: "{{data}}"' >> "./notify.yaml"
+           echo "    discord_webhook_url: \"${{ secrets.DISCORD_NOTIFY }}\"" >> "./notify.yaml"
+          #Prep Body
+           GH_EVENT="${{ github.event_name }}"
+           GH_WORKFLOW_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+           START_TIME="$(date +%s)" && export START_TIME
+           echo "GH_EVENT=${GH_EVENT}" >> "${GITHUB_ENV}"
+           echo "GH_WORKFLOW_URL=${GH_WORKFLOW_URL}" >> "${GITHUB_ENV}"
+           echo "START_TIME=${START_TIME}" >> "${GITHUB_ENV}"
+           GH_RECIPE_COUNT="$(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/SBUILD_LIST.json" | jq -r '.[].pkg_family' | sort -u | wc -l | tr -d '[:space:]')"
+           echo "GH_RECIPE_COUNT=${GH_RECIPE_COUNT}" >> "${GITHUB_ENV}"
+           GH_DISABLED_COUNT="$(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/SBUILD_LIST.json" | jq -r '.[]._disabled' | grep -Ei 'true' | wc -l | tr -d '[:space:]')"
+           echo "GH_DISABLED_COUNT=${GH_DISABLED_COUNT}" >> "${GITHUB_ENV}"
+           GH_REBUILD_COUNT="$(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/SBUILD_LIST.json" | jq -r '.[].rebuild' | grep -Ei 'true' | wc -l | tr -d '[:space:]')"
+           echo "GH_REBUILD_COUNT=${GH_REBUILD_COUNT}" >> "${GITHUB_ENV}"
+           rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
+           echo 'ℹ️ **Triggered** [🛍️ Build 📦 Pkgcache] (Weekly) ==> https://github.com/pkgforge/pkgcache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Host`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Maintainer`**: @Azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Packages (pkg_family)`**:  `'"Total: ${GH_RECIPE_COUNT} (Disabled: ${GH_DISABLED_COUNT}) (Rebuilt: ${GH_REBUILD_COUNT})"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Preserving TMPFILES?`**:  `'"${KEEP_LOGS}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Rebuilding?`**:  `'"${FORCE_REBUILD_ALL}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           cat "/tmp/PKGFORGE_DISCORD.md" | notify -provider-config "./notify.yaml" -bulk -disable-update-check
+           echo -e "\n\n" && cat "/tmp/PKGFORGE_DISCORD.md" && echo -e "\n\n"
+          popd >/dev/null 2>&1
+        continue-on-error: true
+
+      #- name: Set TZ to (Asia/Kathmandu)
+      #  run: |
+      #    # Presets
+      #    set +x ; set +e
+      #    #--------------#        
+      #    sudo apt-get update -y && sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata
+      #    sudo ln -fs "/usr/share/zoneinfo/Asia/Kathmandu" "/etc/localtime"
+      #    sudo dpkg-reconfigure --frontend noninteractive tzdata
+      #    sudo apt-get install apt-utils software-properties-common -y           
+      #    sudo apt-get update -y
+      #  continue-on-error: true
+#------------------------------------------------------------------------------------#
+      #Main Build Script
+      - name: BUILD
+        env:
+          #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
+          GHCR_TOKEN: "${{ github.token }}"
+          GITHUB_TOKEN: "${{ secrets.RO_GHTOKEN }}"
+          GITLAB_TOKEN: "${{ secrets.RO_GLTOKEN }}"
+          MINISIGN_KEY: "${{ secrets.MINISIGN_KEY }}"
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          ##Main
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+           curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/runner/builder.sh" -o "${SYSTMP}/BUILDER.sh"
+           dos2unix --quiet "${SYSTMP}/BUILDER.sh" ; chmod +xwr "${SYSTMP}/BUILDER.sh"
+           ##Run with STDOUT [Slow, Not Recommended]
+           #bash "${SYSTMP}/BUILDER.sh"
+           ##Run with LOGS only
+           #bash "${SYSTMP}/BUILDER.sh" > "${SYSTMP}/BUILD.log" 2>&1
+           ##Run with STDOUT + LOGS
+           bash "${SYSTMP}/BUILDER.sh" | tee "${SYSTMP}/BUILD.log" 2>&1
+           ##Run without STDOUT/Logs
+           #bash "${SYSTMP}/BUILDER.sh" >/dev/null 2>&1
+           if [[ -f "${SYSTMP}/BUILD.log" ]] && [[ $(stat -c%s "${SYSTMP}/BUILD.log") -gt 1024 ]]; then
+              ##Purge Tokens (in case set -x & gh didn't redact)
+              cat "${SYSTMP}/BUILD.log" | ansi2txt > "${SYSTMP}/BUILD.gh.log.txt"
+              sed -i '/.*github_pat.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+              sed -i '/.*ghp_.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+              sed -i '/.*access_key_id.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+              sed -i '/.*token.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+              sed -i '/.*secret_access_key.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+              sed -i '/.*token.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+              sed -i '/.*cloudflarestorage.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+              ##Fetch Only Relevant Logs
+              if grep -iq "completed" "${SYSTMP}/BUILD.gh.log.txt"; then
+                 mv "${SYSTMP}/BUILD.gh.log.txt" "${SYSTMP}/BUILD.log"
+              elif grep -iq "initializing" "${SYSTMP}/BUILD.gh.log.txt"; then
+                 mv "${SYSTMP}/BUILD.gh.log.txt" "${SYSTMP}/BUILD_FAILED.log"
+                 BUILD_FAILED="YES"
+                 echo "BUILD_FAILED=${BUILD_FAILED}" >> "${GITHUB_ENV}"
+              fi
+              ##rClone Upload logs
+               7z a -t7z -mx=9 -mmt="$(($(nproc)+1))" -bsp1 -bt "./x86_64-Linux.${{ github.run_id }}.log.xz" "${SYSTMP}/BUILD.log" 2>/dev/null
+               rclone copyto "./x86_64-Linux.${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/x86_64-Linux.latest.log.xz" --checksum --check-first --user-agent="${USER_AGENT}" &
+               rclone copyto "./x86_64-Linux.${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/x86_64-linux.latest.log.xz" --checksum --check-first --user-agent="${USER_AGENT}" &
+               rclone copyto "./x86_64-Linux.${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/x86_64-Linux.${{ github.run_id }}.log.xz" --checksum --check-first --user-agent="${USER_AGENT}" &
+               if [[ -s "${SYSTMP}/BUILD_FAILED.log" && $(stat -c%s "${SYSTMP}/BUILD_FAILED.log") -gt 10 ]]; then
+                 7z a -t7z -mx=9 -mmt="$(($(nproc)+1))" -bsp1 -bt "./x86_64-Linux.${{ github.run_id }}.FAILED.log.xz" "${SYSTMP}/BUILD_FAILED.log" 2>/dev/null
+                 rclone copyto "./x86_64-Linux.${{ github.run_id }}.FAILED.log.xz" "r2:/meta/pkgcache/logs/x86_64-Linux.${{ github.run_id }}.FAILED.log.xz" --checksum --check-first --user-agent="${USER_AGENT}"
+               fi
+              wait ; echo
+           fi
+          popd >/dev/null 2>&1
+        continue-on-error: true
+#------------------------------------------------------------------------------------#
+    ##Logs & Artifacts
+      - name: Get DateTime
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          UTC_TIME="$(TZ='UTC' date +'%Y_%m_%dT%I_%M_%S_%p')"
+          echo "UTC_TIME=${UTC_TIME}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: Upload (x86_64-Linux) Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+            name: Pkgcache_x86_64-Linux
+            path: |
+              /tmp/BUILD.log
+            compression-level: 0 # no compression, [Default: 6 (GNU Gzip)]
+            retention-days: 30
+            overwrite: true
+        continue-on-error: true
+
+      - name: Attest Build Provenance
+        uses: actions/attest-build-provenance@v2.1.0
+        with:
+          subject-name: "build-logs-x86_64-Linux-${{ env.UTC_TIME }}"
+          subject-path: "/tmp/BUILD.log"
+          show-summary: true
+        continue-on-error: true
+#------------------------------------------------------------------------------------#
+      - name: Notify Discord [Completion]
+        if: env.NOTIFY_DISCORD != 'NO'
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+          #Setup Config
+           sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)/notify" -o "/usr/local/bin/notify" && sudo chmod +x "/usr/local/bin/notify"
+           echo 'discord:' > "./notify.yaml"
+           echo '  - id: "portable-apps"' >> "./notify.yaml"
+           echo '    discord_channel: "main"' >> "./notify.yaml"
+           echo '    discord_username: "pkgforge-bot"' >> "./notify.yaml"
+           echo '    discord_format: "{{data}}"' >> "./notify.yaml"
+           echo "    discord_webhook_url: \"${{ secrets.DISCORD_NOTIFY }}\"" >> "./notify.yaml"
+          #Prep Body
+           ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+           END_TIME="$(date +%s)" && export END_TIME="${END_TIME}"
+           SECS="$((END_TIME - START_TIME))"
+           #ELAPSED_TIME="$(date -u -d@"$((END_TIME - START_TIME))" "+%H(Hr):%M(Min):%S(Sec)")"
+           ELAPSED_TIME="$((SECS/86400))(Day):$(date -u -d@$((SECS%86400)) '+%H(Hr):%M(Min):%S(Sec)')"
+           echo "ELAPSED_TIME=${ELAPSED_TIME}" >> "${GITHUB_ENV}"
+           rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
+           echo 'ℹ️ **Completed** [🛍️ Build 📦 Pkgcache] (Weekly) ==> https://github.com/pkgforge/pkgcache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Host`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (VERBOSE)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           if [[ "${BUILD_FAILED}" == "YES" ]]; then
+             echo '**`Logs (FAILED)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD_FAILED.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           fi
+           #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Maintainer`**: @Azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Packages (pkg_family)`**:  `'"Total: ${GH_RECIPE_COUNT} (Disabled: ${GH_DISABLED_COUNT}) (Rebuilt: ${GH_REBUILD_COUNT})"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Packages (Make these PUBLIC)`**: https://github.com/orgs/pkgforge/packages?visibility=private' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Preserved TMPFILES?`**:  `'"${KEEP_LOGS}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Rebuilt?`**:  `'"${FORCE_REBUILD_ALL}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Total Time`**:  `'"${ELAPSED_TIME}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           cat "${SYSTMP}/BUILD.log" | grep -i 'FATAL' | sed -E 's/.*Could NOT Build ([a-z0-9]*\.static).*?(https.*\.yaml\])/\1 [\2/' > "./FAILED.txt"
+           if [[ -s "./FAILED.txt" && $(stat -c%s "./FAILED.txt") -gt 10 ]]; then
+             echo '**`Failed Builds`**: ==>' >> "/tmp/PKGFORGE_DISCORD.md"
+             cat "./FAILED.txt" >> "/tmp/PKGFORGE_DISCORD.md"
+           fi
+           cat "/tmp/PKGFORGE_DISCORD.md" | notify -provider-config "./notify.yaml" -bulk -disable-update-check
+           echo -e "\n\n" && cat "/tmp/PKGFORGE_DISCORD.md" && echo -e "\n\n"
+          popd >/dev/null 2>&1
+        continue-on-error: true
+#------------------------------------------------------------------------------------#
