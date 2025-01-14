@@ -138,6 +138,14 @@
     {
       "_disabled": false,
       "rebuild": false,
+      "pkg_family": "alexandria",
+      "description": "A minimalistic eBook reader",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/alexandria/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/alexandria/appimage.official.stable.yaml"
+    },    
+    {
+      "_disabled": false,
+      "rebuild": false,
       "pkg_family": "allusion",
       "description": "A free and open source desktop application for managing your visual library",
       "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/allusion/appimage/official/stable",
@@ -170,6 +178,14 @@
     {
       "_disabled": false,
       "rebuild": false,
+      "pkg_family": "android-knot",
+      "description": "Record everything in the simplest way possible",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/knot/appimage/official/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/android-knot/appimage.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
       "pkg_family": "android-messages",
       "description": "Android Messages as a Cross-platform Desktop App",
       "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/android-messages/appimage/official/stable",
@@ -178,10 +194,74 @@
     {
       "_disabled": false,
       "rebuild": false,
+      "pkg_family": "brave",
+      "description": "Privacy-oriented browser for Desktop and Laptop computers (Stable)",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "brave",
+      "description": "Privacy-oriented browser for Desktop and Laptop computers (Nightly)",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/nightly",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.nightly.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "brave",
+      "description": "Privacy-oriented browser for Desktop and Laptop computers (Beta)",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/beta",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.beta.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "chromium",
+      "description": "Open source web browser from Google (Stable)",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/chromium/nixappimage/nixpkgs/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/chromium/nixappimage.nixpkgs.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "chromium",
+      "description": "Open source web browser from Google, with dependencies on Google web services removed (Ungoogled)",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/chromium/nixappimage/nixpkgs/ungoogled",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/chromium/nixappimage.nixpkgs.ungoogled.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
       "pkg_family": "ghostty",
       "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
-      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/nixappimage.nixpkgs.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "ghostty",
+      "description": "Fast, native, feature-rich terminal emulator pushing modern features",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/source",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.source.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "helix",
+      "description": "Fast modal terminal-based text editor",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/helix/nixappimage/nixpkgs/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/helix/nixappimage.nixpkgs.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "neovim",
+      "description": "Vim text editor fork focused on extensibility and agility",
+      "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/neovim/nixappimage/nixpkgs/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/neovim/nixappimage.nixpkgs.stable.yaml"
     },
     {
       "_disabled": false,
