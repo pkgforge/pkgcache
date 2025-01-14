@@ -147,6 +147,7 @@ sbuild_builder()
       -e '/.*glpat.*/Id' \
       -e '/.*hf_.*/Id' \
       -e '/.*token.*/Id' \
+      -e '/.*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.*/Id' \
       -e '/.*access_key_id.*/Id' \
       -e '/.*secret_access_key.*/Id' \
       -e '/.*cloudflarestorage.*/Id' -i "${TEMP_LOG}"
