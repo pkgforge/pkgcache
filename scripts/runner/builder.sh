@@ -163,7 +163,7 @@ sbuild_builder()
       echo '|--- Docs: https://docs.pkgforge.dev/repositories/pkgcache     ---|' >> "${LOGPATH}"
       echo '|--- Bugs/Issues: https://github.com/pkgforge/soarpkgs/issues  ---|' >> "${LOGPATH}"
       echo '|-----------------------------------------------------------------|' >> "${LOGPATH}"
-      grep -viE 'github_pat|ghp_|glpat|hf_|token|access_key_id|secret_access_key|cloudflarestorage' "${TEMP_LOG}" >> "${LOGPATH}" && rm "${TEMP_LOG}" 2>/dev/null
+      grep -viE 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA|github_pat|ghp_|glpat|hf_|token|access_key_id|secret_access_key|cloudflarestorage' "${TEMP_LOG}" >> "${LOGPATH}" && rm "${TEMP_LOG}" 2>/dev/null
   fi
   }
   export -f sanitize_logs
