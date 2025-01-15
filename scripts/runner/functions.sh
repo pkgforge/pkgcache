@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.0.4" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.0.5" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -136,11 +136,16 @@ gen_json_from_sbuild()
          export CONTINUE_SBUILD="NO"
          return 1 || exit 1
      else
-       if ! yq '.x_exec.host[]' "${INPUT_SBUILD}" | grep -v '^#' | grep -qi "${HOST_TRIPLET,,}"; then
-         echo -e "\n[✗] WARNING: SBUILD (${INPUT_SBUILD}) is NOT Supported on ${HOST_TRIPLET}\n"
-         yq '.x_exec.host[]' "${INPUT_SBUILD}"
-         export CONTINUE_SBUILD="NO"
-         return 0 || exit 0
+       if yq e '.x_exec.host != null' "${INPUT_SBUILD}" | grep -qi 'true'; then
+         if ! yq '.x_exec.host[]' "${INPUT_SBUILD}" | grep -v '^#' | grep -qi "${HOST_TRIPLET,,}"; then
+           echo -e "\n[✗] WARNING: SBUILD (${INPUT_SBUILD}) is NOT Supported on ${HOST_TRIPLET}\n"
+           yq '.x_exec.host[]' "${INPUT_SBUILD}"
+           export CONTINUE_SBUILD="NO"
+           return 0 || exit 0
+         fi
+       else
+         echo -e "\n[✗] WARNING: SBUILD (${INPUT_SBUILD}) is DOES NOT Specify Any '.x_exec.host'"
+         echo -e "[+] Assuming '.x_exec.host' ==> ${HOST_TRIPLET}\n"
        fi
        pkg="$(jq -r '"\(.pkg | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG="${pkg}"
        pkg_id="$(jq -r '"\(.pkg_id | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG_ID="${pkg_id}"
