@@ -24,6 +24,9 @@ mkdir -pv "${SYSTMP}/pkgforge"
 export DEBIAN_FRONTEND="noninteractive"
 export GIT_TERMINAL_PROMPT="0"
 export GIT_ASKPASS="/bin/echo"
+export NIXPKGS_ALLOW_BROKEN="1" 
+export NIXPKGS_ALLOW_UNFREE="1"
+export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"
 EGET_TIMEOUT="timeout -k 1m 2m" && export EGET_TIMEOUT="${EGET_TIMEOUT}"
 sudo groupadd docker 2>/dev/null ; sudo usermod -aG docker "${USER}" 2>/dev/null
 if ! sudo systemctl is-active --quiet docker; then
