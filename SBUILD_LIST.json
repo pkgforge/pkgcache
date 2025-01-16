@@ -197,7 +197,7 @@
     "pkg_family": "android-tools",
     "description": "Android SDK Platform-Tools (adb, fastboot & more)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/android-tools/appimage/pkgforge-dev/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/android-tools/appimage.pkgforge-dev.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/android-tools/appimage.pkgforge-dev.stable.yaml"
   },
   {
     "_disabled": false,
@@ -293,7 +293,7 @@
     "pkg_family": "flameshot",
     "description": "Powerful yet simple to use screenshot software",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/flameshot/appimage/official/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/flameshot/appimage.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/flameshot/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -301,7 +301,7 @@
     "pkg_family": "flameshot",
     "description": "Powerful and simple to use screenshot software",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/flameshot/nixappimage/nixpkgs/unstable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/flameshot/nixappimage.nixpkgs.unstable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/flameshot/nixappimage.nixpkgs.unstable.yaml"
   },
   {
     "_disabled": false,
@@ -341,7 +341,7 @@
     "pkg_family": "neovim",
     "description": "Vim text editor fork focused on extensibility and agility",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/neovim/appimage/official/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/neovim/appimage.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/neovim/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -357,7 +357,7 @@
     "pkg_family": "obs-studio",
     "description": "FOSS cross-platform screencasting and streaming app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/obs-studio/appimage/pkgforge-dev/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/obs-studio/appimage.pkgforge-dev.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/obs-studio/appimage.pkgforge-dev.stable.yaml"
   },
   {
     "_disabled": false,
@@ -373,7 +373,7 @@
     "pkg_family": "ppsspp",
     "description": "A Fast and Portable PSP emulator",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ppsspp/appimage/pkgforge-dev/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/ppsspp/appimage.pkgforge-dev.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ppsspp/appimage.pkgforge-dev.stable.yaml"
   },
   {
     "_disabled": false,
@@ -381,7 +381,7 @@
     "pkg_family": "puddletag",
     "description": "Powerful, simple, audio tag editor for GNU/Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/puddletag/appimage/pkgforge-dev/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/puddletag/appimage.pkgforge-dev.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/puddletag/appimage.pkgforge-dev.stable.yaml"
   },
   {
     "_disabled": false,
@@ -405,7 +405,7 @@
     "pkg_family": "strawberry",
     "description": "A Audio Player and Music Collection Organizer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/strawberry/appimage/pkgforge-dev/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/strawberry/appimage.pkgforge-dev.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/strawberry/appimage.pkgforge-dev.stable.yaml"
   },
   {
     "_disabled": false,
@@ -429,7 +429,7 @@
     "pkg_family": "zen-browser",
     "description": "Performance oriented Firefox-based web browser (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zen-browser/appimage/official/beta",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/zen-browser/appimage.official.beta.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zen-browser/appimage.official.beta.yaml"
   },
   {
     "_disabled": false,
@@ -437,7 +437,7 @@
     "pkg_family": "zen-browser",
     "description": "Performance oriented Firefox-based web browser",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zen-browser/appimage/official/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/zen-browser/appimage.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zen-browser/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -445,6 +445,6 @@
     "pkg_family": "zen-browser",
     "description": "Performance oriented Firefox-based web browser (Twilight)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zen-browser/appimage/official/twilight",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/zen-browser/appimage.official.twilight.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zen-browser/appimage.official.twilight.yaml"
   }
 ]
