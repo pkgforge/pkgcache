@@ -226,6 +226,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "brave",
+    "description": "Privacy-oriented browser for Desktop and Laptop computers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/nixappimage/nixpkgs/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "chromium",
     "description": "Open source web browser from Google (Stable)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/chromium/nixappimage/nixpkgs/stable",
@@ -246,6 +254,62 @@
     "description": "A Bromite fork with ad blocking and privacy enhancements",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cromite/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cromite/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers (Canary)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/canary",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.canary.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers (Development)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/development",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.development.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers (Public Test Beta)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/ptb",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.ptb.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers (Canary)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord-canary/appimage/srevinsaju/canary",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.canary.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers (Public Test Beta)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord-ptb/appimage/srevinsaju/ptb",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.ptb.yaml"
+  },  
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/appimage/srevinsaju/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.stable.yaml"
   },
   {
     "_disabled": false,
@@ -306,6 +370,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gearlever",
+    "description": "Manage AppImages with ease",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gearlever/nixappimage/nixpkgs/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gearlever/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
@@ -326,6 +398,14 @@
     "description": "Fast modal terminal-based text editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/helix/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/helix/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": true,
+    "rebuild": false,
+    "pkg_family": "lazarus",
+    "description": "Portable Delphi-like IDE for the FreePascal compiler",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/nixappimage/nixpkgs/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/lazarus/nixappimage.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -414,6 +494,14 @@
     "description": "Official desktop version of Telegram messaging app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/telegram-desktop/dynamic/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/telegram-desktop/dynamic.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "telegram-desktop",
+    "description": "Official desktop version of Telegram messaging app",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/telegram-desktop/nixappimage/nixpkgs/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/telegram-desktop/nixappimage.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
