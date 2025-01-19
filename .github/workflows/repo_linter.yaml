@@ -101,6 +101,17 @@ jobs:
           find ".github" -type f -name '*.sh' -exec shellcheck --exclude="SC2261" --severity=error "{}" \; 2>/dev/null | tee "${GITHUB_WORKSPACE}/main/.github/shellcheck.txt"
         continue-on-error: true
 
+      - name: Gen Diff
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+           curl -qfsSL "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/soarpkgs/data/DIFF_pkgcache.json" -o "./DIFF.json"
+           cat "./DIFF.json" "${GITHUB_WORKSPACE}/main/SBUILD_LIST.json" | jq -s 'add | map(select(._disabled == false)) | sort_by(.pkg_family) | unique_by(.ghcr_pkg)' | jq . > "${GITHUB_WORKSPACE}/main/SBUILD_LIST.diff"
+          popd >/dev/null 2>&1
+        continue-on-error: true
+
       #- name: Generate Repo Metadata (git-sizer)
       #  run: |
       #    #Presets
