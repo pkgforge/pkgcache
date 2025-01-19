@@ -197,7 +197,7 @@
     "pkg_family": "blender",
     "description": "A fully integrated 3D graphics creation suite",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/blender/runimage/debian/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/blender/runimage.debian.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/blender/runimage.debian.stable.yaml"
   },
   {
     "_disabled": false,
@@ -221,7 +221,7 @@
     "pkg_family": "brave",
     "description": "Privacy-oriented browser for Desktop and Laptop computers",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/brave/appimage.srevinsaju.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.stable.yaml"
   },
   {
     "_disabled": false,
@@ -413,7 +413,7 @@
     "pkg_family": "lazarus",
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/cachyos/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/lazarus/runimage.cachyos.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/lazarus/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
@@ -421,7 +421,7 @@
     "pkg_family": "lazarus",
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/debian/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/lazarus/runimage.debian.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/lazarus/runimage.debian.stable.yaml"
   },
   {
     "_disabled": false,
@@ -501,7 +501,7 @@
     "pkg_family": "steam",
     "description": "A video game digital distribution service and storefront from Valve",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/steam/runimage/archlinux/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/steam/runimage.archlinux.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/steam/runimage.archlinux.stable.yaml"
   },
   {
     "_disabled": false,
@@ -509,7 +509,7 @@
     "pkg_family": "steam",
     "description": "A video game digital distribution service and storefront from Valve",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/steam/runimage/cachyos/stable",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/packages/steam/runimage.cachyos.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/steam/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
