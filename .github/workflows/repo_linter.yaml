@@ -109,6 +109,7 @@ jobs:
           pushd "$(mktemp -d)" >/dev/null 2>&1
            curl -qfsSL "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/soarpkgs/data/DIFF_pkgcache.json" -o "./DIFF.json"
            cat "./DIFF.json" "${GITHUB_WORKSPACE}/main/SBUILD_LIST.json" | jq -s 'add | map(select(._disabled == false)) | sort_by(.pkg_family) | unique_by(.ghcr_pkg)' | jq . > "${GITHUB_WORKSPACE}/main/SBUILD_LIST.diff"
+           sed 's|https://github.com/pkgforge/soarpkgs/blob/main/packages|https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages|g' -i "${GITHUB_WORKSPACE}/main/SBUILD_LIST.diff"
           popd >/dev/null 2>&1
         continue-on-error: true
 
