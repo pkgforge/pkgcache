@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   schedule:
   #  - cron: "45 03 * * *"  # 03:45 AM UTC --> 09:30 AM Morning NPT
-   - cron: "0 */12 * * *"  # Every 12 Hrs
+   - cron: "0 */8 * * *"  # Every 12 Hrs
 
 #env:
   #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}"
@@ -110,6 +110,8 @@ jobs:
            curl -qfsSL "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/soarpkgs/data/DIFF_pkgcache.json" -o "./DIFF.json"
            cat "./DIFF.json" "${GITHUB_WORKSPACE}/main/SBUILD_LIST.json" | jq -s 'add | map(select(._disabled == false)) | sort_by(.pkg_family) | unique_by(.ghcr_pkg)' | jq . > "${GITHUB_WORKSPACE}/main/SBUILD_LIST.diff"
            sed 's|https://github.com/pkgforge/soarpkgs/blob/main/packages|https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages|g' -i "${GITHUB_WORKSPACE}/main/SBUILD_LIST.diff"
+           cat "${GITHUB_WORKSPACE}/main/SBUILD_LIST.json" | jq 'group_by(.ghcr_pkg) | map(select(length > 1))' | jq . > "${GITHUB_WORKSPACE}/main/SBUILD_LIST.json.dupe"
+           cat "${GITHUB_WORKSPACE}/main/SBUILD_LIST.diff" | jq 'group_by(.ghcr_pkg) | map(select(length > 1))' | jq . > "${GITHUB_WORKSPACE}/main/SBUILD_LIST.diff.dupe"
           popd >/dev/null 2>&1
         continue-on-error: true
 
