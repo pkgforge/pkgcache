@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.1.1" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
+   SBB_VERSION="0.1.2" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -117,7 +117,7 @@ sbuild_builder()
   #-------------------------------------------------------#
   ##Init
    INITSCRIPT="$(mktemp --tmpdir=${SYSTMP} XXXXXXXXX_init.sh)" && export INITSCRIPT="${INITSCRIPT}"
-   curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/runner/setup_${HOST_TRIPLET}.sh" -o "${INITSCRIPT}"
+   curl -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/scripts/runner/setup_${HOST_TRIPLET}.sh" -o "${INITSCRIPT}"
    chmod +xwr "${INITSCRIPT}" && source "${INITSCRIPT}"
    #Check
    if [ "${CONTINUE}" != "YES" ]; then
@@ -134,7 +134,7 @@ sbuild_builder()
   
   #-------------------------------------------------------#
   ##Functions
-  source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/runner/functions.sh")
+  source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/scripts/runner/functions.sh")
   sanitize_logs()
   {
   if [[ -s "${TEMP_LOG}" && $(stat -c%s "${TEMP_LOG}") -gt 10 && -n "${LOGPATH}" ]]; then
@@ -194,7 +194,20 @@ sbuild_builder()
     fi
    else
    #Get URlS
-    curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json"
+    if [[ "${EXCLUDE_CACHED}" == "YES" ]]; then
+     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/soarpkgs/data/DIFF_${PKG_REPO}_${HOST_TRIPLET}.json" -o "${SYSTMP}/pkgforge/DIFF.json.tmp"
+     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json.tmp"
+     jq -n --slurpfile a "${SYSTMP}/pkgforge/DIFF.json.tmp" --slurpfile b "${SYSTMP}/pkgforge/SBUILD_LIST.json.tmp" \
+    '
+     [$b[] | .[] as $objB | 
+       ($a[] | .[] | .build_script | split("/") | .[-3:] | join("/")) as $a_last3 |
+       ($objB.build_script | split("/") | .[-3:] | join("/")) as $b_last3 |
+       if $a_last3 == $b_last3 or $objB.rebuild == true then $objB else empty end
+     ] | unique_by(.ghcr_pkg) | sort_by(.pkg_family)
+    ' | jq . > "${SYSTMP}/pkgforge/SBUILD_LIST.json"
+    else
+     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json"
+    fi
     jq -r '.[] | select(._disabled == false) | .build_script' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | sort -u -o "${SYSTMP}/pkgforge/SBUILD_URLS"
     sed 's|https://github.com/pkgforge/soarpkgs/blob/main/packages|https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages|g' -i "${SYSTMP}/pkgforge/SBUILD_URLS"
    fi

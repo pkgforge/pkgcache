@@ -8,6 +8,7 @@ on:
   #schedule:
   #  - cron: "30 18 * * 1" # 06:30 PM UTC (12:15 AM NPT Mrng Every Tuesday)
 env:
+  EXCLUDE_CACHED: "YES" #No--> Manually checks if should build one by one (If rebuild == true, it's added regardless)
   FORCE_REBUILD_ALL: "NO" #YES--> Force Rebuild everything, will take several tries & fail several times
   KEEP_LOGS: "NO" #YES--> Keeps Dirs & Files
   NOTIFY_DISCORD: "NO" #NO--> Don't send Notifications to Discord
