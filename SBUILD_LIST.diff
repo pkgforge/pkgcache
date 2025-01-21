@@ -130,6 +130,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "akregator",
+    "description": "KDE RSS feed reader",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/akregator/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/akregator/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "akuse",
     "description": "Simple and easy to use anime streaming desktop app without ads",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/akuse/appimage/official/stable",
@@ -422,6 +430,14 @@
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/debian/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/lazarus/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "librewolf",
+    "description": "A fork of Firefox, focused on privacy, security and freedom",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/librewolf/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/librewolf/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
