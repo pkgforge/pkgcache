@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.0.5" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.0.6" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -150,6 +150,8 @@ gen_json_from_sbuild()
        pkg="$(jq -r '"\(.pkg | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG="${pkg}"
        pkg_id="$(jq -r '"\(.pkg_id | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG_ID="${pkg_id}"
        pkg_type="$(jq -r '"\(.pkg_type | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG_TYPE="${pkg_type}"
+       PKGVER="${SBUILD_PKGVER}" ; export pkgver="${PKGVER}"
+       PKG_VER="${SBUILD_PKGVER}" ; export pkg_ver="${PKG_VER}"
        unset PKG_REPOLOGY ; PKG_REPOLOGY=()
        PKG_REPOLOGY=("$(jq -r 'if has("repology") then (if .repology | type == "array" then .repology[0] else .repology end) else "" end' "${TMPJSON}" 2>/dev/null | tr -d '[:space:]')")
        [[ "${PKG_REPOLOGY}" == "null" ]] && unset PKG_REPOLOGY
@@ -160,7 +162,7 @@ gen_json_from_sbuild()
          export PKG_REPOLOGY=""
        fi
        SBUILD_PKG="$(echo "${pkg}.${pkg_type}" | sed 's/\.$//' | tr -d '[:space:]')"
-       export pkg pkg_id pkg_type SBUILD_PKG
+       export pkg pkg_id pkg_type PKGVER PKG_VER SBUILD_PKG
        echo "export SBUILD_PKG='${SBUILD_PKG}'" >> "${OCWD}/ENVPATH"
        if [ "$(echo "${SBUILD_PKG}" | tr -d '[:space:]' | wc -c | tr -cd '0-9')" -le 1 ]; then
          echo -e "\n[✗] FATAL: ${SBUILD_PKG} ('.pkg+.pkg_type') is less than 1 Character\n"
