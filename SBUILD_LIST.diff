@@ -425,7 +425,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": false,
+    "rebuild": true,
     "pkg_family": "lazarus",
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/debian/stable",
