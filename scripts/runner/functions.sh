@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.0.8" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.0.9" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -88,7 +88,7 @@ cleanup_containers()
   ( docker stop "ubuntu-builder" >/dev/null 2>&1 ; docker rm "ubuntu-builder" >/dev/null 2>&1 ) &>/dev/null
   ( sudo docker stop "ubuntu-builder" >/dev/null 2>&1 ; sudo docker rm "ubuntu-builder" >/dev/null 2>&1 ) &>/dev/null
  #Cleanup 
-  wait >/dev/null 2>&1 ; echo
+  wait >/dev/null 2>&1 ; reset ; echo
 }
 export -f cleanup_containers
 #-------------------------------------------------------#
@@ -314,6 +314,9 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
   if [ -n "${GHCRPKG+x}" ] && [[ "${GHCRPKG}" =~ ^[^[:space:]]+$ ]]; then
     unset GHCRPKG_TAG; GHCRPKG_TAG="$(echo "${SBUILD_PKGVER}-${HOST_TRIPLET,,}" | sed 's/[^a-zA-Z0-9._-]/_/g; s/_*$//')" ; export GHCRPKG_TAG
     for PROG in "${SBUILD_PKGS[@]}"; do
+      if [[ "${PROG}" =~ [^a-zA-Z0-9_+.] ]]; then
+       echo -e "\n[-] WARNING: ${PROG} contains Special Chars\n"
+      fi
       oras manifest fetch "${GHCRPKG}/${PROG}:${GHCRPKG_TAG}" 2>/dev/null | jq . > "${SBUILD_TMPDIR}/MANIFEST.json"
       if [[ "$(jq -r '.annotations["org.opencontainers.image.version"]' "${SBUILD_TMPDIR}/MANIFEST.json")" == "${SBUILD_PKGVER}" ]]; then
          if [[ "$(jq -r '.. | .["org.opencontainers.image.title"]? // empty' "${SBUILD_TMPDIR}/MANIFEST.json" | sort -u | grep -E "^${PROG}$" | tr -d '[:space:]')" == "${PROG}" ]]; then
@@ -479,6 +482,9 @@ generate_ghcrpkgurl()
    echo -e "\n[✗] FATAL: Could NOT generate \${GHCRPKG_URL}\n"
    return 1 || exit 1
    export CONTINUE_SBUILD="NO"
+ else
+   GHCRPKG_URL="$(echo "${GHCRPKG_URL}" | awk '{ gsub("ghcr.io", "/ghcr.io", $0); n = split($0, parts, "/"); for (i = 1; i <= n; i++) { if (!seen[parts[i]]++) { printf "%s%s", parts[i], (i < n ? "/" : "\n") } } }' | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')"
+   export GHCRPKG_URL
  fi
 }
 export -f generate_ghcrpkgurl
