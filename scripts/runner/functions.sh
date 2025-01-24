@@ -88,7 +88,7 @@ cleanup_containers()
   ( docker stop "ubuntu-builder" >/dev/null 2>&1 ; docker rm "ubuntu-builder" >/dev/null 2>&1 ) &>/dev/null
   ( sudo docker stop "ubuntu-builder" >/dev/null 2>&1 ; sudo docker rm "ubuntu-builder" >/dev/null 2>&1 ) &>/dev/null
  #Cleanup 
-  wait >/dev/null 2>&1 ; reset ; echo
+  wait >/dev/null 2>&1 ; echo
 }
 export -f cleanup_containers
 #-------------------------------------------------------#
