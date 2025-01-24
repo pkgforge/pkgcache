@@ -314,7 +314,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
   if [ -n "${GHCRPKG+x}" ] && [[ "${GHCRPKG}" =~ ^[^[:space:]]+$ ]]; then
     unset GHCRPKG_TAG; GHCRPKG_TAG="$(echo "${SBUILD_PKGVER}-${HOST_TRIPLET,,}" | sed 's/[^a-zA-Z0-9._-]/_/g; s/_*$//')" ; export GHCRPKG_TAG
     for PROG in "${SBUILD_PKGS[@]}"; do
-      if [[ "${PROG}" =~ [^a-zA-Z0-9_+.] ]]; then
+      if [[ "${PROG}" =~ [^a-zA-Z0-9_+.-] ]]; then
        echo -e "\n[-] WARNING: ${PROG} contains Special Chars\n"
       fi
       oras manifest fetch "${GHCRPKG}/${PROG}:${GHCRPKG_TAG}" 2>/dev/null | jq . > "${SBUILD_TMPDIR}/MANIFEST.json"
