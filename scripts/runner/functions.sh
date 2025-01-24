@@ -482,9 +482,10 @@ generate_ghcrpkgurl()
    echo -e "\n[✗] FATAL: Could NOT generate \${GHCRPKG_URL}\n"
    return 1 || exit 1
    export CONTINUE_SBUILD="NO"
- else
-   GHCRPKG_URL="$(echo "${GHCRPKG_URL}" | awk '{ gsub("ghcr.io", "/ghcr.io", $0); n = split($0, parts, "/"); for (i = 1; i <= n; i++) { if (!seen[parts[i]]++) { printf "%s%s", parts[i], (i < n ? "/" : "\n") } } }' | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')"
-   export GHCRPKG_URL
+ elif [[ $(echo "${GHCRPKG_URL}" | grep -o "ghcr.io/pkgforge" | wc -l) -ge 2 ]]; then
+   echo -e "\n[✗] FATAL: Generated \${GHCRPKG_URL} [${GHCRPKG_URL}] contains Dupes\n"
+   return 1 || exit 1
+   export CONTINUE_SBUILD="NO"
  fi
 }
 export -f generate_ghcrpkgurl
