@@ -300,7 +300,8 @@ sbuild_builder()
          source "${OCWD}/ENVPATH" ; SBUILD_PKGS=($SBUILD_PKGS)
          if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
            sanitize_logs
-           printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@"' _ "{}"
+           #2000req/min
+           printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@" ; sleep "1.$(((RANDOM % 900) + 100))"' _ "{}"
            source "${OCWD}/ENVPATH"
            if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
              echo -e "\n[✗] FATAL: Failed to Push Artifacts ==> [${GHCRPKG}]"
