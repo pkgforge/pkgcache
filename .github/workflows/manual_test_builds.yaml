@@ -1,0 +1,226 @@
+name: 🧰🛠️ Test (PkgCache) Package 📦📀
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+
+      host:
+        description: Host (Arch+OS) [ALL ==> Run on All Hosts]
+        type: choice
+        options:
+          - "ALL"
+          - "aarch64-Linux"
+          - "x86_64-Linux"
+
+      sbuild-url:
+        description: Raw URL where SBUILD is located
+        required: true
+
+      ghcr-url:
+        description: Root GHCR URL under which this package will be pushed
+        required: true
+
+      pkg-family:
+        description: Package Family
+        required: true
+
+      debug:
+        description: Debug Mode (Verbose with set -x) [Default ==> False]
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+      logs:
+        description: Keep Logs? (Preserves Working Dir) [Default ==> True]
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+      rebuild:
+        description: Force Rebuild this Package? [Default ==> True]
+        type: choice
+        options:
+          - "true"
+          - "false"
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - host: ${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}
+            runner: ${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}
+          - host: ${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}
+            runner: ${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
+      packages: write
+
+    steps:
+      - name: Validate Required Secrets [${{ matrix.host }}<==>${{ matrix.runner }}]
+        env:
+          RO_GHTOKEN: ${{ secrets.RO_GHTOKEN }}
+          RO_GLTOKEN: ${{ secrets.RO_GLTOKEN }}
+          MINISIGN_KEY: ${{ secrets.MINISIGN_KEY }}
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          # Check if any of the required secrets are missing
+          if [ -z "${RO_GHTOKEN##*[[:space:]]}" ] || [ -z "${RO_GLTOKEN##*[[:space:]]}" ] || [ -z "${MINISIGN_KEY##*[[:space:]]}" ]; then
+            echo "::error::One or more required secrets are missing:"
+            [ -z "${RO_GHTOKEN##*[[:space:]]}" ] && echo "- RO_GHTOKEN is missing"
+            [ -z "${RO_GLTOKEN##*[[:space:]]}" ] && echo "- RO_GLTOKEN is missing"
+            [ -z "${MINISIGN_KEY##*[[:space:]]}" ] && echo "- MINISIGN_KEY is missing"
+            exit 1
+          fi
+        continue-on-error: false
+
+      - name: Parse Input [${{ matrix.host }}<==>${{ matrix.runner }}]
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##Debug   
+           if [ "${{ github.event.inputs.debug }}" == "true" ] ; then
+             export DEBUG="1"
+           else
+             export DEBUG="0"
+           fi
+           echo "DEBUG=${DEBUG}" >> "${GITHUB_ENV}"
+          ##GHCRPKG_URL
+           GHCRPKG_LOCAL="$(echo "${{ github.event.inputs.ghcr-url }}" | tr -d '[:space:]')"
+           export GHCRPKG_LOCAL
+           echo "GHCRPKG_LOCAL=${GHCRPKG_LOCAL}" >> "${GITHUB_ENV}"
+          ##Logs
+           if [ "${{ github.event.inputs.logs }}"" == "false" ] ; then
+             export KEEP_LOGS="NO"
+           else
+             export KEEP_LOGS="YES"
+             export GITHUB_TEST_BUILD="YES"
+           fi
+           echo "KEEP_LOGS=${KEEP_LOGS}" >> "${GITHUB_ENV}"
+           echo "GITHUB_TEST_BUILD=${GITHUB_TEST_BUILD}" >> "${GITHUB_ENV}"
+          ##PKG_FAMILY_LOCAL
+           PKG_FAMILY_LOCAL="$(echo "${{ github.event.inputs.pkg-family }}" | tr -d '[:space:]')"
+           export PKG_FAMILY_LOCAL
+           echo "PKG_FAMILY_LOCAL=${PKG_FAMILY_LOCAL}" >> "${GITHUB_ENV}"
+          ##Rebuild
+           if [ "${{ github.event.inputs.rebuild }}"" == "false" ] ; then
+             export SBUILD_REBUILD="false"
+           else
+             export SBUILD_REBUILD="true"
+           fi
+           echo "SBUILD_REBUILD=${SBUILD_REBUILD}" >> "${GITHUB_ENV}"
+           ##SBUILD_URL
+           SBUILD_FILE_URL="$(echo "${{ github.event.inputs.sbuild-url }}" | tr -d '[:space:]')"
+           pushd "$(mktemp -d)" >/dev/null 2>&1
+             curl -w "(SBUILD) <== %{url}\n" -fL "${SBUILD_FILE_URL}" -o "./SBUILD_INPUT"
+             if [[ ! -s "./SBUILD_INPUT" || $(stat -c%s "./SBUILD_INPUT") -le 10 ]]; then
+               echo -e "\n[✗] FATAL: Failed to Fetch ${SBUILD_FILE_URL}\n"
+              exit 1
+             else
+               export SBUILD_FILE_URL
+               echo "SBUILD_FILE_URL=${SBUILD_FILE_URL}" >> "${GITHUB_ENV}"
+             fi
+           popd >/dev/null 2>&1
+        continue-on-error: false
+
+      - name: Setup Env [${{ matrix.host }}<==>${{ matrix.runner }}]
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##CoreUtils
+          sudo apt update -y
+          sudo apt install bc coreutils curl dos2unix fdupes jq moreutils wget -y
+          sudo apt-get install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt-get update -y 2>/dev/null
+          ##tmp
+          SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+          #GH ENV
+          echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
+          #-------------#
+          mkdir -p "${HOME}/bin"
+          sudo apt update -y
+          sudo apt install dos2unix -y
+          ##Setup Minisign
+          mkdir -pv "${HOME}/.minisign"
+          echo "${{ secrets.MINISIGN_SIGKEY }}" > "${HOME}/.minisign/pkgforge.key"
+          ##User-Agent
+          USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+          echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: BUILD [${{ matrix.host }}<==>${{ matrix.runner }}]
+        env:
+          #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
+          GHCR_TOKEN: "${{ github.token }}"
+          GITHUB_TOKEN: "${{ secrets.RO_GHTOKEN }}"
+          GITLAB_TOKEN: "${{ secrets.RO_GLTOKEN }}"
+          MINISIGN_KEY: "${{ secrets.MINISIGN_KEY }}"
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          ##Main
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+           curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/runner/builder.sh" -o "${SYSTMP}/BUILDER.sh"
+           dos2unix --quiet "${SYSTMP}/BUILDER.sh" ; chmod +xwr "${SYSTMP}/BUILDER.sh"
+           ##Run with STDOUT + LOGS
+            export DEBUG="${DEBUG}"
+            export KEEP_LOGS="${KEEP_LOGS}"
+            export PKG_FAMILY_LOCAL="${PKG_FAMILY_LOCAL}"
+            export GHCRPKG_LOCAL="${GHCRPKG_LOCAL}"
+            export SBUILD_REBUILD="${SBUILD_REBUILD}"
+            export GITHUB_TEST_BUILD="${GITHUB_TEST_BUILD}"
+            bash "${SYSTMP}/BUILDER.sh" "${SBUILD_FILE_URL}" | tee "${SYSTMP}/BUILD.log" 2>&1
+           ##Purge Tokens (in case set -x & gh didn't redact)
+           cat "${SYSTMP}/BUILD.log" | ansi2txt > "${SYSTMP}/BUILD.gh.log.txt"
+           sed -i '/.*github_pat.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+           sed -i '/.*ghp_.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+           sed -i '/.*access_key_id.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+           sed -i '/.*token.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+           sed -i '/.*secret_access_key.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+           sed -i '/.*token.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+           sed -i '/.*cloudflarestorage.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
+           mv -fv "${SYSTMP}/BUILD.gh.log.txt" "${SYSTMP}/BUILD.log"
+          popd >/dev/null 2>&1
+        continue-on-error: true
+
+    ##Logs & Artifacts
+      - name: Get DateTime [${{ matrix.host }}<==>${{ matrix.runner }}]
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          UTC_TIME="$(TZ='UTC' date +'%Y_%m_%dT%I_%M_%S_%p')"
+          echo "UTC_TIME=${UTC_TIME}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: Upload (LOG) Artifacts [${{ matrix.host }}<==>${{ matrix.runner }}]
+        uses: actions/upload-artifact@v4
+        with:
+            name: Pkgcache_TEST_${{ matrix.host }}
+            path: |
+              /tmp/BUILD.log
+              /tmp/BUILD_ARTIFACTS.7z
+            compression-level: 0 # no compression, [Default: 6 (GNU Gzip)]
+            retention-days: 30
+            overwrite: true
+        continue-on-error: true     
+
+      - name: Attest Build Provenance [${{ matrix.host }}<==>${{ matrix.runner }}]
+        uses: actions/attest-build-provenance@v2.2.0
+        with:
+          subject-name: "build-logs-test-builds-${{ env.UTC_TIME }}"
+          subject-path: "/tmp/BUILD.log"
+          show-summary: true
+        continue-on-error: true
