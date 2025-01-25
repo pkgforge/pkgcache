@@ -356,9 +356,9 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
   if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    check_sane_env
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
-     #printf "\n" && timeout -k 5m 60m "${TMPXRUN}" ; printf "\n"
+     #printf "\n" && timeout -k 5m 120m "${TMPXRUN}" ; printf "\n"
      cleanup_containers
-     printf "\n" && timeout -k 5m 60m sbuild --log-level "verbose" "${INPUT_SBUILD}" --timeout-linter "120" --outdir "${SBUILD_OUTDIR}/BUILD" --keep
+     printf "\n" && timeout -k 5m 120m sbuild --log-level "verbose" "${INPUT_SBUILD}" --timeout-linter "120" --outdir "${SBUILD_OUTDIR}/BUILD" --keep
      printf "\n" && cleanup_containers
      sudo chown -Rv "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
      find "${SBUILD_OUTDIR}" -type f -exec sudo chmod -v +xwr "{}" \; 2>/dev/null
