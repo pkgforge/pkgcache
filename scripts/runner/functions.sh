@@ -360,6 +360,8 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
      cleanup_containers
      printf "\n" && timeout -k 5m 60m sbuild --log-level "verbose" "${INPUT_SBUILD}" --timeout-linter "120" --outdir "${SBUILD_OUTDIR}/BUILD" --keep
      printf "\n" && cleanup_containers
+     sudo chown -Rv "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
+     find "${SBUILD_OUTDIR}" -type f -exec sudo chmod -v +xwr "{}" \; 2>/dev/null
      unset ARTIFACTS_DIR ; ARTIFACTS_DIR="$(find "${SBUILD_OUTDIR}/BUILD" -name "SBUILD" -type f -exec dirname "{}" \; | xargs realpath | head -n 1 | tr -d '[:space:]')"
      if [ -d "${ARTIFACTS_DIR}" ] && [ $(du -s "${ARTIFACTS_DIR}" | cut -f1) -gt 10 ]; then
        rsync -achL "${ARTIFACTS_DIR}/." "${SBUILD_OUTDIR}"
@@ -367,9 +369,6 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        rm -rf "${ARTIFACTS_DIR}" 2>/dev/null
      fi
      if [ -d "${SBUILD_OUTDIR}" ] && [ $(du -s "${SBUILD_OUTDIR}" | cut -f1) -gt 10 ]; then
-      #Perms
-       sudo chown -R "$(whoami):$(whoami)" "${SBUILD_OUTDIR}"
-       find "${SBUILD_OUTDIR}" -type f -exec sudo chmod +xwr "{}" \;
       #Rename/strip
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -exec file -i "{}" \; |\
        grep "application/.*executable" | cut -d":" -f1 | xargs realpath | sort -u |\
