@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.0.9" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.1.1" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -744,6 +744,12 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
    if [[ -s "${GHCR_PKG}" && $(stat -c%s "${GHCR_PKG}") -gt 100 ]]; then
     #pkg_name
      PKG_NAME="$(jq -r '.pkg_name' "${PKG_JSON}" | tr -d '[:space:]')"
+    #build_gha
+     BUILD_GHACTIONS="$(jq -r '.build_gha' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${BUILD_GHACTIONS}" == "null" ]] && BUILD_GHACTIONS=""
+    #build_id
+     BUILD_ID="$(jq -r '.build_id' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${BUILD_ID}" == "null" ]] && BUILD_ID=""
     #build_log 
      BUILD_LOG="$(jq -r '.build_log' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${BUILD_LOG}" == "null" ]] && BUILD_LOG=""
@@ -990,7 +996,9 @@ popd >/dev/null 2>&1
 cleanup_env()
 {
 #Cleanup Dir  
- if [[ "${KEEP_LOGS}" != "YES" ]]; then
+ if [ -n "${GITHUB_TEST_BUILD+x}" ]; then
+  7z a -t7z -mx="9" -mmt="$(($(nproc)+1))" -bsp1 -bt "/tmp/BUILD_ARTIFACTS.7z" "${BUILD_DIR}" 2>/dev/null
+ elif [[ "${KEEP_LOGS}" != "YES" ]]; then
   echo -e "\n[-] Removing ALL Logs & Files\n"
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
