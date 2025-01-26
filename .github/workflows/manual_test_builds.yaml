@@ -60,6 +60,7 @@ jobs:
             runner: ubuntu-latest
             
     runs-on: ${{ matrix.runner }}
+    if: ${{ matrix.if }}
     timeout-minutes: 90
     permissions:
       attestations: write
