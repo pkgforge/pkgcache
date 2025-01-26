@@ -71,7 +71,6 @@ jobs:
           ##presets
           set +x ; set +e
           #-------------#
-          set -x
           if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "aarch64-Linux" ]]; then
               echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
