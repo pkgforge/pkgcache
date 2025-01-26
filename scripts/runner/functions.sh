@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.1.1" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.1.2" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -511,9 +511,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    PKG_SIZE_RAW="$(stat --format="%s" "${GHCR_PKG}" | tr -d '[:space:]')"
    #PKG_SIZE="$(echo "${PKG_SIZE_RAW}" | awk '{byte=$1; if (byte<1024) printf "%.2f B\n", byte; else if (byte<1024**2) printf "%.2f KB\n", byte/1024; else if (byte<1024**3) printf "%.2f MB\n", byte/(1024**2); else printf "%.2f GB\n", byte/(1024**3)}')"
    PKG_SIZE="$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')"
-   PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-${PROG}}/${PROG}"
    SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
-   export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM PKG_WEBPAGE SBUILD_PKGVER
+   export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM SBUILD_PKGVER
   #ghcrpkgurl 
    unset GHCRPKG_URL SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
    generate_ghcrpkgurl
@@ -658,6 +657,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    if [[ -s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version.sig" && ! -s "${SBUILD_OUTDIR}/${PROG}.version.sig" ]]; then
      cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version.sig" "${SBUILD_OUTDIR}/${PROG}.version.sig"
    fi
+  #Generate Webpage
+   PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/$(echo "${GHCRPKG_URL}" | sed 's|ghcr.io/||' | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')" ; export PKG_WEBPAGE
   #Generate 
    if ! echo "${SNAPSHOT_JSON}" | jq empty 2>/dev/null; then
      SNAPSHOT_JSON="[]"
@@ -839,6 +840,12 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
     #pkg_id 
      PKG_ID="$(jq -r '.pkg_id' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_ID}" == "null" ]] && PKG_ID="${PKG_FAMILY}"
+    #pkg_webpage
+     PKG_WEBPAGE="$(jq -r '.pkg_webpage' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${PKG_WEBPAGE}" == "null" ]] && unset PKG_WEBPAGE
+     if [ -z "${PKG_WEBPAGE+x}" ] || [ -z "${PKG_WEBPAGE##*[[:space:]]}" ]; then
+       PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/$(echo "${GHCRPKG_URL}" | sed 's|ghcr.io/||' | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')" ; export PKG_WEBPAGE 
+     fi
     #note 
      PKG_NOTE="$(jq -r 'if .note | type == "array" then .note[0] else .note end' "${PKG_JSON}")"
      [[ "${PKG_NOTE}" == "null" ]] && PKG_NOTE=""
@@ -915,7 +922,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-${PKG_ORIG}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_family=${PKG_FAMILY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_name=${PKG_NAME}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_webpage=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_webpage=${PKG_WEBPAGE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.repology=${PKG_REPOLOGY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.screenshot=${PKG_SCREENSHOT}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.shasum=${PKG_SHASUM}")
@@ -927,7 +934,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      ghcr_push+=(--annotation "org.opencontainers.image.authors=https://docs.pkgforge.dev/contact/chat")
      ghcr_push+=(--annotation "org.opencontainers.image.created=${PKG_DATE}")
      ghcr_push+=(--annotation "org.opencontainers.image.description=${PKG_DESCRIPTION}")
-     ghcr_push+=(--annotation "org.opencontainers.image.documentation=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME}")
+     ghcr_push+=(--annotation "org.opencontainers.image.documentation=${PKG_WEBPAGE}")
      ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
      ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${PKG_VERSION}")
      ghcr_push+=(--annotation "org.opencontainers.image.revision=${PKG_SHASUM:-${PKG_VERSION}}")
