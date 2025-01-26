@@ -50,14 +50,19 @@ on:
           
 jobs:
   build:
-    if: ${{ inputs.host == 'ALL' || inputs.host == matrix.host }}
     strategy:
       matrix:
-        include:
-          - host: 'aarch64-Linux'
-            runner: ubuntu-24.04-arm
-          - host: 'x86_64-Linux'
-            runner: ubuntu-latest
+        include: |
+          ${{ fromJSON('[
+            {"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm"},
+            {"host": "x86_64-Linux", "runner": "ubuntu-latest"}
+          ]') }}
+        # Filter the matrix dynamically based on inputs.host
+        exclude: |
+          ${{ inputs.host != 'ALL' && fromJSON('[
+            {"host": "aarch64-Linux"},
+            {"host": "x86_64-Linux"}
+          ]').filter(x => x.host != inputs.host) }}
 
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 90
