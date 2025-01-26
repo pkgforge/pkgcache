@@ -74,11 +74,11 @@ jobs:
           set -x
           if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "aarch64-Linux" ]]; then
-              exit 0
+              exit 1
             fi
           elif [[ "$(uname -m | tr -d '[:space:]')" == "x86_64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "x86_64-Linux" ]]; then
-              exit 0
+              exit 1
             fi
           fi
         continue-on-error: false
