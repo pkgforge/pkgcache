@@ -60,7 +60,7 @@ jobs:
             runner: ubuntu-latest
             
     runs-on: ${{ matrix.runner }}
-    if: ${{ (inputs.host == 'ALL') || (inputs.host == matrix.host) }}
+    if: ${{ inputs.host == 'ALL' || inputs.host == matrix.host }}
     timeout-minutes: 90
     permissions:
       attestations: write
