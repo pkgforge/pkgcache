@@ -658,7 +658,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version.sig" "${SBUILD_OUTDIR}/${PROG}.version.sig"
    fi
   #Generate Webpage
-   PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/$(echo "${GHCRPKG_URL}" | sed 's|ghcr.io/||' | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')" ; export PKG_WEBPAGE
+   PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/$(echo "${GHCRPKG_URL}" | sed "s|ghcr.io/pkgforge/${PKG_REPO}||" | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')" ; export PKG_WEBPAGE
   #Generate 
    if ! echo "${SNAPSHOT_JSON}" | jq empty 2>/dev/null; then
      SNAPSHOT_JSON="[]"
@@ -844,7 +844,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      PKG_WEBPAGE="$(jq -r '.pkg_webpage' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_WEBPAGE}" == "null" ]] && unset PKG_WEBPAGE
      if [ -z "${PKG_WEBPAGE+x}" ] || [ -z "${PKG_WEBPAGE##*[[:space:]]}" ]; then
-       PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/$(echo "${GHCRPKG_URL}" | sed 's|ghcr.io/||' | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')" ; export PKG_WEBPAGE 
+       PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/$(echo "${GHCRPKG_URL}" | sed "s|ghcr.io/pkgforge/${PKG_REPO}||" | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')" ; export PKG_WEBPAGE 
      fi
     #note 
      PKG_NOTE="$(jq -r 'if .note | type == "array" then .note[0] else .note end' "${PKG_JSON}")"
