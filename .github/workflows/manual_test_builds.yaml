@@ -57,7 +57,7 @@ jobs:
           - host: ${{ inputs.host == 'ALL' || inputs.host == 'x86_64-Linux' }}
             runner: ubuntu-latest
     runs-on: ${{ matrix.runner }}
-    if: ${{ matrix.host }}
+    if: ${{ contains(matrix.host, true) }}
     timeout-minutes: 90
     permissions:
       attestations: write
