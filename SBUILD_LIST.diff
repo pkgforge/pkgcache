@@ -396,6 +396,14 @@
     "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ghostty",
+    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/nixappimage.nixpkgs.stable.yaml"
   },
@@ -406,6 +414,57 @@
     "description": "Fast modal terminal-based text editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/helix/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/helix/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "kdeutils",
+    "description": "Collection of utilities for KDE",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/kdeutils/appimage/ivan-hc/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/kdeutils/appimage.ivan-hc.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "kdeutils",
+    "description": {
+      "_default": "Collection of utilities for KDE",
+      "ark": "Archiving Tool [kdeutils]",
+      "filelight": "View disk usage information [kdeutils]",
+      "francis": "Track your time [kdeutils]",
+      "isoimagewriter": "Program to write hybrid ISO files onto USB disks [kdeutils]",
+      "kalk": "A powerful cross-platform calculator application built with the Kirigami framework [kdeutils]",
+      "kalm": "Kalm can teach you different breathing techniques [kdeutils]",
+      "kate": "Advanced text editor [kdeutils]",
+      "kbackup": "A program that lets you back up any directories or files [kdeutils]",
+      "kcalc": "Scientific Calculator [kdeutils]",
+      "kcharselect": "Character Selector [kdeutils]",
+      "kclock": "Clock app for Plasma Mobile [kdeutils]",
+      "kdebugsettings": "An application to enable/disable qCDebug [kdeutils]",
+      "kdeutils": "Collection of utilities for KDE",
+      "kdf": "View Disk Usage [kdeutils]",
+      "kdialog": "A utility for displaying dialog boxes from shell scripts [kdeutils]",
+      "keditbookmarks": "Bookmark Organizer and Editor [kdeutils]",
+      "keysmith": "OTP client for Plasma Mobile and Desktop [kdeutils]",
+      "kfind": "Find Files/Folders [kdeutils]",
+      "kgpg": "A GnuPG frontend [kdeutils]",
+      "kongress": "Companion application for conferences [kdeutils]",
+      "konsole": "KDE terminal emulator [kdeutils]",
+      "krecorder": "Audio recorder for Plasma Mobile and other platforms [kdeutils]",
+      "kteatime": "A handy timer for steeping tea [kdeutils]",
+      "ktimer": "Countdown Launcher [kdeutils]",
+      "ktrip": "Public Transport Assistance for Mobile Devices [kdeutils]",
+      "kwalletmanager": "Wallet management tool [kdeutils]",
+      "kweather": "Weather application for Plasma Mobile [kdeutils]",
+      "kwrite": "Collection of utilities for KDE [kdeutils]",
+      "markdownpart": "KPart for rendering Markdown content [kdeutils]",
+      "skanpage": "Utility to scan images and multi-page documents [kdeutils]",
+      "sweeper": "System Cleaner [kdeutils]",
+      "telly-skout": "Convergent TV guide based on Kirigami [kdeutils]",
+      "yakuake": "A drop-down terminal emulator based on KDE konsole technology [kdeutils]"
+    },
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/kdeutils/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/kdeutils/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
@@ -534,6 +593,14 @@
     "description": "A Audio Player and Music Collection Organizer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/strawberry/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/strawberry/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tangent",
+    "description": "A clean and powerful open source notes app",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tangent/appimage/official/alpha",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tangent/appimage.official.alpha.yaml"
   },
   {
     "_disabled": false,
