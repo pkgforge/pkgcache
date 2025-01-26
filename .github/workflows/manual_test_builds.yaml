@@ -52,10 +52,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - host: ${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}
-            runner: ${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}
-          - host: ${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}
-            runner: ${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}
+          - host: ${{ inputs.host == 'ALL' || 'aarch64-Linux' }}
+            runner: ubuntu-24.04-arm
+          - host: ${{ inputs.host == 'ALL' || 'x86_64-Linux' }}
+            runner: ubuntu-latest
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 90
     permissions:
