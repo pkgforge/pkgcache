@@ -134,7 +134,7 @@ jobs:
            export PKG_FAMILY_LOCAL
            echo "PKG_FAMILY_LOCAL=${PKG_FAMILY_LOCAL}" >> "${GITHUB_ENV}"
           ##Rebuild
-           if [ "${{ github.event.inputs.rebuild }}"" == "false" ] ; then
+           if [ "${{ github.event.inputs.rebuild }}" == "false" ] ; then
              export SBUILD_REBUILD="false"
            else
              export SBUILD_REBUILD="true"
