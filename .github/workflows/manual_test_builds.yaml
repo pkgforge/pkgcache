@@ -159,6 +159,17 @@ jobs:
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
+      - name: Disable apparmor_restrict_unprivileged_userns #Required for runimage etc
+        run: |
+          #presets
+          set +x ; set +e
+          #-------------#        
+          echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
+          echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
+          sudo service procps restart
+          sudo sysctl -p "/etc/sysctl.conf"
+        continue-on-error: true
+
       - name: BUILD [${{ matrix.host }}<==>${{ matrix.runner }}]
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
