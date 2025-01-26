@@ -66,16 +66,19 @@ jobs:
       packages: write
 
     steps:
-      - name: Set matrix filter
-        if: ${{ inputs.host != 'ALL' }}
+      - name: Exit if not called
         run: |
-          echo "##[group]Filtering matrix"
-          if [[ "${{ inputs.host }}" != "${{ matrix.host }}" ]]; then
-            echo "##[endgroup]"
-            exit 0
+          ##presets
+          set +x ; set +e
+          #-------------#
+          if [ "${{ github.event.inputs.host }}" == "ALL" ] || \
+             [ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]; then
+              if [ "${{ matrix.runner }}" == "ubuntu-24.04-arm" ]; then
+                  exit 0
+              fi
           fi
-          echo "##[endgroup]"
-    
+        continue-on-error: false
+
       - name: Validate Required Secrets [${{ matrix.host }}<==>${{ matrix.runner }}]
         env:
           RO_GHTOKEN: ${{ secrets.RO_GHTOKEN }}
