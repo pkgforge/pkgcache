@@ -130,6 +130,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "akregator",
+    "description": "KDE RSS feed reader",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/akregator/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/akregator/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "akuse",
     "description": "Simple and easy to use anime streaming desktop app without ads",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/akuse/appimage/official/stable",
@@ -174,14 +182,6 @@
     "description": "Tool to display AMDGPU usage",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/amdgpu_top/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/amdgpu_top/appimage.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "android-knot",
-    "description": "Record everything in the simplest way possible",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/knot/appimage/official/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/android-knot/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -268,6 +268,30 @@
     "rebuild": false,
     "pkg_family": "discord",
     "description": "All-in-one cross-platform voice and text chat for gamers (Canary)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord-canary/appimage/srevinsaju/canary",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.canary.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers (Public Test Beta)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord-ptb/appimage/srevinsaju/ptb",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.ptb.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/appimage/srevinsaju/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "discord",
+    "description": "All-in-one cross-platform voice and text chat for gamers (Canary)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/canary",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.canary.yaml"
   },
@@ -294,30 +318,6 @@
     "description": "All-in-one cross-platform voice and text chat for gamers",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "discord",
-    "description": "All-in-one cross-platform voice and text chat for gamers (Canary)",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord-canary/appimage/srevinsaju/canary",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.canary.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "discord",
-    "description": "All-in-one cross-platform voice and text chat for gamers (Public Test Beta)",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord-ptb/appimage/srevinsaju/ptb",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.ptb.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "discord",
-    "description": "All-in-one cross-platform voice and text chat for gamers",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/appimage/srevinsaju/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/appimage.srevinsaju.stable.yaml"
   },
   {
     "_disabled": false,
@@ -388,16 +388,16 @@
     "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/nixappimage.nixpkgs.stable.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.source.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.source.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/nixappimage.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -406,6 +406,14 @@
     "description": "Fast modal terminal-based text editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/helix/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/helix/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "android-knot",
+    "description": "Record everything in the simplest way possible",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/knot/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/android-knot/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -422,6 +430,14 @@
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/debian/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/lazarus/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "librewolf",
+    "description": "A fork of Firefox, focused on privacy, security and freedom",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/librewolf/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/librewolf/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
@@ -518,6 +534,22 @@
     "description": "A Audio Player and Music Collection Organizer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/strawberry/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/strawberry/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tangent",
+    "description": "A clean and powerful open source notes app",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tangent/appimage/official/alpha",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tangent/appimage.official.alpha.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tangent",
+    "description": "A clean and powerful open source notes app",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tangent/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tangent/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
