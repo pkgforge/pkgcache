@@ -71,11 +71,12 @@ jobs:
           ##presets
           set +x ; set +e
           #-------------#
-          if [[ "${{ matrix.runner }}" == "ubuntu-24.04-arm" ]]; then
+          set -x
+          if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "aarch64-Linux" ]]; then
               exit 0
             fi
-          elif [[ "${{ matrix.runner }}" == "ubuntu-latest" ]]; then
+          elif [[ "$(uname -m | tr -d '[:space:]')" == "x86_64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "x86_64-Linux" ]]; then
               exit 0
             fi
