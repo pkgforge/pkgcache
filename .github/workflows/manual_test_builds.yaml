@@ -52,11 +52,13 @@ jobs:
   build:
     strategy:
       matrix:
-        include: |
-          ${{ inputs.host == 'aarch64-Linux' && fromJSON('[{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm"}]') || 
-              inputs.host == 'x86_64-Linux' && fromJSON('[{"host": "x86_64-Linux", "runner": "ubuntu-latest"}]') || 
-              inputs.host == 'ALL' && fromJSON('[{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm"}, {"host": "x86_64-Linux", "runner": "ubuntu-latest"}]') }}
+        include:
+          - host: 'aarch64-Linux'
+            runner: ubuntu-24.04-arm
+          - host: 'x86_64-Linux'
+            runner: ubuntu-latest
     runs-on: ${{ matrix.runner }}
+    if: ${{ contains(format(',{0},', inputs.host), format(',{0},', matrix.host)) || inputs.host == 'ALL' }}
     timeout-minutes: 90
     permissions:
       attestations: write
