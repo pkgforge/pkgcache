@@ -53,12 +53,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - host: 'aarch64-Linux'
+          - host: ${{ inputs.host == 'ALL' || 'aarch64-Linux' }}
             runner: ubuntu-24.04-arm
-          - host: 'x86_64-Linux'
+          - host: ${{ inputs.host == 'ALL' || 'x86_64-Linux' }}
             runner: ubuntu-latest
     runs-on: ${{ matrix.runner }}
-    if: ${{ contains(format(',{0},', inputs.host), format(',{0},', matrix.host)) || inputs.host == 'ALL' }}
     timeout-minutes: 90
     permissions:
       attestations: write
@@ -67,6 +66,16 @@ jobs:
       packages: write
 
     steps:
+      - name: Set matrix filter
+        if: ${{ inputs.host != 'ALL' }}
+        run: |
+          echo "##[group]Filtering matrix"
+          if [[ "${{ inputs.host }}" != "${{ matrix.host }}" ]]; then
+            echo "##[endgroup]"
+            exit 0
+          fi
+          echo "##[endgroup]"
+    
       - name: Validate Required Secrets [${{ matrix.host }}<==>${{ matrix.runner }}]
         env:
           RO_GHTOKEN: ${{ secrets.RO_GHTOKEN }}
