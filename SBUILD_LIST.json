@@ -418,6 +418,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "kdeutils",
+    "description": "Collection of utilities for KDE",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/kdeutils/appimage/ivan-hc/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/kdeutils/appimage.ivan-hc.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "lazarus",
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/cachyos/stable",
