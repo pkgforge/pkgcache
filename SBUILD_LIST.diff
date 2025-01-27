@@ -257,11 +257,27 @@
   },
   {
     "_disabled": false,
+    "rebuild": true,
+    "pkg_family": "clamtk",
+    "description": "GTK front-end for Clam Antivirus",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/clamtk/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/clamtk/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
     "rebuild": false,
     "pkg_family": "cromite",
     "description": "A Bromite fork with ad blocking and privacy enhancements",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cromite/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cromite/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": true,
+    "pkg_family": "ddnet",
+    "description": "Cooperative online platform game based on Teeworlds",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ddnet/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ddnet/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
@@ -598,6 +614,22 @@
     "description": "A custom Discord App aiming to give you better performance and improve linux support",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vesktop/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vesktop/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "vscodium",
+    "description": "Visual Studio Code without MS branding/telemetry/licensing",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vscodium/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vscodium/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "vscodium",
+    "description": "Visual Studio Code without MS branding/telemetry/licensing",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vscodium/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vscodium/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
