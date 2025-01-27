@@ -211,9 +211,9 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "brave",
-    "description": "Privacy-oriented browser for Desktop and Laptop computers (Stable)",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.stable.yaml"
+    "description": "Privacy-oriented browser for Desktop and Laptop computers (Beta)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/beta",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.beta.yaml"
   },
   {
     "_disabled": false,
@@ -227,9 +227,9 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "brave",
-    "description": "Privacy-oriented browser for Desktop and Laptop computers (Beta)",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/beta",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.beta.yaml"
+    "description": "Privacy-oriented browser for Desktop and Laptop computers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/appimage/srevinsaju/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/appimage.srevinsaju.stable.yaml"
   },
   {
     "_disabled": false,
@@ -412,8 +412,24 @@
     "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ghostty",
+    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "git",
+    "description": "Fast, scalable, distributed revision control system",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/runimage.alpine.stable.yaml"
   },
   {
     "_disabled": false,
@@ -422,14 +438,6 @@
     "description": "Fast modal terminal-based text editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/helix/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/helix/nixappimage.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "android-knot",
-    "description": "Record everything in the simplest way possible",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/knot/appimage/official/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/android-knot/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -450,6 +458,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "android-knot",
+    "description": "Record everything in the simplest way possible",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/knot/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/android-knot/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "lazarus",
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/cachyos/stable",
@@ -457,7 +473,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "lazarus",
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/debian/stable",
@@ -622,6 +638,30 @@
     "description": "Visual Studio Code without MS branding/telemetry/licensing",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vscodium/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vscodium/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wezterm",
+    "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wezterm/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wezterm/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wezterm",
+    "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wezterm/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wezterm/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wezterm",
+    "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wezterm/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wezterm/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
