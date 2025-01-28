@@ -338,6 +338,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ffdec",
+    "description": "Open source Flash SWF decompiler and editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ffdec/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ffdec/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "firefox",
     "description": "A web browser built from Firefox source tree (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/firefox/appimage/srevinsaju/beta",
@@ -390,6 +398,14 @@
     "description": "Powerful and simple to use screenshot software",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/flameshot/nixappimage/nixpkgs/unstable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/flameshot/nixappimage.nixpkgs.unstable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "funkin",
+    "description": "Friday Night Funkin: A rhythm game",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/funkin/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/funkin/runimage.debian.stable.yaml"
   },
   {
     "_disabled": false,
