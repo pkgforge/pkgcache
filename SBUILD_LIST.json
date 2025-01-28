@@ -338,6 +338,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ffdec",
+    "description": "Open source Flash SWF decompiler and editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ffdec/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ffdec/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "firefox",
     "description": "A web browser built from Firefox source tree (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/firefox/appimage/srevinsaju/beta",
@@ -394,6 +402,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "funkin",
+    "description": "Friday Night Funkin: A rhythm game",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/funkin/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/funkin/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gearlever",
     "description": "Manage AppImages with ease",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gearlever/nixappimage/nixpkgs/stable",
@@ -402,10 +418,10 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "ghostty",
-    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.source.yaml"
+    "pkg_family": "ghex",
+    "description": "A simple Binary/Hex editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghex/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghex/runimage.alpine.stable.yaml"
   },
   {
     "_disabled": false,
@@ -414,14 +430,6 @@
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ghostty",
-    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/nixappimage.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
