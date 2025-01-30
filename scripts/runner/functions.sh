@@ -102,7 +102,7 @@ fetch_version_upstream()
  #Check if it's even needed
  if echo "${SBUILD_PKGVER}" | grep -q '^HEAD-'; then
   #Fetch from Build Output
-   if [[ -s "${SBUILD_TMPDIR}/upstream.version" && $(stat -c%s "${SBUILD_TMPDIR}/upstream.version") -gt 10 ]]; then
+   if [[ -s "${SBUILD_TMPDIR}/upstream.version" && $(stat -c%s "${SBUILD_TMPDIR}/upstream.version") -gt 3 ]]; then
      PKG_VERSION_UPSTREAM="$(cat "${SBUILD_TMPDIR}/upstream.version" | tr -d '[:space:]' )" ; export PKG_VERSION_UPSTREAM
      #Check
      if [ -n "${PKG_VERSION_UPSTREAM+x}" ] && [ "$(printf '%s' "${PKG_VERSION_UPSTREAM}" | tr -d '[:space:]' | wc -c)" -gt 2 ]; then
