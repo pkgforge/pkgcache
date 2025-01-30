@@ -51,6 +51,7 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - host: ${{ inputs.host == 'ALL' || 'aarch64-Linux' }}
@@ -58,7 +59,7 @@ jobs:
           - host: ${{ inputs.host == 'ALL' || 'x86_64-Linux' }}
             runner: ubuntu-latest
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 90
+    timeout-minutes: 200
     permissions:
       attestations: write
       contents: write

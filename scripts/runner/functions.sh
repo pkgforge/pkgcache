@@ -103,7 +103,7 @@ fetch_version_upstream()
  if echo "${SBUILD_PKGVER}" | grep -q '^HEAD-'; then
   #Fetch from Build Output
    if [[ -s "${SBUILD_TMPDIR}/upstream.version" && $(stat -c%s "${SBUILD_TMPDIR}/upstream.version") -gt 3 ]]; then
-     PKG_VERSION_UPSTREAM="$(cat "${SBUILD_TMPDIR}/upstream.version" | tr -d '[:space:]' )" ; export PKG_VERSION_UPSTREAM
+     PKG_VERSION_UPSTREAM="$(cat "${SBUILD_TMPDIR}/upstream.version" | tr -d '[:space:]')" ; export PKG_VERSION_UPSTREAM
      #Check
      if [ -n "${PKG_VERSION_UPSTREAM+x}" ] && [ "$(printf '%s' "${PKG_VERSION_UPSTREAM}" | tr -d '[:space:]' | wc -c)" -gt 2 ]; then
        echo -e "[+] Upstream Version: ${PKG_VERSION_UPSTREAM} ('.SBUILD') [${SBUILD_TMPDIR}/upstream.version]"
@@ -356,9 +356,9 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
   if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    check_sane_env
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
-     #printf "\n" && timeout -k 5m 120m "${TMPXRUN}" ; printf "\n"
+     #printf "\n" && timeout -k 5m 150m "${TMPXRUN}" ; printf "\n"
      cleanup_containers
-     printf "\n" && timeout -k 5m 120m sbuild --log-level "verbose" "${INPUT_SBUILD}" --timeout-linter "120" --outdir "${SBUILD_OUTDIR}/BUILD" --keep
+     printf "\n" && timeout -k 5m 150m sbuild --log-level "verbose" "${INPUT_SBUILD}" --timeout-linter "120" --outdir "${SBUILD_OUTDIR}/BUILD" --keep
      printf "\n" && cleanup_containers
      sudo chown -Rv "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
      find "${SBUILD_OUTDIR}" -type f -exec sudo chmod -v +xwr "{}" \; 2>/dev/null
