@@ -338,6 +338,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "fdm",
+    "description": "A powerful modern download accelerator and organizer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fdm/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/fdm/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ffdec",
     "description": "Open source Flash SWF decompiler and editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ffdec/runimage/cachyos/stable",
@@ -418,10 +426,10 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "ghostty",
-    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.source.yaml"
+    "pkg_family": "ghex",
+    "description": "A simple Binary/Hex editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghex/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghex/runimage.alpine.stable.yaml"
   },
   {
     "_disabled": false,
@@ -430,14 +438,6 @@
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ghostty",
-    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/nixappimage/nixpkgs/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/nixappimage.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
