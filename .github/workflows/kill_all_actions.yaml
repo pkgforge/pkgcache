@@ -1,0 +1,39 @@
+#!!WARNING: This kills All actions (all kinds) in the entire repository##
+name: 🔫 Kill All Actions 👾
+on:
+  workflow_dispatch:
+jobs:
+  KIA:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      statuses: write
+    steps:
+      - name: Kill
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##Stale
+          kill_all_actions()
+          {
+             gh run list --repo "${GITHUB_REPOSITORY}" --json databaseId --jq '.[].databaseId' --limit '1000' --status 'stale' |\
+              xargs -I "{}" gh run cancel "{}" --repo "${GITHUB_REPOSITORY}" &
+             ##Queued
+             gh run list --repo "${GITHUB_REPOSITORY}" --json databaseId --jq '.[].databaseId' --limit '1000' --status 'queued' |\
+              xargs -I "{}" gh run cancel "{}" --repo "${GITHUB_REPOSITORY}" &
+             ##Requested
+             gh run list --repo "${GITHUB_REPOSITORY}" --json databaseId --jq '.[].databaseId' --limit '1000' --status 'requested' |\
+              xargs -I "{}" gh run cancel "{}" --repo "${GITHUB_REPOSITORY}" &
+             ##Waiting
+             gh run list --repo "${GITHUB_REPOSITORY}" --json databaseId --jq '.[].databaseId' --limit '1000' --status 'waiting' |\
+              xargs -I "{}" gh run cancel "{}" --repo "${GITHUB_REPOSITORY}" &
+             ##In_Progress (Must be last)
+             gh run list --repo "${GITHUB_REPOSITORY}" --json databaseId --jq '.[].databaseId' --limit '1000' --status 'in_progress' |\
+              xargs -I "{}" gh run cancel "{}" --repo "${GITHUB_REPOSITORY}" &
+             ##Wait
+             wait ; echo
+          }
+          export -f kill_all_actions
+          kill_all_actions ; kill_all_actions ; kill_all_actions
+        continue-on-error: true

@@ -1,4 +1,4 @@
-name: 🧰🛠️ Test (PkgCache) Package 📦📀
+name: 🧰🛠️ Build Package 📦📀
 
 permissions:
   contents: write
@@ -47,25 +47,26 @@ on:
         options:
           - "true"
           - "false"
-          
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
         include:
-          - host: ${{ inputs.host == 'ALL' || 'aarch64-Linux' }}
-            runner: ubuntu-24.04-arm
-          - host: ${{ inputs.host == 'ALL' || 'x86_64-Linux' }}
-            runner: ubuntu-latest
-    runs-on: ${{ matrix.runner }}
+          - host: "${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}"
+            runner: "${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}"
+            ghcr_pkg: "${{ inputs.ghcr-url }}"
+          - host: "${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}"
+            runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}"
+            ghcr_pkg: "${{ inputs.ghcr-url }}"
+    name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
+    runs-on: "${{ matrix.runner }}"
     timeout-minutes: 200
     permissions:
       attestations: write
       contents: write
       id-token: write
       packages: write
-
     steps:
       - name: Exit if not called
         run: |
@@ -192,7 +193,7 @@ jobs:
           sudo sysctl -p "/etc/sysctl.conf"
         continue-on-error: true
 
-      - name: BUILD [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: BUILD (${{ github.event.inputs.ghcr-url }}) [${{ matrix.host }}<==>${{ matrix.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
@@ -244,7 +245,7 @@ jobs:
         if: env.CONTINUE_GHRUN != 'FALSE'
         uses: actions/upload-artifact@v4
         with:
-            name: Pkgcache_TEST_${{ matrix.host }}
+            name: Pkgcache_${{ env.PKG_FAMILY_LOCAL }}_${{ matrix.host }}
             path: |
               /tmp/BUILD.log
               /tmp/BUILD_ARTIFACTS.7z
@@ -257,7 +258,7 @@ jobs:
         if: env.CONTINUE_GHRUN != 'FALSE'
         uses: actions/attest-build-provenance@v2.2.0
         with:
-          subject-name: "build-logs-test-builds-${{ env.UTC_TIME }}"
+          subject-name: "build-logs-${{ env.PKG_FAMILY_LOCAL }}-${{ env.UTC_TIME }}"
           subject-path: "/tmp/BUILD.log"
           show-summary: true
         continue-on-error: true

@@ -5,8 +5,9 @@ concurrency:
   
 on:
   workflow_dispatch:
-  #schedule:
-  #  - cron: "30 18 * * 1" # 06:30 PM UTC (12:15 AM NPT Mrng Every Tuesday)
+  schedule:
+    - cron: "30 18 * * Mon,Wed,Sat" # 06:30 PM UTC (12:15 AM NPT Mrng)
+    #- cron: "30 18 * * 1,3,6" # 06:30 PM UTC (12:15 AM NPT Mrng)
 env:
   EXCLUDE_CACHED: "YES" #No--> Manually checks if should build one by one (If rebuild == true, it's added regardless)
   FORCE_REBUILD_ALL: "NO" #YES--> Force Rebuild everything, will take several tries & fail several times
