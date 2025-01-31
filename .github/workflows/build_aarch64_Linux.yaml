@@ -269,13 +269,11 @@ jobs:
                  echo "BUILD_FAILED=${BUILD_FAILED}" >> "${GITHUB_ENV}"
               fi
               ##rClone Upload logs
-               7z a -t7z -mx=9 -mmt="$(($(nproc)+1))" -bsp1 -bt "./aarch64-Linux.${{ github.run_id }}.log.xz" "${SYSTMP}/BUILD.log" 2>/dev/null
-               rclone copyto "./aarch64-Linux.${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/aarch64-Linux.latest.log.xz" --checksum --check-first --user-agent="${USER_AGENT}" &
-               rclone copyto "./aarch64-Linux.${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/aarch64-linux.latest.log.xz" --checksum --check-first --user-agent="${USER_AGENT}" &
-               rclone copyto "./aarch64-Linux.${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/aarch64-Linux.${{ github.run_id }}.log.xz" --checksum --check-first --user-agent="${USER_AGENT}" &
+               7z a -t7z -mx=9 -mmt="$(($(nproc)+1))" -bsp1 -bt "./${{ github.run_id }}.log.xz" "${SYSTMP}/BUILD.log" 2>/dev/null
+               rclone copyto "./${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/${{ github.run_id }}.log.xz" --checksum --check-first --user-agent="${USER_AGENT}" &
                if [[ -s "${SYSTMP}/BUILD_FAILED.log" && $(stat -c%s "${SYSTMP}/BUILD_FAILED.log") -gt 10 ]]; then
-                 7z a -t7z -mx=9 -mmt="$(($(nproc)+1))" -bsp1 -bt "./aarch64-Linux.${{ github.run_id }}.FAILED.log.xz" "${SYSTMP}/BUILD_FAILED.log" 2>/dev/null
-                 rclone copyto "./aarch64-Linux.${{ github.run_id }}.FAILED.log.xz" "r2:/meta/pkgcache/logs/aarch64-Linux.${{ github.run_id }}.FAILED.log.xz" --checksum --check-first --user-agent="${USER_AGENT}"
+                 7z a -t7z -mx=9 -mmt="$(($(nproc)+1))" -bsp1 -bt "./${{ github.run_id }}.log.xz" "${SYSTMP}/BUILD_FAILED.log" 2>/dev/null
+                 rclone copyto "./${{ github.run_id }}.log.xz" "r2:/meta/pkgcache/logs/${{ github.run_id }}.log.xz" --checksum --check-first --user-agent="${USER_AGENT}"
                fi
               wait ; echo
            fi
