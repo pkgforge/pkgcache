@@ -1,0 +1,110 @@
+name: ⏱️ Soar Daily Builds 🚀
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 23 * * *" # 11:30 PM UTC (05:15 AM NPT Mrng)
+jobs:
+  pre-trigger-build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      build_list: ${{ steps.set-inputs.outputs.build_list }}
+    steps:
+      - name: Setup Env
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##CoreUtils
+          sudo apt update -y
+          sudo apt install bc coreutils curl dos2unix fdupes jq moreutils wget -y
+          sudo apt-get install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt-get update -y 2>/dev/null
+          #-------------#
+          ##Host
+          HOST_TRIPLET="$(uname -m)-$(uname -s)"
+          echo "HOST_TRIPLET=${HOST_TRIPLET}" >> "${GITHUB_ENV}"
+          #-------------#
+          ##Repo
+          PKG_REPO="${GITHUB_REPOSITORY}"
+          echo "PKG_REPO=${PKG_REPO#*/}" >> "${GITHUB_ENV}"
+          #-------------#
+          ##tmp
+          SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+          echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
+          #-------------#
+          mkdir -p "${HOME}/bin"
+          sudo apt update -y
+          sudo apt install dos2unix -y
+          ##User-Agent
+          USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+          echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+              
+      - name: Get & Set Inputs
+        id: set-inputs
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##Set Input
+          BUILD_LIST="$(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/SBUILD_LIST.json" | jq -c '[.[] | select(._disabled == false and (.build_script | contains("/binaries/soar/"))) | {pkg_family, ghcr_url: .ghcr_pkg, sbuild_url: .build_script, rebuild}] | .[:100]')"
+          ##Validate Input
+          if ! echo "${BUILD_LIST}" | jq -e 'type == "array" and length > 0' >/dev/null; then
+             echo -e "\n[-] Input Json is likely Invalid\n"
+             echo "${BUILD_LIST}" | jq .
+            exit 1
+          else
+             ESCAPED_BUILD_LIST=$(echo "$BUILD_LIST" | jq -c .)
+             echo "build_list=${ESCAPED_BUILD_LIST}" >> "${GITHUB_OUTPUT}"
+          fi
+        continue-on-error: false
+
+      - name: Sanity Check Input JSON
+        run: |
+          echo '${{ steps.set-inputs.outputs.build_list }}' | jq .
+        continue-on-error: true
+
+  trigger-build:
+    needs: [pre-trigger-build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 250
+    permissions:
+      actions: write
+      contents: read
+      statuses: write
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        package: ${{ fromJSON(needs.pre-trigger-build.outputs.build_list) }}
+    steps:
+      - name: Current Package
+        run: |
+          echo '${{ toJSON(matrix.package) }}' | jq -r '
+            "Package Family: \(.pkg_family)",
+            "GHCR URL: \(.ghcr_url)",
+            "Build URL: \(.sbuild_url)",
+            "Rebuild: \(.rebuild)"
+          '
+        continue-on-error: true
+
+      - name: Trigger Matrix Builds
+        if: ${{ toJson(matrix.package) != '{}' }}
+        env:
+          GH_TOKEN: "${{ github.token }}"
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#        
+          gh workflow run "matrix_builds.yaml" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --ref "${GITHUB_REF}" \
+            -f host="ALL" \
+            -f sbuild-url="${{ matrix.package.sbuild_url }}" \
+            -f ghcr-url="${{ matrix.package.ghcr_url }}" \
+            -f pkg-family="${{ matrix.package.pkg_family }}" \
+            -f debug="false" \
+            -f logs="true" \
+            -f rebuild="${{ matrix.package.rebuild }}"
+        continue-on-error: false
