@@ -138,6 +138,7 @@ jobs:
           ##presets
           set +x ; set +e
           #-------------#
+          export HOST_TRIPLET="$(uname -m)-$(uname -s)"
           ##Debug   
            if [ "${{ github.event.inputs.debug }}" == "true" ] ; then
              export DEBUG="1"
@@ -170,15 +171,26 @@ jobs:
            fi
            echo "SBUILD_REBUILD=${SBUILD_REBUILD}" >> "${GITHUB_ENV}"
            ##SBUILD_URL
+           sudo curl -qfsSL "https://bin.pkgforge.dev/${HOST_TRIPLET}/yq" -o "/usr/local/bin/yq" && \
+             sudo chmod 'a+x' "/usr/local/bin/yq" && command -v yq >/dev/null || exit 1
            SBUILD_FILE_URL="$(echo "${{ github.event.inputs.sbuild-url }}" | tr -d '[:space:]')"
            pushd "$(mktemp -d)" >/dev/null 2>&1
              curl -w "(SBUILD) <== %{url}\n" -fL "${SBUILD_FILE_URL}" -o "./SBUILD_INPUT"
              if [[ ! -s "./SBUILD_INPUT" || $(stat -c%s "./SBUILD_INPUT") -le 10 ]]; then
                echo -e "\n[✗] FATAL: Failed to Fetch ${SBUILD_FILE_URL}\n"
+               echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
               exit 1
              else
                export SBUILD_FILE_URL
                echo "SBUILD_FILE_URL=${SBUILD_FILE_URL}" >> "${GITHUB_ENV}"
+              #Check for x_exec.host
+               if yq e '.x_exec.host != null' "./SBUILD_INPUT" | grep -qi 'true'; then
+                 if ! yq '.x_exec.host[]' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "${HOST_TRIPLET,,}"; then
+                   echo -e "\n[✗] WARNING: SBUILD (./SBUILD_INPUT) is NOT Supported on ${HOST_TRIPLET}\n"
+                   yq '.x_exec.host[]' "./SBUILD_INPUT"
+                   echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+                 fi
+               fi
              fi
            popd >/dev/null 2>&1
         continue-on-error: false
