@@ -48,19 +48,45 @@ on:
           - "true"
           - "false"
 jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    outputs:
+      runner_matrix: ${{ steps.generate-matrix.outputs.runner_matrix }}
+    steps:
+      - name: Presetup
+        id: generate-matrix
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          echo '[' > "./MATRIX.json.tmp"
+           if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
+             echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+             echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+           elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
+             echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+           elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
+             echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+           fi
+          echo ']' >> "./MATRIX.json.tmp"
+          jq 'unique_by(.runner)' "./MATRIX.json.tmp" | jq . > "./MATRIX.json"
+          ESCAPED_MATRIX="$(cat "./MATRIX.json" | jq -c .)"
+          echo "runner_matrix=${ESCAPED_MATRIX}" >> "${GITHUB_OUTPUT}"
+        continue-on-error: false
+
+      - name: Sanity Check Input JSON
+        run: |
+          echo '${{ steps.generate-matrix.outputs.runner_matrix }}' | jq .
+        continue-on-error: true
+
   build:
+    needs: [preprocess]
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - host: "${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}"
-            ghcr_pkg: "${{ inputs.ghcr-url }}"
-          - host: "${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}"
-            ghcr_pkg: "${{ inputs.ghcr-url }}"
-    name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
-    runs-on: "${{ matrix.runner }}"
+        package: ${{ fromJson(needs.preprocess.outputs.runner_matrix) }}
+    name: "${{ matrix.package.host }} ==> (${{ matrix.package.ghcr_pkg }})"
+    runs-on: "${{ matrix.package.runner }}"
     timeout-minutes: 200
     permissions:
       attestations: write
@@ -69,6 +95,8 @@ jobs:
       packages: write
     steps:
       - name: Exit if not called
+        env:
+          GH_TOKEN: "${{ github.token }}"
         run: |
           ##presets
           set +x ; set +e
@@ -84,7 +112,7 @@ jobs:
           fi
         continue-on-error: false
 
-      - name: Validate Required Secrets [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: Validate Required Secrets [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           RO_GHTOKEN: ${{ secrets.RO_GHTOKEN }}
@@ -104,7 +132,7 @@ jobs:
           fi
         continue-on-error: false
 
-      - name: Parse Input [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: Parse Input [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
           ##presets
@@ -155,7 +183,7 @@ jobs:
            popd >/dev/null 2>&1
         continue-on-error: false
 
-      - name: Setup Env [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: Setup Env [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
           ##presets
@@ -186,14 +214,14 @@ jobs:
         run: |
           #presets
           set +x ; set +e
-          #-------------#        
+          #-------------#
           echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
           echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
           sudo service procps restart
           sudo sysctl -p "/etc/sysctl.conf"
         continue-on-error: true
 
-      - name: BUILD (${{ github.event.inputs.ghcr-url }}) [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: BUILD (${{ github.event.inputs.ghcr-url }}) [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
@@ -231,7 +259,7 @@ jobs:
         continue-on-error: true
 
     ##Logs & Artifacts
-      - name: Get DateTime [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: Get DateTime [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
           #Presets
@@ -241,11 +269,11 @@ jobs:
           echo "UTC_TIME=${UTC_TIME}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
-      - name: Upload (LOG) Artifacts [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: Upload (LOG) Artifacts [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         uses: actions/upload-artifact@v4
         with:
-            name: Pkgcache_${{ env.PKG_FAMILY_LOCAL }}_${{ matrix.host }}
+            name: Pkgcache_${{ env.PKG_FAMILY_LOCAL }}_${{ matrix.package.host }}
             path: |
               /tmp/BUILD.log
               /tmp/BUILD_ARTIFACTS.7z
@@ -254,7 +282,7 @@ jobs:
             overwrite: true
         continue-on-error: true     
 
-      - name: Attest Build Provenance [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: Attest Build Provenance [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         uses: actions/attest-build-provenance@v2.2.0
         with:
