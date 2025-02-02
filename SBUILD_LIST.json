@@ -282,6 +282,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "deltapatcher",
+    "description": "GUI to create and apply xdelta patches",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/deltapatcher/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/deltapatcher/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "discord",
     "description": "All-in-one cross-platform voice and text chat for gamers (Canary)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord-canary/appimage/srevinsaju/canary",
@@ -334,6 +342,30 @@
     "description": "All-in-one cross-platform voice and text chat for gamers",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "escrcpy",
+    "description": "Graphical Scrcpy to display and control Android, devices",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/escrcpy/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/escrcpy/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fdm",
+    "description": "A powerful modern download accelerator and organizer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fdm/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/fdm/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fdm",
+    "description": "A powerful modern download accelerator and organizer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fdm/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/fdm/runimage.debian.stable.yaml"
   },
   {
     "_disabled": false,
@@ -434,6 +466,54 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gimp",
+    "description": "The GNU Image Manipulation Program (Dev)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gimp/appimage/ivan-hc/dev",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gimp/appimage.ivan-hc.dev.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gimp",
+    "description": "The GNU Image Manipulation Program (Git)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gimp/appimage/ivan-hc/git",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gimp/appimage.ivan-hc.git.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gimp",
+    "description": "The GNU Image Manipulation Program",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gimp/appimage/ivan-hc/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gimp/appimage.ivan-hc.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gimp",
+    "description": "GNU Image Manipulation Program",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gimp/appimage/pkgforge-dev/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gimp/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gimp",
+    "description": "The GNU Image Manipulation Program (Git)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gimp/runimage/cachyos/git",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gimp/runimage.cachyos.git.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gimp",
+    "description": "The GNU Image Manipulation Program",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gimp/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gimp/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "git",
     "description": "Fast, scalable, distributed revision control system",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/runimage/alpine/stable",
@@ -442,10 +522,122 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gnome-boxes",
+    "description": "View, access, and manage Remote/Virtual systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gnome-boxes/appimage/ivan-hc/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gnome-boxes/appimage.ivan-hc.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gnome-boxes",
+    "description": "View, access, and manage Remote/Virtual systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gnome-boxes/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gnome-boxes/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "goverlay",
+    "description": "GUI for configuring Vulkan/OpenGL overlays (beta)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/beta",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.beta.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "goverlay",
+    "description": "GUI for configuring Vulkan/OpenGL overlays (beta2)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/beta2",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.beta2.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "goverlay",
+    "description": "GUI for configuring Vulkan/OpenGL overlays (Git)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/runimage/cachyos/git",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/runimage.cachyos.git.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "goverlay",
+    "description": "GUI for configuring Vulkan/OpenGL overlays",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gpt4all",
+    "description": "Free-to-use, locally running, privacy-aware chatbot (Git)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gpt4all/runimage/cachyos/git",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gpt4all/runimage.cachyos.git.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gzdoom",
+    "description": "Feature centric port for all Doom engine games",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gzdoom/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gzdoom/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "haguichi",
+    "description": "Graphical frontend for Hamachi",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/haguichi/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/haguichi/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "helix",
     "description": "Fast modal terminal-based text editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/helix/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/helix/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "inkscape",
+    "description": "FOSS Vector Graphics Editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/inkscape/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/inkscape/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "inkscape",
+    "description": "FOSS Vector Graphics Editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/inkscape/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/inkscape/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "kdenlive",
+    "description": "FOSS video editor, based on MLT Framework and KDE Frameworks (Nightly)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/kdenlive/appimage/official/nightly",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/kdenlive/appimage.official.nightly.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "kdenlive",
+    "description": "FOSS video editor, based on MLT Framework and KDE Frameworks",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/kdenlive/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/kdenlive/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "kdenlive",
+    "description": "FOSS video editor, based on MLT Framework and KDE Frameworks",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/kdenlive/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/kdenlive/runimage.alpine.stable.yaml"
   },
   {
     "_disabled": false,
@@ -474,6 +666,38 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "krita",
+    "description": "A free and open source painting application (Alpha/Next)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/krita/appimage/official/next",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/krita/appimage.official.next.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "krita",
+    "description": "A free and open source painting application",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/krita/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/krita/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "krita",
+    "description": "A free and open source painting application",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/krita/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/krita/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "lact",
+    "description": "Linux GPU Control Application",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lact/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/lact/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "lazarus",
     "description": "Portable Delphi-like IDE for the FreePascal compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/lazarus/runimage/cachyos/stable",
@@ -490,10 +714,74 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "libreoffice",
+    "description": "A free and open source painting application (fresh-basic)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libreoffice/appimage/official/fresh-basic",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libreoffice/appimage.official.fresh-basic.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libreoffice",
+    "description": "A free and open source painting application (fresh-full)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libreoffice/appimage/official/fresh-full",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libreoffice/appimage.official.fresh-full.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libreoffice",
+    "description": "A free and open source painting application (fresh-standard)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libreoffice/appimage/official/fresh-standard",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libreoffice/appimage.official.fresh-standard.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libreoffice",
+    "description": "A free and open source painting application (still-basic)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libreoffice/appimage/official/still-basic",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libreoffice/appimage.official.still-basic.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libreoffice",
+    "description": "A free and open source painting application (still-full)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libreoffice/appimage/official/still-full",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libreoffice/appimage.official.still-full.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libreoffice",
+    "description": "A free and open source painting application (still-standard)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libreoffice/appimage/official/still-standard",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libreoffice/appimage.official.still-standard.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libresprite",
+    "description": "Animated sprite editor & pixel art tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libresprite/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libresprite/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "librewolf",
     "description": "A fork of Firefox, focused on privacy, security and freedom",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/librewolf/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/librewolf/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "mcpelauncher",
+    "description": "Minecraft Bedrock Launcher for Linux",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mcpelauncher/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/mcpelauncher/runimage.cachyos.stable.yaml"
   },
   {
     "_disabled": false,
@@ -522,10 +810,34 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nheko",
+    "description": "Desktop client for Matrix",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/nheko/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/nheko/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "obs-studio",
     "description": "FOSS cross-platform screencasting and streaming app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/obs-studio/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/obs-studio/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "openboard",
+    "description": "Interactive whiteboard software for schools and universities",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/openboard/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/openboard/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "peazip",
+    "description": "Open Source archive manager and data compression utility",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/peazip/appimage/ferion11/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/peazip/appimage.ferion11.stable.yaml"
   },
   {
     "_disabled": false,
@@ -550,6 +862,22 @@
     "description": "Powerful, simple, audio tag editor for GNU/Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/puddletag/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/puddletag/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qbittorrent",
+    "description": "A P2P (peer-to-peer) Bittorrent client (Beta)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/qbittorrent/appimage/official/beta",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/qbittorrent/appimage.official.beta.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qbittorrent",
+    "description": "A P2P (peer-to-peer) Bittorrent client",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/qbittorrent/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/qbittorrent/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
