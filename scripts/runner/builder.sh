@@ -314,7 +314,7 @@ sbuild_builder()
            source "${OCWD}/ENVPATH"
            if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
              echo -e "\n[✗] FATAL: Failed to Push Artifacts ==> [${GHCRPKG}]"
-             [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PUSH_SUCCESSFUL=${PUSH_SUCCESSFUL}" >> "${GITHUB_ENV}"
+             [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PUSH_SUCCESSFUL=NO" >> "${GITHUB_ENV}"
              echo -e "[+] LOGS (Build Dir): ${BUILD_DIR}/SBUILD_OUTDIR\n"
              if [[ "${KEEP_LOGS}" != "YES" ]]; then
                export KEEP_LOGS="YES"
