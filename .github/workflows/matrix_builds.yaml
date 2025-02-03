@@ -310,7 +310,7 @@ jobs:
           #Presets
           set +x ; set +e
           #--------------#
-          if [[ "${SBUILD_SUCCESSFUL}" == "NO" ]]; then
+          if [[ "${GHA_BUILD_FAILED}" == "YES" || "${SBUILD_SUCCESSFUL}" == "NO" ]]; then
             echo -e "\n[-] FATAL: Failed to Successfully Build ${{ matrix.package.ghcr_pkg }}"
            exit 1
           fi

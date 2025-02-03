@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.1.2" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
+   SBB_VERSION="0.1.3" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -65,6 +65,7 @@ sbuild_builder()
    done
    if [[ ! -f "${BUILDSCRIPT}" ]]; then
    echo -e "\n[✗] FATAL: Failed to create \$BUILDSCRIPT after 4 Retries\n"
+    [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
     return 1 || exit 1
    fi
    INPUT_FILE="${1:-$(echo "$@" | tr -d '[:space:]')}" ; unset INPUT_FILE_REMOTE
@@ -74,6 +75,7 @@ sbuild_builder()
        curl -w "(SBUILD) <== %{url}\n" -fL "${INPUT_FILE}" -o "$(realpath './SBUILD_INPUT' | tr -d '[:space:]')"
        if [[ ! -s "$(realpath './SBUILD_INPUT')" || $(stat -c%s "$(realpath './SBUILD_INPUT')") -le 10 ]]; then
          echo -e "\n[✗] FATAL: Failed to Fetch ${INPUT_FILE}\n"
+         [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
          ( rm "$(realpath './SBUILD_INPUT' )" ) 2>/dev/null
          export CONTINUE_SBUILD="NO"
          return 1 || exit 1
@@ -84,6 +86,7 @@ sbuild_builder()
        fi
      elif [ ! -f "$(realpath ${INPUT_FILE})" ] || [ ! -s "$(realpath ${INPUT_FILE})" ]; then
        echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a Valid file\n"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
        export CONTINUE_SBUILD="NO"
        return 1 || exit 1
      else
@@ -103,9 +106,11 @@ sbuild_builder()
         export LOCAL_SBUILD="YES"
       else
         echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a Valid file\n"
+        [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
       fi
     else
       echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a file\n"
+      [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
       export CONTINUE_SBUILD="NO"
       return 1 || exit 1
     fi
@@ -177,6 +182,7 @@ sbuild_builder()
      declare -F sanitize_logs &>/dev/null && \
      declare -F cleanup_env &>/dev/null); then
        echo -e "\n[✗] FATAL: Required Functions could NOT BE Found\n"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
       exit 1
    fi
   #-------------------------------------------------------#
@@ -248,6 +254,7 @@ sbuild_builder()
          chmod -v +xwr "${BUILDSCRIPT}"
        else
          echo -e "\n[✗] FATAL: Failed to fetch Remote SBUILD [${RECIPE}]\n"
+         [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
          export CONTINUE_SBUILD="NO"
          return 1 || exit 1
        fi
@@ -277,6 +284,7 @@ sbuild_builder()
        SBUILD_REBUILD="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .rebuild' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export SBUILD_REBUILD
       else
        echo -e "\n[✗] FATAL: No Local SBUILD was Supplied & Remote ${SYSTMP}/pkgforge/SBUILD_LIST.json Does Not Exist\n"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
        export CONTINUE_SBUILD="NO"
        return 1 || exit 1
       fi
@@ -290,6 +298,7 @@ sbuild_builder()
           generate_json
         elif [[ "${SBUILD_SKIPPED}" != "YES" ]]; then
           echo -e "\n[✗] FATAL: Build Dir [${BUILD_DIR}/SBUILD_OUTDIR] seems Broken\n"
+          [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
           if [[ "${KEEP_LOGS}" != "YES" ]]; then
            echo 'KEEP_LOGS="YES"' >> "${OCWD}/ENVPATH"
           fi
@@ -305,6 +314,7 @@ sbuild_builder()
            source "${OCWD}/ENVPATH"
            if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
              echo -e "\n[✗] FATAL: Failed to Push Artifacts ==> [${GHCRPKG}]"
+             [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PUSH_SUCCESSFUL=${PUSH_SUCCESSFUL}" >> "${GITHUB_ENV}"
              echo -e "[+] LOGS (Build Dir): ${BUILD_DIR}/SBUILD_OUTDIR\n"
              if [[ "${KEEP_LOGS}" != "YES" ]]; then
                export KEEP_LOGS="YES"
