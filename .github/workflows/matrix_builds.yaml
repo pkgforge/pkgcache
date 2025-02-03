@@ -209,6 +209,7 @@ jobs:
           SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
           #GH ENV
           echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
+          echo "GHA_MODE=MATRIX" >> "${GITHUB_ENV}"
           #-------------#
           mkdir -p "${HOME}/bin"
           sudo apt update -y
@@ -302,3 +303,27 @@ jobs:
           subject-path: "/tmp/BUILD.log"
           show-summary: true
         continue-on-error: true
+
+      - name: Check Build [${{ matrix.package.ghcr_pkg }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          if [[ "${SBUILD_SUCCESSFUL}" == "NO" ]]; then
+            echo -e "\n[-] FATAL: Failed to Successfully Build ${{ matrix.package.ghcr_pkg }}"
+           exit 1
+          fi
+        continue-on-error: false
+
+      - name: Check Push [${{ matrix.package.ghcr_pkg }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          if [[ "${PUSH_SUCCESSFUL}" == "NO" ]]; then
+            echo -e "\n[-] FATAL: Failed to Successfully Push ==> ${{ matrix.package.ghcr_pkg }}"
+           exit 1
+          fi
+        continue-on-error: false

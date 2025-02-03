@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.1.2" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.1.3" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -433,6 +433,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #End
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "SBUILD_SUCCESSFUL=${SBUILD_SUCCESSFUL}" >> "${GITHUB_ENV}"
        echo -e "\n[✓] SuccessFully Built ${SBUILD_PKG} using ${SBUILD_SCRIPT_BLOB:-${INPUT_SBUILD}} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
        echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null) (Includes DUPES+TMPFILES)"
        if [ -d "${OCWD}" ]; then
@@ -451,6 +452,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        ls "${SBUILD_OUTDIR}" -lah
        export SBUILD_SUCCESSFUL="NO"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "SBUILD_SUCCESSFUL=${SBUILD_SUCCESSFUL}" >> "${GITHUB_ENV}"
        cleanup_env ; return 1 || exit 1
      fi
    popd >/dev/null 2>&1
@@ -459,6 +461,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    echo -e "\n[✗] FATAL: Could NOT parse ${INPUT_SBUILD} ==> ${TMPJSON}\n"
    export SBUILD_SUCCESSFUL="NO"
    echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
+   [[ "${GHA_MODE}" == "MATRIX" ]] && echo "SBUILD_SUCCESSFUL=${SBUILD_SUCCESSFUL}" >> "${GITHUB_ENV}"
    cleanup_env ; return 1 || exit 1
  fi
 fi
@@ -974,11 +977,13 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
        export PUSH_SUCCESSFUL="YES"
        #rm -rf "${GHCR_PKG}" "${PKG_JSON}" 2>/dev/null
        echo "export PUSH_SUCCESSFUL=YES" >> "${OCWD}/ENVPATH"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PUSH_SUCCESSFUL=${PUSH_SUCCESSFUL}" >> "${GITHUB_ENV}"
      else
        oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq .
        echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL}:${GHCRPKG_TAG}\n"
        export PUSH_SUCCESSFUL="NO"
        echo "export PUSH_SUCCESSFUL=NO" >> "${OCWD}/ENVPATH"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PUSH_SUCCESSFUL=${PUSH_SUCCESSFUL}" >> "${GITHUB_ENV}"
        return 1 || exit 1
      fi
     fi
