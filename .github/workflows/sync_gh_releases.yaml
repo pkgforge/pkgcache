@@ -74,7 +74,7 @@ jobs:
           dos2unix --quiet "./sync.sh"
           chmod +x "./sync.sh"
           ##To force reupload
-          export FORCE_REUPLOAD='YES'
+          #export FORCE_REUPLOAD='YES'
           PARALLEL_LIMIT="$(($(nproc)+1))" bash "./sync.sh"
           #PARALLEL_LIMIT="1" bash "./sync.sh"
         continue-on-error: true

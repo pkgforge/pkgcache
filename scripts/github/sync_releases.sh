@@ -107,7 +107,7 @@ sync_to_gh_release()
        gh release create "${SRC_TAG}" --repo "https://github.com/pkgforge/pkgcache" --title "${SRC_TAG}" --notes-file "${TMPDIR}/REl_NOTES.txt" --prerelease
        find "${PKG_DIR}" -type f -size +3c -print0 | xargs -0 -P "$(($(nproc)+1))" -I '{}' gh release upload "${SRC_TAG}" --repo "https://github.com/pkgforge/pkgcache" '{}'
        (
-         sleep 5
+         sleep 10
          unset GH_PKG_STATUS
          GH_PKG_STATUS="$(curl -X "HEAD" -qfsSL "${GH_PKG}" -I | sed -n 's/^[[:space:]]*HTTP\/[0-9.]*[[:space:]]\+\([0-9]\+\).*/\1/p' | tail -n1 | tr -d '[:space:]')"
          if echo "${GH_PKG_STATUS}" | grep -qiv '200$'; then
