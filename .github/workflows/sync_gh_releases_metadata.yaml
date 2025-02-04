@@ -1,4 +1,4 @@
-name: ♻️↕️ Sync GH Releases ↕️♻️
+name: ♻️🧬 Sync GH Releases Metadata 🧬♻️
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
@@ -6,29 +6,29 @@ concurrency:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */12 * * *" #Every 12 Hrs
+    - cron: "50 1-23/2 * * *" #Every 110 mins
 jobs:
   sync:
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 30
+    timeout-minutes: 10
     permissions:
       contents: write
       packages: write
       statuses: read
     strategy:
-      max-parallel: 2
+      #max-parallel: 2
       fail-fast: false
       matrix:
         include:
           - runner: "ubuntu-24.04-arm"
             repo: "pkgcache"
             gh_repo: "https://huggingface.co/datasets/pkgforge/pkgcache"
-            script: "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/github/sync_releases.sh"
+            script: "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/github/sync_releases_metadata.sh"
 
           - runner: "ubuntu-latest"
             repo: "pkgcache"
             gh_repo: "https://huggingface.co/datasets/pkgforge/pkgcache"
-            script: "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/github/sync_releases.sh"
+            script: "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/github/sync_releases_metadata.sh"
 
     steps:
       - name: Install Addons
@@ -60,7 +60,7 @@ jobs:
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
-      - name: Sync Release [${{ matrix.repo }} ==> ${{ matrix.gh_repo }}/releases]
+      - name: Sync Release [${{ matrix.repo }} ==> ${{ matrix.gh_repo }}/releases/metadata]
         env:
           GHCR_TOKEN: "${{ github.token }}"
           GITHUB_TOKEN: "${{ github.token }}"
@@ -72,10 +72,5 @@ jobs:
           curl -qfsSL "${{ matrix.script }}" -o "./sync.sh"
           dos2unix --quiet "./sync.sh"
           chmod +x "./sync.sh"
-          ##To force reupload
-          #export FORCE_REUPLOAD='YES'
-          #export PARALLEL_LIMIT="$(($(nproc)+1))"
-          export PARALLEL_LIMIT="1"
-          timeout -k 1m 25m bash "./sync.sh"
-          wait ; echo
+          bash "./sync.sh"
         continue-on-error: true
