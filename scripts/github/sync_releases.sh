@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 ## <DO NOT RUN STANDALONE, meant for CI Only>
 ## Meant to Sync All Packages to https://github.com/pkgforge/pkgcache/releases
-## Self: https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/pkgcache/scripts/sync_gh_release.sh
-# bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/pkgcache/scripts/sync_gh_release.sh") "${REPO}"
+## Self: https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/pkgcache/scripts/github/sync_releases.sh
+# bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/pkgcache/scripts/github/sync_releases.sh")
 #-------------------------------------------------------#
 
 #-------------------------------------------------------#

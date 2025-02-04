@@ -24,12 +24,12 @@ jobs:
           - runner: "ubuntu-24.04-arm"
             repo: "pkgcache"
             gh_repo: "https://huggingface.co/datasets/pkgforge/pkgcache"
-            script: "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/pkgcache/scripts/github/sync_releases.sh"
+            script: "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/pkgcache/scripts/github/sync_releases.sh"
 
           - runner: "ubuntu-latest"
             repo: "pkgcache"
             gh_repo: "https://huggingface.co/datasets/pkgforge/pkgcache"
-            script: "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/pkgcache/scripts/github/sync_releases.sh"
+            script: "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/pkgcache/scripts/github/sync_releases.sh"
 
     steps:
       - name: Install Addons
