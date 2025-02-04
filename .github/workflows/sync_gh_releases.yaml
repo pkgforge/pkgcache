@@ -17,7 +17,7 @@ jobs:
       packages: write
       statuses: read
     strategy:
-      #max-parallel: 2
+      max-parallel: 1
       fail-fast: false
       matrix:
         include:
@@ -75,6 +75,6 @@ jobs:
           chmod +x "./sync.sh"
           ##To force reupload
           #export FORCE_REUPLOAD='YES'
-          PARALLEL_LIMIT="$(($(nproc)+1))" bash "./sync.sh"
-          #PARALLEL_LIMIT="1" bash "./sync.sh"
+          #PARALLEL_LIMIT="$(($(nproc)+1))" bash "./sync.sh"
+          PARALLEL_LIMIT="2" bash "./sync.sh"
         continue-on-error: true
