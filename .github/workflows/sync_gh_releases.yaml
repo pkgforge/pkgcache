@@ -6,18 +6,17 @@ concurrency:
 on:
   workflow_dispatch:
   schedule:
-   - cron: "0 1 * * Mon" #UTC 01:00 AM --> 06:45 AM NPT Mon
-   - cron: "0 1 * * Thu" #UTC 01:00 AM --> 06:45 AM NPT Thu
+    - cron: "0 */12 * * *" #Every 12 Hrs
 jobs:
   sync:
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 320
+    timeout-minutes: 30
     permissions:
       contents: write
       packages: write
       statuses: read
     strategy:
-      max-parallel: 1
+      max-parallel: 2
       fail-fast: false
       matrix:
         include:
@@ -75,6 +74,8 @@ jobs:
           chmod +x "./sync.sh"
           ##To force reupload
           #export FORCE_REUPLOAD='YES'
-          #PARALLEL_LIMIT="$(($(nproc)+1))" bash "./sync.sh"
-          PARALLEL_LIMIT="2" bash "./sync.sh"
+          #export PARALLEL_LIMIT="$(($(nproc)+1))"
+          export PARALLEL_LIMIT="1"
+          timeout -k 1m 25m bash "./sync.sh"
+          wait ; done
         continue-on-error: true
