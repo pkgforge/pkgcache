@@ -1,0 +1,80 @@
+name: ♻️↕️ Sync GH Releases ↕️♻️
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  schedule:
+   - cron: "0 1 * * Mon" #UTC 01:00 AM --> 06:45 AM NPT Mon
+   - cron: "0 1 * * Thu" #UTC 01:00 AM --> 06:45 AM NPT Thu
+jobs:
+  sync:
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 320
+    permissions:
+      contents: write
+      packages: write
+      statuses: read
+    strategy:
+      #max-parallel: 2
+      fail-fast: false
+      matrix:
+        include:
+          - runner: "ubuntu-24.04-arm"
+            repo: "pkgcache"
+            gh_repo: "https://huggingface.co/datasets/pkgforge/pkgcache"
+            script: "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/pkgcache/scripts/github/sync_releases.sh"
+
+          - runner: "ubuntu-latest"
+            repo: "pkgcache"
+            gh_repo: "https://huggingface.co/datasets/pkgforge/pkgcache"
+            script: "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/pkgcache/scripts/github/sync_releases.sh"
+
+    steps:
+      - name: Install Addons
+        run: |
+          #presets
+          set +x ; set +e
+          #-------------#
+          export DEBIAN_FRONTEND="noninteractive"
+          sudo apt update -y -qq
+          sudo apt install 7zip b3sum bc coreutils curl dos2unix fdupes jq git git-lfs moreutils wget util-linux -y -qq
+          sudo apt install 7zip b3sum bc coreutils curl dos2unix fdupes jq git git-lfs moreutils wget util-linux -y -qq
+          bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
+        continue-on-error: true
+
+      - name: Setup Env
+        run: |
+          #presets
+          set +x ; set +e
+          #-------------#
+          #tmp
+          SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+          echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
+          #-------------#
+          #Git
+          sudo apt-get install git-lfs -y -qq
+          #-------------#
+          ##User-Agent
+          USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+          echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: Sync Release [${{ matrix.repo }} ==> ${{ matrix.gh_repo }}/releases]
+        env:
+          GHCR_TOKEN: "${{ github.token }}"
+          GITHUB_TOKEN: "${{ github.token }}"
+          #GITHUB_TOKEN: "${{ secrets.ADM_GHTOKEN }}"
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          curl -qfsSL "${{ matrix.script }}" -o "./sync.sh"
+          dos2unix --quiet "./sync.sh"
+          chmod +x "./sync.sh"
+          ##To force reupload
+          export FORCE_REUPLOAD='YES'
+          PARALLEL_LIMIT="$(($(nproc)+1))" bash "./sync.sh"
+          #PARALLEL_LIMIT="1" bash "./sync.sh"
+        continue-on-error: true
