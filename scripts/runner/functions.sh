@@ -190,6 +190,7 @@ gen_json_from_sbuild()
        SBUILD_PKG="$(echo "${pkg}.${pkg_type}" | sed 's/\.$//' | tr -d '[:space:]')"
        export pkg pkg_id pkg_type SBUILD_PKG
        echo "export SBUILD_PKG='${SBUILD_PKG}'" >> "${OCWD}/ENVPATH"
+       echo "export SBUILD_PKG_ID='${PKG_ID}'" >> "${OCWD}/ENVPATH"
        if [ "$(echo "${SBUILD_PKG}" | tr -d '[:space:]' | wc -c | tr -cd '0-9')" -le 1 ]; then
          echo -e "\n[✗] FATAL: ${SBUILD_PKG} ('.pkg+.pkg_type') is less than 1 Character\n"
          export CONTINUE_SBUILD="NO"
