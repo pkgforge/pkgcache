@@ -257,6 +257,22 @@
   },
   {
     "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "citron",
+    "description": "Nintendo Switch emulator forked from yuzu",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/citron/appimage/pkgforge-dev/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/citron/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "citron",
+    "description": "Nintendo Switch emulator forked from yuzu (x86-64-v3)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/citron/appimage/pkgforge-dev/v3",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/citron/appimage.pkgforge-dev.v3.yaml"
+  },
+  {
+    "_disabled": false,
     "rebuild": true,
     "pkg_family": "clamtk",
     "description": "GTK front-end for Clam Antivirus",
@@ -342,6 +358,14 @@
     "description": "All-in-one cross-platform voice and text chat for gamers",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/discord/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/discord/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "element-desktop",
+    "description": "A glossy Matrix collaboration client for desktop",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/element-desktop/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/element-desktop/runimage.alpine.stable.yaml"
   },
   {
     "_disabled": false,
@@ -786,6 +810,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "melonds",
+    "description": "Nintendo DS/DSi emulator",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/melonds/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/melonds/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mpv",
     "description": "General Purpose Command line video player",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mpv/appimage/pkgforge-dev/stable",
@@ -866,6 +898,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "qbittorrent-enhanced",
+    "description": "Enhanced version of qBittorrent with extra features",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/qbittorrent-enhanced/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/qbittorrent-enhanced/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "qbittorrent",
     "description": "A P2P (peer-to-peer) Bittorrent client (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/qbittorrent/appimage/official/beta",
@@ -878,6 +918,46 @@
     "description": "A P2P (peer-to-peer) Bittorrent client",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/qbittorrent/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/qbittorrent/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ruffle",
+    "description": "Adobe Flash Player emulator",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ruffle/runimage/cachyos/nightly",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ruffle/runimage.cachyos.nightly.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rustdesk",
+    "description": "FOSS Remote desktop application (Nightly)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/rustdesk/appimage/official/nightly",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/rustdesk/appimage.official.nightly.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rustdesk",
+    "description": "FOSS Remote desktop application",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/rustdesk/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/rustdesk/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ryujinx",
+    "description": "Nintendo Switch Emulator (Canary)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ryujinx/appimage/official/canary",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ryujinx/appimage.official.canary.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ryujinx",
+    "description": "Nintendo Switch Emulator",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ryujinx/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ryujinx/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -906,6 +986,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "spotify",
+    "description": "A proprietary music streaming service",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/spotify/appimage/ivan-hc/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/spotify/appimage.ivan-hc.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "spotube",
+    "description": "FOSS Spotify Client",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/spotube/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/spotube/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "steam",
     "description": "A video game digital distribution service and storefront from Valve",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/steam/runimage/archlinux/stable",
@@ -926,6 +1022,22 @@
     "description": "A Audio Player and Music Collection Organizer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/strawberry/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/strawberry/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "suyu",
+    "description": "Nintendo Switch emulator based on yuzu, with additional features",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/suyu/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/suyu/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "synfigstudio",
+    "description": "Professional vector animation program",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/synfigstudio/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/synfigstudio/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -962,6 +1074,30 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "torzu",
+    "description": "Fork of yuzu, an open-source Nintendo Switch emulator",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/torzu/appimage/pkgforge-dev/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/torzu/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "torzu",
+    "description": "Fork of yuzu, an open-source Nintendo Switch emulator (x86-64-v3)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/torzu/appimage/pkgforge-dev/v3",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/torzu/appimage.pkgforge-dev.v3.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ultimmc",
+    "description": "Offline Minecraft launcher",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ultimmc/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ultimmc/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "vesktop",
     "description": "A custom Discord App aiming to give you better performance and improve linux support",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vesktop/appimage/official/stable",
@@ -982,6 +1118,14 @@
     "description": "Visual Studio Code without MS branding/telemetry/licensing",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vscodium/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vscodium/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "waydroid-helper",
+    "description": "A GUI application for Waydroid configuration and extension installation",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/waydroid-helper/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/waydroid-helper/appimage.official.stable.yaml"
   },
   {
     "_disabled": false,
