@@ -882,6 +882,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "signal-desktop",
+    "description": "Private, simple, and secure messenger",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/signal-desktop/appimage/karo-solutions/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/signal-desktop/appimage.karo-solutions.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "simplex-desktop",
     "description": "Desktop application for SimpleX Chat, A 100% private-by-design chat platform",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/simplex-desktop/appimage/official/stable",
