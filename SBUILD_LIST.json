@@ -1026,6 +1026,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sudachi",
+    "description": "Nintendo Switch emulator forked from yuzu",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudachi/archive/wrappe/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sudachi/archive.wrappe.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "suyu",
     "description": "Nintendo Switch emulator based on yuzu, with additional features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/suyu/appimage/official/stable",
