@@ -1104,6 +1104,14 @@
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/torzu/appimage.pkgforge-dev.v3.yaml"
   },
   {
+    "_disabled": true,
+    "rebuild": false,
+    "pkg_family": "trayscale",
+    "description": "Unofficial GUI wrapper around the Tailscale CLI client",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/trayscale/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/trayscale/appimage.ppkg.stable.yaml"
+  },
+  {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "ultimmc",
