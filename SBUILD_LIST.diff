@@ -540,6 +540,14 @@
     "rebuild": false,
     "pkg_family": "git",
     "description": "Fast, scalable, distributed revision control system",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "git",
+    "description": "Fast, scalable, distributed revision control system",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/runimage.alpine.stable.yaml"
   },
@@ -1094,6 +1102,14 @@
     "description": "Fork of yuzu, an open-source Nintendo Switch emulator (x86-64-v3)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/torzu/appimage/pkgforge-dev/v3",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/torzu/appimage.pkgforge-dev.v3.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "trayscale",
+    "description": "Unofficial GUI wrapper around the Tailscale CLI client",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/trayscale/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/trayscale/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
