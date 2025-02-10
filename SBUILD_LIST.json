@@ -546,6 +546,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "git",
+    "description": "Fast, scalable, distributed revision control system",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gnome-boxes",
     "description": "View, access, and manage Remote/Virtual systems",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gnome-boxes/appimage/ivan-hc/stable",
