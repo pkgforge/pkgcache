@@ -402,6 +402,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "file",
+    "description": "Determine the type of a file from its contents",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/file/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/file/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "firefox",
     "description": "A web browser built from Firefox source tree (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/firefox/appimage/srevinsaju/beta",
@@ -646,6 +654,14 @@
     "description": "FOSS Vector Graphics Editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/inkscape/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/inkscape/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jless",
+    "description": "Command-line pager for JSON data",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/jless/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/jless/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1102,14 +1118,6 @@
     "description": "Fork of yuzu, an open-source Nintendo Switch emulator (x86-64-v3)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/torzu/appimage/pkgforge-dev/v3",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/torzu/appimage.pkgforge-dev.v3.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "trayscale",
-    "description": "Unofficial GUI wrapper around the Tailscale CLI client",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/trayscale/appimage/ppkg/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/trayscale/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
