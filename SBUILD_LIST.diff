@@ -1124,6 +1124,14 @@
     "rebuild": false,
     "pkg_family": "ultimmc",
     "description": "Offline Minecraft launcher",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ultimmc/archive/wrappe/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ultimmc/archive.wrappe.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ultimmc",
+    "description": "Offline Minecraft launcher",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ultimmc/runimage/debian/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ultimmc/runimage.debian.stable.yaml"
   },
