@@ -378,6 +378,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "falkon",
+    "description": "Fast, lightweight web browser based on QtWebEngine",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/falkon/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/falkon/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "fdm",
     "description": "A powerful modern download accelerator and organizer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fdm/runimage/cachyos/stable",
@@ -1190,6 +1198,14 @@
     "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wezterm/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wezterm/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xhost",
+    "description": "Utility to control X server access",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xhost/archive/wrappe/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xhost/archive.wrappe.alpine.yaml"
   },
   {
     "_disabled": false,
