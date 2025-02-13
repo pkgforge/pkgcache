@@ -378,6 +378,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "falkon",
+    "description": "Fast, lightweight web browser based on QtWebEngine",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/falkon/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/falkon/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "fdm",
     "description": "A powerful modern download accelerator and organizer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fdm/runimage/cachyos/stable",
@@ -398,6 +406,14 @@
     "description": "Open source Flash SWF decompiler and editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ffdec/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ffdec/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "file",
+    "description": "Determine the type of a file from its contents",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/file/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/file/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -540,16 +556,16 @@
     "rebuild": false,
     "pkg_family": "git",
     "description": "Fast, scalable, distributed revision control system",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/runimage/alpine/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/runimage.alpine.stable.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "git",
     "description": "Fast, scalable, distributed revision control system",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/appimage/ppkg/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/appimage.ppkg.stable.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git/runimage.alpine.stable.yaml"
   },
   {
     "_disabled": false,
@@ -646,6 +662,14 @@
     "description": "FOSS Vector Graphics Editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/inkscape/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/inkscape/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jless",
+    "description": "Command-line pager for JSON data",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/jless/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/jless/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1104,12 +1128,12 @@
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/torzu/appimage.pkgforge-dev.v3.yaml"
   },
   {
-    "_disabled": true,
+    "_disabled": false,
     "rebuild": false,
-    "pkg_family": "trayscale",
-    "description": "Unofficial GUI wrapper around the Tailscale CLI client",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/trayscale/appimage/ppkg/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/trayscale/appimage.ppkg.stable.yaml"
+    "pkg_family": "ultimmc",
+    "description": "Offline Minecraft launcher",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ultimmc/archive/wrappe/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ultimmc/archive.wrappe.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1118,14 +1142,6 @@
     "description": "Offline Minecraft launcher",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ultimmc/runimage/debian/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ultimmc/runimage.debian.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ultimmc",
-    "description": "Offline Minecraft launcher",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ultimmc/archive/wrappe/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ultimmc/archive.wrappe.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1182,6 +1198,14 @@
     "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wezterm/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wezterm/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xhost",
+    "description": "Utility to control X server access",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xhost/archive/wrappe/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xhost/archive.wrappe.alpine.yaml"
   },
   {
     "_disabled": false,
