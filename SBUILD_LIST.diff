@@ -1066,6 +1066,28 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sudo-rs",
+    "description": {
+      "_default": "Memory safe implementation of sudo and su",
+      "cvtsudoers": "Convert between sudoers file formats [sudo-rs]",
+      "sudo": "Execute a command as another user [sudo-rs]",
+      "sudo.conf": "Configuration for sudo front-end [sudo-rs]",
+      "sudo_logsrvd": "sudo event and I/O log server [sudo-rs]",
+      "sudo_logsrvd.conf": "Configuration for sudo_logsrvd [sudo-rs]",
+      "sudo_sendlog": "Send sudo I/O log to log server [sudo-rs]",
+      "sudoedit": "An extension of the sudo -e command to edit a file [sudo-rs]",
+      "sudoers": "Default sudo security policy plugin [sudo-rs]",
+      "sudoers.dist": "Default configuration file for sudoers [sudo-rs]",
+      "sudoreplay": "Replay sudo session logs [sudo-rs]",
+      "su": "Change user id or become root [sudo-rs]",
+      "visudo": "Edit the sudoers file [sudo-rs]"
+    },
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudo-rs/archive/sharun/wrappe",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sudo-rs/archive.sharun.wrappe.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "suyu",
     "description": "Nintendo Switch emulator based on yuzu, with additional features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/suyu/appimage/official/stable",
