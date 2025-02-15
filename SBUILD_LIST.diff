@@ -242,6 +242,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "chafa",
+    "description": "Command-line utility for displaying images in a terminal",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/chafa/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/chafa/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "chromium",
     "description": "Open source web browser from Google (Stable)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/chromium/nixappimage/nixpkgs/stable",
@@ -882,6 +890,19 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nmap",
+    "description": {
+      "_default": "Utilities for Network Discovery and Security Auditing",
+      "ncat": "Concatenate and redirect sockets [nmap]",
+      "nmap": "Network exploration tool and security/port scanner [nmap]",
+      "nping": "Network packet generation tool/ping utility [nmap]"
+    },
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/nmap/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/nmap/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "obs-studio",
     "description": "FOSS cross-platform screencasting and streaming app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/obs-studio/appimage/pkgforge-dev/stable",
@@ -1082,8 +1103,8 @@
       "su": "Change user id or become root [sudo-rs]",
       "visudo": "Edit the sudoers file [sudo-rs]"
     },
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudo-rs/archive/sharun/wrappe",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sudo-rs/archive.sharun.wrappe.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudo-rs/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sudo-rs/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -1220,6 +1241,14 @@
     "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wezterm/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wezterm/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xhost",
+    "description": "Utility to control X server access",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xhost/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xhost/archive.sharun.alpine.yaml"
   },
   {
     "_disabled": false,
