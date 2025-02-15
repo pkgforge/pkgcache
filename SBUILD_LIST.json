@@ -242,6 +242,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "chafa",
+    "description": "Command-line utility for displaying images in a terminal",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/chafa/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/chafa/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "chromium",
     "description": "Open source web browser from Google (Stable)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/chromium/nixappimage/nixpkgs/stable",
@@ -882,6 +890,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nmap",
+    "description": "Utilities for Network Discovery and Security Auditing",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/nmap/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/nmap/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "obs-studio",
     "description": "FOSS cross-platform screencasting and streaming app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/obs-studio/appimage/pkgforge-dev/stable",
@@ -1066,6 +1082,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sudo-rs",
+    "description": "Memory safe implementation of sudo and su",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudo-rs/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sudo-rs/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "suyu",
     "description": "Nintendo Switch emulator based on yuzu, with additional features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/suyu/appimage/official/stable",
@@ -1204,8 +1228,8 @@
     "rebuild": false,
     "pkg_family": "xhost",
     "description": "Utility to control X server access",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xhost/archive/wrappe/alpine",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xhost/archive.wrappe.alpine.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xhost/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xhost/archive.sharun.alpine.yaml"
   },
   {
     "_disabled": false,
