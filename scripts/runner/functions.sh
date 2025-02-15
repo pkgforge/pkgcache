@@ -900,6 +900,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-${PKG_NAME}}%2F${PKG_NAME} [${HOST_TRIPLET}]"
      jq . "./${PROG}.json" && echo -e "\n"
      minisign -Sm "./${PROG}.json" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "./${PROG}.json.sig"
+     oras push --config "/dev/null:application/vnd.oci.empty.v1+json" "${GHCRPKG_URL}:empty" ; sleep 5
      #unset ghcr_push ; ghcr_push=(oras push --concurrency "10" --disable-path-validation)
      unset ghcr_push ; ghcr_push=(oras push --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
@@ -971,7 +972,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      [[ -f "./${PROG}.version.sig" && -s "./${PROG}.version.sig" ]] && ghcr_push+=("./${PROG}.version.sig")
      [[ -f "./${PROG}.svg" && -s "./${PROG}.svg" ]] && ghcr_push+=("./${PROG}.svg")
      [[ -f "./${PROG}.svg.sig" && -s "./${PROG}.svg.sig" ]] && ghcr_push+=("./${PROG}.svg.sig")
-     "${ghcr_push[@]}" && sleep 1
+     "${ghcr_push[@]}" ; sleep 5
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
        echo -e "[+] ==> ${MANIFEST_URL:-${DOWNLOAD_URL}} \n"
