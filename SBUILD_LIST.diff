@@ -1253,14 +1253,6 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "xhost",
-    "description": "Utility to control X server access",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xhost/archive/wrappe/alpine",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xhost/archive.wrappe.alpine.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "zen-browser",
     "description": "Performance oriented Firefox-based web browser (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zen-browser/appimage/official/beta",
