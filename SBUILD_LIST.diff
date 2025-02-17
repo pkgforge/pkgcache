@@ -898,6 +898,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nmap",
+    "description": "Network exploration tool and security/port scanner",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/nmap/runimage/alpine/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/nmap/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "obs-studio",
     "description": "FOSS cross-platform screencasting and streaming app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/obs-studio/appimage/pkgforge-dev/stable",
