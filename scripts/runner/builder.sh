@@ -50,7 +50,7 @@ sbuild_builder()
    fi
    OWD_TMPDIR="$(realpath .)" ; export OWD_TMPDIR
    TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXXXX_SBUILD"
-   USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
+   USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/Azathothas/Wordlists/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')"
    export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
    if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
     rm -rf "${SYSTMP}/pkgforge"
