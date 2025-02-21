@@ -210,6 +210,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "beet",
+    "description": "Flexible music library manager and tagger",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/beet/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/beet/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "blender",
     "description": "A fully integrated 3D graphics creation suite",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/blender/runimage/debian/stable",
@@ -246,6 +254,14 @@
     "description": "Privacy-oriented browser for Desktop and Laptop computers",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/brave/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/brave/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "certbot",
+    "description": "Tool to obtain certificates from Lets Encrypt and other ACME compliant CAs",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/certbot/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/certbot/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -298,10 +314,34 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "commix",
+    "description": "Automated All-in-One OS Command Injection and Exploitation Tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/commix/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/commix/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "crave",
+    "description": "The Network Execution (CrackMapExec) Tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/crave/archive/sharun/pyinstaller",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/crave/archive.sharun.pyinstaller.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "cromite",
     "description": "A Bromite fork with ad blocking and privacy enhancements",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cromite/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cromite/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ddgr",
+    "description": "DuckDuckGo from the terminal",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ddgr/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ddgr/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -398,6 +438,14 @@
     "description": "Fast, lightweight web browser based on QtWebEngine",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/falkon/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/falkon/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fdm",
+    "description": "A powerful modern download accelerator and organizer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fdm/archive/wrappe/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/fdm/archive.wrappe.stable.yaml"
   },
   {
     "_disabled": false,
@@ -642,6 +690,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gptme",
+    "description": "AI assistant in your terminal",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gptme/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gptme/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gtts-cli",
+    "description": "Create an mp3 file from spoken text via the Google TTS API",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gtts-cli/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gtts-cli/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gzdoom",
     "description": "Feature centric port for all Doom engine games",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gzdoom/runimage/cachyos/stable",
@@ -666,6 +730,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "httpie",
+    "description": "Modern, user-friendly command-line HTTP client for the API era",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/httpie/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/httpie/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "huggingface-cli",
+    "description": "The official Python client for the Huggingface Hub",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/huggingface-cli/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/huggingface-cli/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "inkscape",
     "description": "FOSS Vector Graphics Editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/inkscape/appimage/official/stable",
@@ -682,10 +762,34 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "isd",
+    "description": "TUI to interactively work with systemd units",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/isd/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/isd/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "isort",
+    "description": "Sort Python imports automatically",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/isort/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/isort/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "jless",
     "description": "Command-line pager for JSON data",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/jless/appimage/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/jless/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jrnl",
+    "description": "Command line journal application that stores your journal in a plain text file",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/jrnl/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/jrnl/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -850,6 +954,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "malwoverview",
+    "description": "Tool for threat hunting and gathering intel information from various sources",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/malwoverview/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/malwoverview/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mcpelauncher",
     "description": "Minecraft Bedrock Launcher for Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mcpelauncher/runimage/cachyos/stable",
@@ -886,6 +998,14 @@
     "description": "Vim text editor fork focused on extensibility and agility",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/neovim/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/neovim/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "netexec",
+    "description": "The Network Execution (CrackMapExec) Tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/netexec/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/netexec/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -930,10 +1050,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "pdfly",
+    "description": "CLI tool to extract (meta)data from PDF and manipulate PDF files",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pdfly/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pdfly/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "peazip",
     "description": "Open Source archive manager and data compression utility",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/peazip/appimage/ferion11/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/peazip/appimage.ferion11.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pg_activity",
+    "description": "Top-like application for PostgreSQL server activity monitoring",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pg_activity/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pg_activity/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -954,10 +1090,34 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ps_mem",
+    "description": "Utility to accurately report the in core memory usage for a program",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ps_mem/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ps_mem/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "puddletag",
     "description": "Powerful, simple, audio tag editor for GNU/Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/puddletag/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/puddletag/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pyarmor",
+    "description": "Obfuscate, Bind & expire Python Scripts",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pyarmor/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pyarmor/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pyp",
+    "description": "Easily run Python at the shell",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pyp/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pyp/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -1022,6 +1182,22 @@
     "description": "Nintendo Switch Emulator",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ryujinx/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ryujinx/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "scons",
+    "description": "A Python replacement for Makefile-based build systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/scons/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/scons/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "shell-gpt",
+    "description": "Postgres CLI with autocompletion and syntax highlighting",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/shell-gpt/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/shell-gpt/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -1098,6 +1274,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "streamlink",
+    "description": "Program to pipe streams from services into a video player",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/streamlink/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/streamlink/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "sudachi",
     "description": "Nintendo Switch emulator forked from yuzu",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudachi/archive/wrappe/stable",
@@ -1162,6 +1346,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "tmuxp",
+    "description": "Manage tmux workspaces from JSON and YAML",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tmuxp/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tmuxp/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "torzu",
     "description": "Fork of yuzu, an open-source Nintendo Switch emulator",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/torzu/appimage/pkgforge-dev/stable",
@@ -1174,6 +1366,30 @@
     "description": "Fork of yuzu, an open-source Nintendo Switch emulator (x86-64-v3)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/torzu/appimage/pkgforge-dev/v3",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/torzu/appimage.pkgforge-dev.v3.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "trafilatura",
+    "description": "Command line journal application that stores your journal in a plain text file",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/trafilatura/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/trafilatura/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "twine",
+    "description": "Utility for publishing Python packages on PyPI",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twine/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/twine/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "udocker",
+    "description": "Execute simple Docker Containers in User Space without root privileges",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/udocker/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/udocker/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -1254,6 +1470,14 @@
     "description": "Utility to control X server access",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xhost/archive/sharun/alpine",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xhost/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xonsh",
+    "description": "Python-ish, BASHwards-compatible shell",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xonsh/archive/sharun/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xonsh/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
