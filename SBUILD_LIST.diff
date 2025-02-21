@@ -204,14 +204,6 @@
     "rebuild": false,
     "pkg_family": "awscli",
     "description": "Universal Command Line Interface for Amazon Web Services",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/awscli/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/awscli/archive.sharun.glibc.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "awscli",
-    "description": "Universal Command Line Interface for Amazon Web Services",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/awscli/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/awscli/archive.sharun.pypi.yaml"
   },
@@ -1220,14 +1212,6 @@
     "rebuild": false,
     "pkg_family": "sherlock",
     "description": "Hunt down social media accounts by username",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sherlock/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sherlock/archive.sharun.glibc.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "sherlock",
-    "description": "Hunt down social media accounts by username",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sherlock/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sherlock/archive.sharun.pypi.yaml"
   },
@@ -1502,14 +1486,6 @@
     "description": "Python-ish, BASHwards-compatible shell",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xonsh/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xonsh/archive.sharun.pypi.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "yamllint",
-    "description": "Linter for YAML files",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yamllint/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yamllint/archive.sharun.glibc.yaml"
   },
   {
     "_disabled": false,
