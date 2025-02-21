@@ -1226,6 +1226,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "simplex-chat",
+    "description": "A 100% private-by-design chat platform for the command-line",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/simplex-chat/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/simplex-chat/archive.sharun.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "simplex-desktop",
     "description": "Desktop application for SimpleX Chat, A 100% private-by-design chat platform",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/simplex-desktop/appimage/official/stable",
