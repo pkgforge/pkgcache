@@ -210,10 +210,18 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "awscli",
+    "description": "Universal Command Line Interface for Amazon Web Services",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/awscli/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/awscli/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "beet",
     "description": "Flexible music library manager and tagger",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/beet/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/beet/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/beet/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/beet/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -260,8 +268,8 @@
     "rebuild": false,
     "pkg_family": "certbot",
     "description": "Tool to obtain certificates from Lets Encrypt and other ACME compliant CAs",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/certbot/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/certbot/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/certbot/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/certbot/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -316,16 +324,16 @@
     "rebuild": false,
     "pkg_family": "commix",
     "description": "Automated All-in-One OS Command Injection and Exploitation Tool",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/commix/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/commix/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/commix/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/commix/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "crave",
-    "description": "The Network Execution (CrackMapExec) Tool",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/crave/archive/sharun/pyinstaller",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/crave/archive.sharun.pyinstaller.yaml"
+    "description": "CLI Client for Crave.io",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/crave/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/crave/archive.sharun.stable.yaml"
   },
   {
     "_disabled": false,
@@ -340,8 +348,8 @@
     "rebuild": false,
     "pkg_family": "ddgr",
     "description": "DuckDuckGo from the terminal",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ddgr/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ddgr/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ddgr/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ddgr/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -692,16 +700,16 @@
     "rebuild": false,
     "pkg_family": "gptme",
     "description": "AI assistant in your terminal",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gptme/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gptme/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gptme/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gptme/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "gtts-cli",
     "description": "Create an mp3 file from spoken text via the Google TTS API",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gtts-cli/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gtts-cli/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gtts-cli/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gtts-cli/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -732,16 +740,16 @@
     "rebuild": false,
     "pkg_family": "httpie",
     "description": "Modern, user-friendly command-line HTTP client for the API era",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/httpie/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/httpie/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/httpie/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/httpie/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "huggingface-cli",
     "description": "The official Python client for the Huggingface Hub",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/huggingface-cli/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/huggingface-cli/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/huggingface-cli/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/huggingface-cli/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -764,16 +772,24 @@
     "rebuild": false,
     "pkg_family": "isd",
     "description": "TUI to interactively work with systemd units",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/isd/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/isd/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/isd/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/isd/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "isort",
     "description": "Sort Python imports automatically",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/isort/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/isort/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/isort/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/isort/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jc",
+    "description": "Convert the output of command-line tools to JSON",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/jc/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/jc/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -788,8 +804,8 @@
     "rebuild": false,
     "pkg_family": "jrnl",
     "description": "Command line journal application that stores your journal in a plain text file",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/jrnl/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/jrnl/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/jrnl/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/jrnl/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -956,8 +972,8 @@
     "rebuild": false,
     "pkg_family": "malwoverview",
     "description": "Tool for threat hunting and gathering intel information from various sources",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/malwoverview/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/malwoverview/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/malwoverview/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/malwoverview/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1004,8 +1020,8 @@
     "rebuild": false,
     "pkg_family": "netexec",
     "description": "The Network Execution (CrackMapExec) Tool",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/netexec/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/netexec/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/netexec/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/netexec/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -1052,8 +1068,8 @@
     "rebuild": false,
     "pkg_family": "pdfly",
     "description": "CLI tool to extract (meta)data from PDF and manipulate PDF files",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pdfly/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pdfly/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pdfly/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pdfly/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1068,8 +1084,8 @@
     "rebuild": false,
     "pkg_family": "pg_activity",
     "description": "Top-like application for PostgreSQL server activity monitoring",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pg_activity/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pg_activity/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pg_activity/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pg_activity/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1092,8 +1108,8 @@
     "rebuild": false,
     "pkg_family": "ps_mem",
     "description": "Utility to accurately report the in core memory usage for a program",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ps_mem/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ps_mem/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ps_mem/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ps_mem/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1108,16 +1124,16 @@
     "rebuild": false,
     "pkg_family": "pyarmor",
     "description": "Obfuscate, Bind & expire Python Scripts",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pyarmor/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pyarmor/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pyarmor/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pyarmor/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "pyp",
     "description": "Easily run Python at the shell",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pyp/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pyp/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pyp/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pyp/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1188,16 +1204,16 @@
     "rebuild": false,
     "pkg_family": "scons",
     "description": "A Python replacement for Makefile-based build systems",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/scons/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/scons/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/scons/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/scons/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "shell-gpt",
     "description": "Postgres CLI with autocompletion and syntax highlighting",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/shell-gpt/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/shell-gpt/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/shell-gpt/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/shell-gpt/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1206,6 +1222,14 @@
     "description": "Hunt down social media accounts by username",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sherlock/archive/sharun/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sherlock/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sherlock",
+    "description": "Hunt down social media accounts by username",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sherlock/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sherlock/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1276,8 +1300,8 @@
     "rebuild": false,
     "pkg_family": "streamlink",
     "description": "Program to pipe streams from services into a video player",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/streamlink/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/streamlink/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/streamlink/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/streamlink/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1348,8 +1372,8 @@
     "rebuild": false,
     "pkg_family": "tmuxp",
     "description": "Manage tmux workspaces from JSON and YAML",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tmuxp/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tmuxp/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tmuxp/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tmuxp/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1372,24 +1396,24 @@
     "rebuild": false,
     "pkg_family": "trafilatura",
     "description": "Command line journal application that stores your journal in a plain text file",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/trafilatura/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/trafilatura/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/trafilatura/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/trafilatura/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "twine",
     "description": "Utility for publishing Python packages on PyPI",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twine/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/twine/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twine/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/twine/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "udocker",
     "description": "Execute simple Docker Containers in User Space without root privileges",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/udocker/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/udocker/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/udocker/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/udocker/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1476,8 +1500,8 @@
     "rebuild": false,
     "pkg_family": "xonsh",
     "description": "Python-ish, BASHwards-compatible shell",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xonsh/archive/sharun/glibc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xonsh/archive.sharun.glibc.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xonsh/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xonsh/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1486,6 +1510,14 @@
     "description": "Linter for YAML files",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yamllint/archive/sharun/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yamllint/archive.sharun.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "yamllint",
+    "description": "Linter for YAML files",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yamllint/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yamllint/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
