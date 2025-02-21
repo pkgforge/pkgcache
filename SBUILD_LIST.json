@@ -690,7 +690,7 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "c",
+    "pkg_family": "gptme",
     "description": "AI assistant in your terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gptme/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gptme/archive.sharun.pypi.yaml"
