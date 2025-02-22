@@ -499,11 +499,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "fastfetch",
-    "description": {
-      "_default": "Fast and feature-rich tool displaying system information",
-      "fastfetch": "Fast and feature-rich tool displaying system information",
-      "flashfetch": "Fastfetch with minimal features & configuration [fastfetch]"
-    },
+    "description": "Fast and feature-rich tool displaying system information",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fastfetch/archive/sharun/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/fastfetch/archive.sharun.stable.yaml"
   },
