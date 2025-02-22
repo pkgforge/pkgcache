@@ -202,6 +202,38 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "apprise",
+    "description": "Send notifications from the command-line to popular notification services",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/apprise/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/apprise/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "aqtinstall",
+    "description": "Qt CLI Installer on multi-platforms",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/aqtinstall/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/aqtinstall/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "archey",
+    "description": "A simple system information tool written in Python",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/archey/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/archey/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "archey",
+    "description": "A simple system information tool written in Python",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/archey/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/archey/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "awscli",
     "description": "Universal Command Line Interface for Amazon Web Services",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/awscli/archive/sharun/pypi",
@@ -330,6 +362,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "credsweeper",
+    "description": "Tool to detect credentials in any directories or files",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/credsweeper/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/credsweeper/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "cromite",
     "description": "A Bromite fork with ad blocking and privacy enhancements",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cromite/appimage/pkgforge-dev/stable",
@@ -418,6 +458,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dvc",
+    "description": "A version control system and experiment tracker designed for machine learning projects",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dvc/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/dvc/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dvc",
+    "description": "A version control system and experiment tracker designed for machine learning projects",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dvc/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/dvc/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "element-desktop",
     "description": "A glossy Matrix collaboration client for desktop",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/element-desktop/runimage/alpine/stable",
@@ -438,6 +494,18 @@
     "description": "Fast, lightweight web browser based on QtWebEngine",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/falkon/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/falkon/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fastfetch",
+    "description": {
+      "_default": "Fast and feature-rich tool displaying system information",
+      "fastfetch": "Fast and feature-rich tool displaying system information",
+      "flashfetch": "Fastfetch with minimal features & configuration [fastfetch]"
+    },
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fastfetch/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/fastfetch/archive.sharun.stable.yaml"
   },
   {
     "_disabled": false,
@@ -614,6 +682,14 @@
     "description": "The GNU Image Manipulation Program",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gimp/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gimp/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "git-dumper",
+    "description": "A tool to dump a git repository from a website",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/git-dumper/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/git-dumper/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1218,6 +1294,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "shot-scraper",
+    "description": "Command-line utility for taking automated screenshots of websites",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/shot-scraper/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/shot-scraper/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "signal-desktop",
     "description": "Private, simple, and secure messenger",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/signal-desktop/appimage/karo-solutions/stable",
@@ -1246,6 +1330,14 @@
     "description": "Desktop application for SimpleX Chat, A 100% private-by-design chat platform",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/simplex-desktop/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/simplex-desktop/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "snallygaster",
+    "description": "Tool to scan for hidden/secret files on HTTP servers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/snallygaster/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/snallygaster/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1342,6 +1434,14 @@
     "description": "A clean and powerful open source notes app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tangent/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tangent/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "teamviewer",
+    "description": "All-In-One Software for Remote Support and Online Meetings (Client)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/teamviewer/archive/wrappe/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/teamviewer/archive.wrappe.stable.yaml"
   },
   {
     "_disabled": false,
