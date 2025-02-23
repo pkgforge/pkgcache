@@ -202,6 +202,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "anipy-cli",
+    "description": "Watch and Download Anime from the terminal",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/anipy-cli/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/anipy-cli/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "apprise",
     "description": "Send notifications from the command-line to popular notification services",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/apprise/archive/sharun/pypi",
@@ -230,6 +238,14 @@
     "description": "A simple system information tool written in Python",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/archey/archive/sharun/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/archey/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "audiobook-dl",
+    "description": "Audiobook CLI downloader",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/audiobook-dl/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/audiobook-dl/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -494,6 +510,14 @@
     "description": "Fast, lightweight web browser based on QtWebEngine",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/falkon/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/falkon/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fanficfare",
+    "description": "Tool to make eBooks from stories on fanfiction and other websites",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/fanficfare/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/fanficfare/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -778,6 +802,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "guarddog",
+    "description": "CLI tool to Identify malicious PyPI and npm packages",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/guarddog/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/guarddog/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gzdoom",
     "description": "Feature centric port for all Doom engine games",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gzdoom/runimage/cachyos/stable",
@@ -814,6 +846,14 @@
     "description": "The official Python client for the Huggingface Hub",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/huggingface-cli/archive/sharun/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/huggingface-cli/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "image-bootstrap",
+    "description": "Generate Bootable Virtual Machine Images and write them to a Block Device",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/image-bootstrap/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/image-bootstrap/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -910,6 +950,14 @@
     "description": "Collection of utilities for KDE",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/kdeutils/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/kdeutils/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "klp",
+    "description": "CLI viewer for structured log files and streams (logfmt, JSONL and many others)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/klp/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/klp/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1034,6 +1082,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "linkook",
+    "description": "OSINT tool to find Accounts/Emails across multiple platforms using a single Username",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/linkook/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/linkook/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "malwoverview",
     "description": "Tool for threat hunting and gathering intel information from various sources",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/malwoverview/archive/sharun/pypi",
@@ -1122,6 +1178,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "oci-cli",
+    "description": "Command Line Interface for Oracle Cloud Infrastructure",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/oci-cli/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/oci-cli/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "openboard",
     "description": "Interactive whiteboard software for schools and universities",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/openboard/runimage/cachyos/stable",
@@ -1158,6 +1222,14 @@
     "description": "A suite of Audio/Video Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/player432hz/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/player432hz/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "port-for",
+    "description": "CLI for local TCP ports management",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/port-for/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/port-for/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1226,6 +1298,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "resolve-march-native",
+    "description": "Tool to determine what GCC flags -march=native would resolve into",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/resolve-march-native/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/resolve-march-native/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ruffle",
     "description": "Adobe Flash Player emulator",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ruffle/runimage/cachyos/nightly",
@@ -1266,6 +1346,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sandwine",
+    "description": "Run Windows apps with Wine and bwrap/bubblewrap isolation",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sandwine/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sandwine/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "scons",
     "description": "A Python replacement for Makefile-based build systems",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/scons/archive/sharun/pypi",
@@ -1294,6 +1382,14 @@
     "description": "Command-line utility for taking automated screenshots of websites",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/shot-scraper/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/shot-scraper/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "showcert",
+    "description": "Inspect TLS certificates presented by remote servers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/showcert/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/showcert/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1494,6 +1590,14 @@
     "description": "Utility for publishing Python packages on PyPI",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twine/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/twine/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "twitch-dl",
+    "description": "CLI tool for downloading videos from Twitch",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twitch-dl/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/twitch-dl/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
