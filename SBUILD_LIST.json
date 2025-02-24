@@ -1122,6 +1122,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mitmproxy",
+    "description": "SSL/TLS-capable man-in-the-middle proxy for HTTP and Websockets",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mitmproxy/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/mitmproxy/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mpv",
     "description": "General Purpose Command line video player",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mpv/appimage/pkgforge-dev/stable",
