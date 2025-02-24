@@ -1730,6 +1730,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "yt-dlp",
+    "description": "CLI program to download videos from YouTube and other sites",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yt-dlp/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yt-dlp/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "yt-dlp",
+    "description": "CLI program to download videos from YouTube and other sites",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yt-dlp/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yt-dlp/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "zen-browser",
     "description": "Performance oriented Firefox-based web browser (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zen-browser/appimage/official/beta",
