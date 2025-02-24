@@ -490,6 +490,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "electron-mail",
+    "description": "Unofficial ProtonMail Desktop App",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/electron-mail/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/electron-mail/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "element-desktop",
     "description": "A glossy Matrix collaboration client for desktop",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/element-desktop/runimage/alpine/stable",
@@ -1678,6 +1686,22 @@
     "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wezterm/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wezterm/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xash3d-fwgs",
+    "description": "Heavily modified fork of an original Xash3D Engine for Half Life",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xash3d-fwgs/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xash3d-fwgs/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xashds",
+    "description": "Xash3D FWGS Dedicated Server",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xashds/archive/wrappe/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xashds/archive.wrappe.stable.yaml"
   },
   {
     "_disabled": false,
