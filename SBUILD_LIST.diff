@@ -1122,6 +1122,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mitmproxy",
+    "description": "SSL/TLS-capable man-in-the-middle proxy for HTTP and Websockets",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mitmproxy/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/mitmproxy/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mpv",
     "description": "General Purpose Command line video player",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mpv/appimage/pkgforge-dev/stable",
@@ -1726,6 +1734,22 @@
     "description": "Linter for YAML files",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yamllint/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yamllint/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "yt-dlp",
+    "description": "CLI program to download videos from YouTube and other sites",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yt-dlp/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yt-dlp/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "yt-dlp",
+    "description": "CLI program to download videos from YouTube and other sites",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yt-dlp/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yt-dlp/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
