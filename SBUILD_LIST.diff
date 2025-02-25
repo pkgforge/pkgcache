@@ -1698,6 +1698,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "wrangler",
+    "description": "Command-line interface for all things Cloudflare Workers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wrangler/archive/sharun/npm",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wrangler/archive.sharun.npm.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "xash3d-fwgs",
     "description": "Heavily modified fork of an original Xash3D Engine for Half Life",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xash3d-fwgs/appimage/official/stable",
