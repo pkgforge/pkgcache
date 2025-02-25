@@ -1642,6 +1642,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "uro",
+    "description": "Declutter url lists for crawling/pentesting",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/uro/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/uro/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "vesktop",
     "description": "A custom Discord App aiming to give you better performance and improve linux support",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vesktop/appimage/official/stable",
@@ -1662,6 +1670,14 @@
     "description": "Visual Studio Code without MS branding/telemetry/licensing",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vscodium/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vscodium/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wappalyzer",
+    "description": "Tool to Detect web Technologies",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wappalyzer/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wappalyzer/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
