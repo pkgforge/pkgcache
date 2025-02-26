@@ -258,6 +258,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "baddns",
+    "description": "Tool to check subdomains for subdomain takeovers and other DNS issues",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/baddns/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/baddns/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "beet",
     "description": "Flexible music library manager and tagger",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/beet/archive/sharun/pypi",
@@ -646,6 +654,14 @@
     "description": "Manage AppImages with ease",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gearlever/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gearlever/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "getaltname",
+    "description": "Extract subdomains from SSL certificates in HTTPS sites",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/getaltname/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/getaltname/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
@@ -1274,6 +1290,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "puncia",
+    "description": "CLI utility for Subdomain Center & Exploit Observer",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/puncia/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/puncia/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "pyarmor",
     "description": "Obfuscate, Bind & expire Python Scripts",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pyarmor/archive/sharun/pypi",
@@ -1566,6 +1590,14 @@
     "description": "Official desktop version of Telegram messaging app",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/telegram-desktop/nixappimage/nixpkgs/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/telegram-desktop/nixappimage.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tldextract",
+    "description": "Separates a URL's subdomain, domain, and public suffix, using the Public Suffix List (PSL)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/tldextract/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/tldextract/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
