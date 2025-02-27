@@ -16,7 +16,7 @@ PATH="$(echo "${PATH}" | awk 'BEGIN{RS=":";ORS=":"}{gsub(/\n/,"");if(!a[$0]++)pr
 OWD_TMP="$(realpath .)" ; export OWD_TMP
 PKG_REPO="pkgcache"
 TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_SBUILD"
-USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
+USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')"
 export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
 if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
  rm -rf "${SYSTMP}/pkgforge"
