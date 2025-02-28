@@ -674,6 +674,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ghidra",
+    "description": "Software reverse engineering (SRE) suite of tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghidra/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghidra/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
@@ -1100,6 +1108,14 @@
     "rebuild": false,
     "pkg_family": "librewolf",
     "description": "A fork of Firefox, focused on privacy, security and freedom",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/librewolf/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/librewolf/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "librewolf",
+    "description": "A fork of Firefox, focused on privacy, security and freedom",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/librewolf/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/librewolf/runimage.cachyos.stable.yaml"
   },
@@ -1126,6 +1142,14 @@
     "description": "Minecraft Bedrock Launcher for Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mcpelauncher/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/mcpelauncher/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "megasync",
+    "description": "Syncs files between computers and MEGA Cloud drives",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/megasync/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/megasync/runimage.debian.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1246,6 +1270,14 @@
     "description": "Top-like application for PostgreSQL server activity monitoring",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pg_activity/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pg_activity/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pixelpulse2",
+    "description": "Pixelpulse2 is a user interface for analog systems exploration.",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pixelpulse2/appimage/sounddrill31/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pixelpulse2/appimage.sounddrill31.stable.yaml"
   },
   {
     "_disabled": false,
