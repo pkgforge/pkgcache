@@ -280,7 +280,7 @@ jobs:
         continue-on-error: true
 
       - name: Attest Build Provenance
-        uses: actions/attest-build-provenance@v2.2.1
+        uses: actions/attest-build-provenance@v2.2.2
         with:
           subject-name: "build-logs-aarch64-Linux-${{ env.UTC_TIME }}"
           subject-path: "/tmp/BUILD.log"
