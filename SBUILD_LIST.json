@@ -674,6 +674,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ghidra",
+    "description": "Software reverse engineering (SRE) suite of tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghidra/runimage/cachyos/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghidra/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
@@ -1100,6 +1108,14 @@
     "rebuild": false,
     "pkg_family": "librewolf",
     "description": "A fork of Firefox, focused on privacy, security and freedom",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/librewolf/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/librewolf/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "librewolf",
+    "description": "A fork of Firefox, focused on privacy, security and freedom",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/librewolf/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/librewolf/runimage.cachyos.stable.yaml"
   },
@@ -1126,6 +1142,14 @@
     "description": "Minecraft Bedrock Launcher for Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mcpelauncher/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/mcpelauncher/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "megasync",
+    "description": "Syncs files between computers and MEGA Cloud drives",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/megasync/runimage/debian/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/megasync/runimage.debian.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1250,6 +1274,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "pixelpulse2",
+    "description": "Pixelpulse2 is a user interface for analog systems exploration.",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pixelpulse2/appimage/sounddrill31/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pixelpulse2/appimage.sounddrill31.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "player432hz",
     "description": "A suite of Audio/Video Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/player432hz/appimage/official/stable",
@@ -1270,6 +1302,14 @@
     "description": "A Fast and Portable PSP emulator",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ppsspp/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ppsspp/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "proxychains",
+    "description": "Redirect any TCP connection through a proxy or proxy chain",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/proxychains/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/proxychains/archive.sharun.alpine.yaml"
   },
   {
     "_disabled": false,
@@ -1642,6 +1682,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "twingate",
+    "description": "Zero trust remote access client for resource and networks",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twingate/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/twingate/archive.sharun.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "twitch-dl",
     "description": "CLI tool for downloading videos from Twitch",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twitch-dl/archive/sharun/pypi",
@@ -1830,5 +1878,13 @@
     "description": "Performance oriented Firefox-based web browser (Twilight)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zen-browser/appimage/official/twilight",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zen-browser/appimage.official.twilight.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "zerotier",
+    "description": "A Smart Ethernet Switch for Earth",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zerotier/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zerotier/archive.sharun.stable.yaml"
   }
 ]
