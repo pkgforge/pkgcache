@@ -1683,12 +1683,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "twingate",
-    "description": {
-      "_default": "Zero trust remote access client for resource and networks",
-      "twingate": "Zero trust remote access client for resource and networks [twingate]",
-      "twingated": "Daemon for Twingate [twingate]",
-      "twingate-notifier": "Monitor & Notify for Twingate Client [twingate]"
-    },
+    "description": "Zero trust remote access client for resource and networks",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/twingate/archive/sharun/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/twingate/archive.sharun.stable.yaml"
   },
@@ -1888,12 +1883,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "zerotier",
-    "description": {
-      "_default": "A Smart Ethernet Switch for Earth",
-      "zerotier-cli": "Control local ZeroTier virtual network service [zerotier]",
-      "zerotier-idtool": "Tool for creating and manipulating ZeroTier identities [zerotier]",
-      "zerotier-one": "Connect a Unix system to ZeroTier networks as virtual ports [zerotier]"
-    },
+    "description": "A Smart Ethernet Switch for Earth",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zerotier/archive/sharun/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zerotier/archive.sharun.stable.yaml"
   }
