@@ -795,6 +795,22 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "goverlay",
+    "description": "GUI for configuring Vulkan/OpenGL overlays (nightly)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/nightly",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.nightly.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "goverlay",
+    "description": "GUI for configuring Vulkan/OpenGL overlays",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "goverlay",
     "description": "GUI for configuring Vulkan/OpenGL overlays (Git)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/runimage/cachyos/git",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/runimage.cachyos.git.yaml"
@@ -1276,8 +1292,8 @@
     "rebuild": false,
     "pkg_family": "pixelpulse2",
     "description": "Pixelpulse2 is a user interface for analog systems exploration.",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pixelpulse2/appimage/sounddrill31/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pixelpulse2/appimage.sounddrill31.stable.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pixelpulse2/appimage/pkgforge-dev/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pixelpulse2/appimage.pkgforge-dev.stable.yaml"
   },
   {
     "_disabled": false,
