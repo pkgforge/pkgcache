@@ -795,6 +795,14 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "goverlay",
+    "description": "GUI for configuring Vulkan/OpenGL overlays",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "goverlay",
     "description": "GUI for configuring Vulkan/OpenGL overlays (Git)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/runimage/cachyos/git",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/runimage.cachyos.git.yaml"
