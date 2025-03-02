@@ -370,6 +370,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cmake",
+    "description": "Cross-platform, open-source build system",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cmake/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cmake/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "commix",
     "description": "Automated All-in-One OS Command Injection and Exploitation Tool",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/commix/archive/sharun/pypi",
@@ -638,6 +646,14 @@
     "description": "Powerful and simple to use screenshot software",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/flameshot/nixappimage/nixpkgs/unstable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/flameshot/nixappimage.nixpkgs.unstable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "freerdp",
+    "description": "Free implementation of the Remote Desktop Protocol",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/freerdp/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/freerdp/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
