@@ -370,6 +370,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cmake",
+    "description": "Cross-platform, open-source build system",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cmake/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cmake/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "commix",
     "description": "Automated All-in-One OS Command Injection and Exploitation Tool",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/commix/archive/sharun/pypi",
@@ -638,6 +646,23 @@
     "description": "Powerful and simple to use screenshot software",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/flameshot/nixappimage/nixpkgs/unstable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/flameshot/nixappimage.nixpkgs.unstable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "freerdp",
+    "description": {
+      "_default": "Free implementation of the Remote Desktop Protocol [freerdp]",
+      "freerdp": "Free implementation of the Remote Desktop Protocol [freerdp]",
+      "freerdp-proxy": "A server binary allowing MITM proxying of RDP connections [freerdp]",
+      "freerdp-shadow-cli": "A utility for sharing a X display via RDP [freerdp]",
+      "winpr-hash": "NTLM hashing tool [freerdp]",
+      "winpr-makecert": "A tool to create X.509 certificates [freerdp]",
+      "wlfreerdp": "FreeRDP wayland client [freerdp]",
+      "xfreerdp": "FreeRDP X11 client [freerdp]"
+    },
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/freerdp/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/freerdp/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
