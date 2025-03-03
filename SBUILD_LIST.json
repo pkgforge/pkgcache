@@ -314,6 +314,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "caido-cli",
+    "description": "CLI for Caido: Lightweight web security auditing toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/caido-cli/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/caido-cli/archive.sharun.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "caido",
+    "description": "Lightweight web security auditing toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/caido/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/caido/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "certbot",
     "description": "Tool to obtain certificates from Lets Encrypt and other ACME compliant CAs",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/certbot/archive/sharun/pypi",
@@ -1297,7 +1313,10 @@
     "pkg_family": "pixelpulse2",
     "description": "Pixelpulse2 is a user interface for analog systems exploration.",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pixelpulse2/appimage/pkgforge-dev/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pixelpulse2/appimage.pkgforge-dev.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/pixelpulse2/appimage.pkgforge-dev.stable.yaml",
+    "replaces": [
+      "pixelpulse2#github.com.sounddrill3"
+    ]
   },
   {
     "_disabled": false,
@@ -1906,5 +1925,13 @@
     "description": "A Smart Ethernet Switch for Earth",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zerotier/archive/sharun/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zerotier/archive.sharun.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "zmap",
+    "description": "Fast single packet network scanner designed for Internet-wide network surveys",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zmap/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zmap/archive.sharun.source.yaml"
   }
 ]
