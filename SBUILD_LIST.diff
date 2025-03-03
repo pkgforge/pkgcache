@@ -651,16 +651,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "freerdp",
-    "description": {
-      "_default": "Free implementation of the Remote Desktop Protocol [freerdp]",
-      "freerdp": "Free implementation of the Remote Desktop Protocol [freerdp]",
-      "freerdp-proxy": "A server binary allowing MITM proxying of RDP connections [freerdp]",
-      "freerdp-shadow-cli": "A utility for sharing a X display via RDP [freerdp]",
-      "winpr-hash": "NTLM hashing tool [freerdp]",
-      "winpr-makecert": "A tool to create X.509 certificates [freerdp]",
-      "wlfreerdp": "FreeRDP wayland client [freerdp]",
-      "xfreerdp": "FreeRDP X11 client [freerdp]"
-    },
+    "description": "Free implementation of the Remote Desktop Protocol",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/freerdp/appimage/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/freerdp/appimage.ppkg.stable.yaml"
   },
@@ -804,25 +795,13 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "goverlay",
-    "description": "GUI for configuring Vulkan/OpenGL overlays (beta)",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/beta",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.beta.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "goverlay",
-    "description": "GUI for configuring Vulkan/OpenGL overlays (beta2)",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/beta2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.beta2.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "goverlay",
     "description": "GUI for configuring Vulkan/OpenGL overlays (nightly)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/goverlay/appimage/official/nightly",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.nightly.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/goverlay/appimage.official.nightly.yaml",
+    "replaces": [
+      "github.com.benjamimgois.goverlay.beta",
+      "github.com.benjamimgois.goverlay.beta2"
+    ]
   },
   {
     "_disabled": false,
