@@ -1898,20 +1898,17 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "xrdp",
-    "description": {
-      "_default": "Open source Remote Desktop Protocol (RDP) server",
-      "xrdp": "Open source Remote Desktop Protocol (RDP) server [xrdp]",
-      "xrdp-chansrv": "xrdp Channel Server [xrdp]",
-      "xrdp-dis": "xrdp disconnect utility [xrdp]",
-      "xrdp-dumpfv1": "Display content of .fv1 font files [xrdp]",
-      "xrdp-genkeymap": "Key map generator for XRDP [xrdp]",
-      "xrdp-keygen": "xrdp RSA key generation utility [xrdp]",
-      "xrdp-sesadmin": "Console XRDP sessions administration tool [xrdp]",
-      "xrdp-sesman": "xrdp session manager [xrdp]",
-      "xrdp-sesrun": "xrdp session launcher [xrdp]"
-    },
+    "description": "Open source Remote Desktop Protocol (RDP) server",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xrdp/appimage/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xrdp/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xvfb-run",
+    "description": "Run a command in a virtual X server environment",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xvfb-run/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xvfb-run/archive.sharun.alpine.yaml"
   },
   {
     "_disabled": false,
