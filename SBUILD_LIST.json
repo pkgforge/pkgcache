@@ -1849,6 +1849,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "wps-office",
+    "description": "All-in-one Kingsoft Office Suite",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wps-office/appimage/ivan-hc/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wps-office/appimage.ivan-hc.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "wrangler",
     "description": "Command-line interface for all things Cloudflare Workers",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wrangler/archive/sharun/npm",
