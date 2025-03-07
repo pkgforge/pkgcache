@@ -362,6 +362,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ciphey",
+    "description": "Automatically decrypt encryptions without knowing the key or cipher, decode encodings, and crack hashes",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ciphey/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ciphey/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "citron",
     "description": "Nintendo Switch emulator forked from yuzu",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/citron/appimage/pkgforge-dev/stable",
@@ -514,6 +522,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dnsvalidator",
+    "description": "Tool to validate, verify & maintain a list of IPv4 DNS servers",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dnsvalidator/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/dnsvalidator/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dvc",
     "description": "A version control system and experiment tracker designed for machine learning projects",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dvc/archive/sharun/pypi",
@@ -542,6 +558,14 @@
     "description": "A glossy Matrix collaboration client for desktop",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/element-desktop/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/element-desktop/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "emailfinder",
+    "description": "Search emails from a domain through search engines",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/emailfinder/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/emailfinder/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -702,6 +726,14 @@
     "description": "Extract subdomains from SSL certificates in HTTPS sites",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/getaltname/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/getaltname/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ghauri",
+    "description": "Tool for detecting and exploiting SQL injection security flaws",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghauri/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghauri/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -946,6 +978,14 @@
     "description": "FOSS Vector Graphics Editor",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/inkscape/runimage/alpine/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/inkscape/runimage.alpine.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "interlace",
+    "description": "Easily turn single threaded CLIs into a fast, multi-threaded application with CIDR and glob support",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/interlace/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/interlace/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -1206,6 +1246,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "metafinder",
+    "description": "Search documents from a domain through search engines",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/metafinder/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/metafinder/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mitmproxy",
     "description": "SSL/TLS-capable man-in-the-middle proxy for HTTP and Websockets",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mitmproxy/archive/sharun/pypi",
@@ -1218,6 +1266,14 @@
     "description": "General Purpose Command line video player",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/mpv/appimage/pkgforge-dev/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/mpv/appimage.pkgforge-dev.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "name-that-hash",
+    "description": "CLI for the identification of hashes",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/name-that-hash/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/name-that-hash/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -1302,6 +1358,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "p1radup",
+    "description": "Process URLs and remove duplicate query parameters",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/p1radup/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/p1radup/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "pdfly",
     "description": "CLI tool to extract (meta)data from PDF and manipulate PDF files",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/pdfly/archive/sharun/pypi",
@@ -1341,6 +1405,14 @@
     "description": "A suite of Audio/Video Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/player432hz/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/player432hz/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "porch-pirate",
+    "description": "Recon/OSINT Tool for finding API Endpoints etc from Postman",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/porch-pirate/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/porch-pirate/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -1485,6 +1557,14 @@
     "description": "Run Windows apps with Wine and bwrap/bubblewrap isolation",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sandwine/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sandwine/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sanicdns",
+    "description": "Recursive DNS Resolver",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sanicdns/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sanicdns/archive.sharun.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1777,6 +1857,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "urless",
+    "description": "De-clutter a list of URLs",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/urless/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/urless/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "uro",
     "description": "Declutter url lists for crawling/pentesting",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/uro/archive/sharun/pypi",
@@ -1805,6 +1893,14 @@
     "description": "Visual Studio Code without MS branding/telemetry/licensing",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vscodium/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/vscodium/runimage.cachyos.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wafw00f",
+    "description": "Tool to identify and fingerprint Web Application Firewalls (WAF)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wafw00f/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/wafw00f/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
@@ -1893,6 +1989,14 @@
     "description": "Fast Internet-wide IPv6 & IPv4 network scanner",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xmap/archive/sharun/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xmap/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xnlinkfinder",
+    "description": "Tool to discover endpoints, potential parameters & more for a given Target",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/xnlinkfinder/archive/sharun/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/xnlinkfinder/archive.sharun.source.yaml"
   },
   {
     "_disabled": false,
