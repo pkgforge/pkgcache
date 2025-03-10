@@ -1184,6 +1184,14 @@
     "rebuild": false,
     "pkg_family": "libresprite",
     "description": "Animated sprite editor & pixel art tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libresprite/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libresprite/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libresprite",
+    "description": "Animated sprite editor & pixel art tool",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libresprite/runimage/cachyos/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libresprite/runimage.cachyos.stable.yaml"
   },
