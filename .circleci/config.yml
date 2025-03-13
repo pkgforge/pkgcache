@@ -70,8 +70,9 @@ jobs:
               git config --global "user.email" "AjamX101@gmail.com"
               git config --global "user.name" "Azathothas"
               ##User-Agent
-              USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
-              echo "USER_AGENT=${USER_AGENT}" >> "${BASH_ENV}"
+              #THIS CAUSES ESCAPING ISSUES
+              #USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+              #echo "USER_AGENT=${USER_AGENT}" >> "${BASH_ENV}"
               ##Wget
               echo 'progress = dot:giga' | sudo tee -a "/etc/wgetrc"
               echo 'progress = dot:giga' | tee -a "${HOME}/.wgetrc"
@@ -147,6 +148,7 @@ jobs:
 
       - run:
           name: Run as External Runner
+          no_output_timeout: 55m
           shell: /usr/bin/bash
           when: on_success
           environment:
@@ -158,6 +160,7 @@ jobs:
             #shellcheck disable=all
             set +x ; set +e ; set +o pipefail
             #-------------#
+            echo -e "\n\n" && env ; echo -e "\n\n"
             if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
                export RUNNER_NAME="circle-ci-arm64"
                export RUNNER_LABELS="aarch64-linux-circle,arm64-linux-circle"
@@ -182,4 +185,5 @@ workflows:
           matrix:
             parameters:
               os-type: ["linux-aarch64", "linux-x86_64"]
-              runner: [0, 1, 2, 3, 4, 5]
+              runner: [1, 2]
+              #runner: [1, 2, 3, 4, 5, 6]

@@ -27,6 +27,13 @@ on:
         description: Package Family
         required: true
 
+      ci-infra:
+        description: CI Infra (What build servers to use) [Default ==> GitHub]
+        type: choice
+        options:
+          - "github"
+          - "circle-ci"
+
       debug:
         description: Debug Mode (Verbose with set -x) [Default ==> False]
         type: choice
@@ -60,13 +67,24 @@ jobs:
           set +x ; set +e
           #-------------#
           echo '[' > "./MATRIX.json.tmp"
-           if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
-             echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
-             echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
-           elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
-             echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
-           elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
-             echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+           if [[ "${{ github.event.inputs.ci-infra }}" == "github" ]]; then
+             if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
+               echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
+               echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
+               echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             fi
+           elif [[ "${{ github.event.inputs.ci-infra }}" == "circle-ci" ]]; then
+             if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
+               echo '{"host": "aarch64-Linux", "runner": "arm64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               echo '{"host": "x86_64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
+               echo '{"host": "aarch64-Linux", "runner": "arm64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
+               echo '{"host": "x86_64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             fi
            fi
           echo ']' >> "./MATRIX.json.tmp"
           jq 'unique_by(.runner)' "./MATRIX.json.tmp" | jq . > "./MATRIX.json"
