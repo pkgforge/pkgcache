@@ -104,6 +104,20 @@ jobs:
             } || true
 
       - run:
+          name: Fix Perms
+          shell: /usr/bin/bash
+          when: always
+          command: |
+            ##presets
+            #shellcheck disable=all
+            set +x ; set +e ; set +o pipefail
+            #-------------#
+            if [[ -d "/usr/local/go" ]]; then
+              sudo chown -R "$(whoami):$(whoami)" "/usr/local/go"
+              sudo chmod -R 'u+rwX' "/usr/local/go"
+            fi
+
+      - run:
           name: Disable apparmor_restrict_unprivileged_userns
           shell: /usr/bin/bash
           when: always
@@ -172,10 +186,15 @@ jobs:
             echo -e "\n[+] Waiting 10s..." && sleep 10
             echo -e "[+] Executing Runner..."
             while true; do
-                if ! pgrep -f "/usr/local/bin/manager.sh" > /dev/null; then
-                  exit 0
-                fi
-              sleep 5
+              if [[ ! -s '/tmp/GHA_CI_STATUS' || "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" != "EXITED" ]]; then
+                 if ! pgrep -f "/usr/local/bin/manager.sh" > /dev/null; then
+                    echo -e "\n[+] Workflow Run Concluded\n"
+                   exit 0
+                 fi
+              elif [[ -s '/tmp/GHA_CI_STATUS' && "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" == "EXITED" ]]; then
+                 echo -e "\n[+] Workflow Run Concluded\n"
+              fi
+              sleep 7
             done
 
 workflows:
@@ -185,5 +204,6 @@ workflows:
           matrix:
             parameters:
               os-type: ["linux-aarch64", "linux-x86_64"]
-              runner: [1, 2]
-              #runner: [1, 2, 3, 4, 5, 6]
+              runner: [1]
+              #runner: [1, 2] --> 4 Total runners
+              #runner: [1, 2, 3, 4, 5, 6] --> 12 Total Runners

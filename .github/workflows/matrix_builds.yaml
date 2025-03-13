@@ -28,7 +28,7 @@ on:
         required: true
 
       ci-infra:
-        description: CI Infra (What build servers to use) [Default ==> GitHub]
+        description: CI Infra (What Build Servers to Use) [Default ==> GitHub]
         type: choice
         options:
           - "github"
@@ -77,6 +77,7 @@ jobs:
                echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              fi
            elif [[ "${{ github.event.inputs.ci-infra }}" == "circle-ci" ]]; then
+             curl -X "POST" -H "content-type: application/json" -qfsSL "${{ secrets.CIRCLE_CI_WEBHOOK_URL }}?secret=${{ secrets.CIRCLE_CI_SECRET }}"
              if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "arm64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                echo '{"host": "x86_64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
