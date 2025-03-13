@@ -84,24 +84,24 @@ jobs:
               echo -e "\n\n" && echo
             } || true
 
-      - run:
-          name: Install Addons
-          shell: /usr/bin/bash
-          when: always
-          command: |
-            ##presets
-            #shellcheck disable=all
-            set +x ; set +e ; set +o pipefail
-            #-------------#
-            {
-              pushd "$(mktemp -d)" &>/dev/null
-               curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh" -o "./install.sh"
-               sed -E 's/^[[:space:]]*##[Uu][Ss][Aa][Gg][Ee][[:space:]]*$/##Usage\n#shellcheck disable=all/' -i "./install.sh"
-               chmod '+xwr' -v "./install.sh"
-               dos2unix --quiet "./install.sh"
-               env PARALLEL="1" bash "./install.sh"
-              popd &>/dev/null
-            } || true
+      #- run:
+      #    name: Install Addons
+      #    shell: /usr/bin/bash
+      #    when: always
+      #    command: |
+      #      ##presets
+      #      #shellcheck disable=all
+      #      set +x ; set +e ; set +o pipefail
+      #      #-------------#
+      #      {
+      #        pushd "$(mktemp -d)" &>/dev/null
+      #         curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh" -o "./install.sh"
+      #         sed -E 's/^[[:space:]]*##[Uu][Ss][Aa][Gg][Ee][[:space:]]*$/##Usage\n#shellcheck disable=all/' -i "./install.sh"
+      #         chmod '+xwr' -v "./install.sh"
+      #         dos2unix --quiet "./install.sh"
+      #         bash "./install.sh"
+      #        popd &>/dev/null
+      #      } || true
 
       - run:
           name: Fix Perms
@@ -190,12 +190,7 @@ jobs:
             echo -e "\n[+] Waiting 10s..." && sleep 10
             echo -e "[+] Executing Runner..."
             while true; do
-              if [[ ! -s '/tmp/GHA_CI_STATUS' || "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" != "EXITED" ]]; then
-                 if ! pgrep -f "/usr/local/bin/manager.sh" > /dev/null; then
-                    echo -e "\n[+] Workflow Run Concluded\n"
-                   sleep 3 ; exit 0
-                 fi
-              elif [[ -s '/tmp/GHA_CI_STATUS' && "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" == "EXITED" ]]; then
+              if [[ -s '/tmp/GHA_CI_STATUS' && "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" == "EXITED" ]]; then
                   ( nohup pkill -INT -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null
                   ( nohup pkill -TERM -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null
                   echo -e "\n[+] Workflow Run Concluded\n"
