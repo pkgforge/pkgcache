@@ -73,9 +73,10 @@ jobs:
               echo 'progress = dot:giga' | tee -a "${HOME}/.wgetrc"
               ##PrintENV
               echo -e "\n\n" && uname -a
+              echo -e "\n\n" && realpath "$(which bash)" ; bash --version
               echo -e "\n\n" && env
               echo -e "\n\n" && df -h
-              echo -e "\n\n" && echo 
+              echo -e "\n\n" && echo
             } || true
 
       - run:
