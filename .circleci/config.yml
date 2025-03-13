@@ -1,0 +1,211 @@
+#https://circleci.com/docs/introduction-to-yaml-configurations/
+version: 2.1
+
+executors:
+  linux-aarch64:
+    machine:
+      image: ubuntu-2404:current #https://circleci.com/developer/machine/image/ubuntu-2404
+    resource_class: arm.large #4vCPU + 16GB RAM + 150GB DISK
+  linux-x86_64:
+    machine:
+      image: ubuntu-2404:current #https://circleci.com/developer/machine/image/ubuntu-2404
+    resource_class: large #4vCPU + 16GB RAM + 150GB DISK
+
+jobs:
+  act-as-runner:
+    parameters:
+      os-type:
+        type: string
+        enum: ["linux-aarch64", "linux-x86_64"]
+      runner:
+        type: integer
+    executor: << parameters.os-type >>
+
+    steps:
+
+      - run:
+          name: Setup PreRequisites
+          shell: /usr/bin/bash
+          command: |
+            ##presets
+            #shellcheck disable=all
+            set +x ; set +e ; set +o pipefail
+            #-------------#
+            ##ENV
+            export DEBIAN_FRONTEND="noninteractive"
+            echo "DEBIAN_FRONTEND=${DEBIAN_FRONTEND}" >> "${BASH_ENV}"
+            ##UPDATE
+            {
+              sudo apt update -y -qq
+              #https://github.com/ilikenwf/apt-fast?tab=readme-ov-file#quick-install
+              bash -c "$(curl -qfsSL 'https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh')"
+              if ! command -v apt-fast &>/dev/null; then
+                 echo -e "[-] Failed to find apt-fast\n"
+                 exit 1
+              fi
+            } || true
+
+      - run:
+          name: Install Deps
+          shell: /usr/bin/bash
+          when: on_success
+          command: |
+            ##presets
+            #shellcheck disable=all
+            set +x ; set +e ; set +o pipefail
+            #-------------#
+            {
+              sudo apt-fast install bc coreutils curl dos2unix fdupes jq moreutils wget -y -qq
+              sudo apt-fast install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null
+              sudo apt-fast update -y -qq 2>/dev/null
+              ##tmp
+              SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+              ##GH ENV
+              echo "SYSTMP=${SYSTMP}" >> "${BASH_ENV}"
+              echo "GIT_TERMINAL_PROMPT=0" >> "${BASH_ENV}"
+              echo "GIT_ASKPASS=/bin/echo" >> "${BASH_ENV}"
+              SHELL="$(realpath $(which bash) | tr -d '[:space:]')"
+              echo "SHELL=${SHELL}" >> "${BASH_ENV}"
+              git config --global "credential.helper" store
+              git config --global "user.email" "AjamX101@gmail.com"
+              git config --global "user.name" "Azathothas"
+              ##User-Agent
+              #THIS CAUSES ESCAPING ISSUES
+              #USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+              #echo "USER_AGENT=${USER_AGENT}" >> "${BASH_ENV}"
+              ##Wget
+              echo 'progress = dot:giga' | sudo tee -a "/etc/wgetrc"
+              echo 'progress = dot:giga' | tee -a "${HOME}/.wgetrc"
+              ##PrintENV
+              echo -e "\n\n" && uname -a
+              echo -e "\n\n" && realpath "$(which bash)" ; bash --version
+              echo -e "\n\n" && env
+              echo -e "\n\n" && df -h
+              echo -e "\n\n" && echo
+            } || true
+
+      #- run:
+      #    name: Install Addons
+      #    shell: /usr/bin/bash
+      #    when: always
+      #    command: |
+      #      ##presets
+      #      #shellcheck disable=all
+      #      set +x ; set +e ; set +o pipefail
+      #      #-------------#
+      #      {
+      #        pushd "$(mktemp -d)" &>/dev/null
+      #         curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh" -o "./install.sh"
+      #         sed -E 's/^[[:space:]]*##[Uu][Ss][Aa][Gg][Ee][[:space:]]*$/##Usage\n#shellcheck disable=all/' -i "./install.sh"
+      #         chmod '+xwr' -v "./install.sh"
+      #         dos2unix --quiet "./install.sh"
+      #         bash "./install.sh"
+      #        popd &>/dev/null
+      #      } || true
+
+      - run:
+          name: Fix Perms
+          shell: /usr/bin/bash
+          when: always
+          command: |
+            ##presets
+            #shellcheck disable=all
+            set +x ; set +e ; set +o pipefail
+            #-------------#
+            if [[ -d "/usr/local/go" ]]; then
+              echo -e "\n[+] Existing Go Install Found, Removing...\n"
+              sudo rm -rf "/usr/local/go"
+              sudo rm -fv "$(realpath $(which go))" 2>/dev/null
+              sudo rm -fv "$(which go)" 2>/dev/null
+              #sudo chown -R "$(whoami):$(whoami)" "/usr/local/go"
+              #sudo chmod -R 'u+rwX' "/usr/local/go"
+            fi
+
+      - run:
+          name: Disable apparmor_restrict_unprivileged_userns
+          shell: /usr/bin/bash
+          when: always
+          command: |
+            ##presets
+            #shellcheck disable=all
+            set +x ; set +e ; set +o pipefail
+            #-------------#
+            {
+              echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
+              echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
+              sudo service procps restart
+              sudo sysctl -p "/etc/sysctl.conf"
+            } || true
+
+      - run:
+          name: Fetch Runner Tar
+          shell: /usr/bin/bash
+          when: always
+          command: |
+            ##presets
+            #shellcheck disable=all
+            set +x ; set +e ; set +o pipefail
+            #-------------#
+            pushd "$(mktemp -d)" &>/dev/null
+             wget --quiet --show-progress "https://github.com/pkgforge/devscripts/releases/download/gh-$(uname -m)-$(uname -s)/runner.tar.gz" -O "./runner.tar.gz"
+             if [ ! -f "./runner.tar.gz" ]; then
+                exit 1
+             fi
+             sudo mkdir -p "/runner-init"
+             sudo tar xzf "./runner.tar.gz" -C "/runner-init"
+             rm -rvf "./runner.tar.gz"
+             sudo chmod 'a+x' "/runner-init/bin/installdependencies.sh"
+             sudo bash "/runner-init/bin/installdependencies.sh"
+             sudo rm -rf "/var/lib/apt/lists/"* 2>/dev/null
+             sudo curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Github/Runners/manage_linux.sh" -o "/usr/local/bin/manager.sh"
+             if [ ! -f "/usr/local/bin/manager.sh" ]; then
+                exit 1
+             fi
+             sudo chmod 'a+x' -v "/usr/local/bin/manager.sh"
+            popd &>/dev/null
+
+      - run:
+          name: Run as External Runner
+          no_output_timeout: 55m
+          shell: /usr/bin/bash
+          when: on_success
+          environment:
+              #GITHUB_PERSONAL_TOKEN: Set in Dashboard
+              GITHUB_OWNER: "pkgforge"
+              GITHUB_REPOSITORY: "pkgcache"
+          command: |
+            ##presets
+            #shellcheck disable=all
+            set +x ; set +e ; set +o pipefail
+            #-------------#
+            echo -e "\n\n" && env ; echo -e "\n\n"
+            if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
+               export RUNNER_NAME="circle-ci-arm64"
+               export RUNNER_LABELS="aarch64-linux-circle,arm64-linux-circle"
+            elif [[ "$(uname -m | tr -d '[:space:]')" == "x86_64" ]]; then
+               export RUNNER_NAME="circle-ci-amd64"
+               export RUNNER_LABELS="x64-linux-circle,amd64-linux-circle"
+            fi
+            ( "/usr/local/bin/manager.sh" & disown ) || true ; reset
+            echo -e "\n[+] Waiting 10s..." && sleep 10
+            echo -e "[+] Executing Runner..."
+            while true; do
+              if [[ -s '/tmp/GHA_CI_STATUS' && "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" == "EXITED" ]]; then
+                  ( nohup pkill -INT -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null || true
+                  ( nohup pkill -TERM -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null || true
+                  echo -e "\n[+] Workflow Run Concluded\n"
+                 exit 0
+              fi
+              sleep 7
+            done
+
+workflows:
+  run-external-runners:
+    jobs:
+      - act-as-runner:
+          matrix:
+            parameters:
+              os-type: ["linux-aarch64", "linux-x86_64"]
+              runner: [1] #--> 2 Total Runners
+              #runner: [1, 2] #--> 4 Total Runners
+              #runner: [1, 2, 3, 4, 5, 6] #--> 12 Total Runners
