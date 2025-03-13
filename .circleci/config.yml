@@ -27,6 +27,7 @@ jobs:
           name: Setup PreRequisites
           command: |
             ##presets
+            #shellcheck disable=all
             set +x ; set +e
             #-------------#
             ##ENV
@@ -46,6 +47,7 @@ jobs:
           when: on_success
           command: |
             ##presets
+            #shellcheck disable=all
             set +x ; set +e
             #-------------#
             sudo apt-fast install bc coreutils curl dos2unix fdupes jq moreutils wget -y -qq
@@ -77,6 +79,7 @@ jobs:
           when: always
           command: |
             ##presets
+            #shellcheck disable=all
             set +x ; set +e
             #-------------#
             bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh") || true
@@ -86,6 +89,7 @@ jobs:
           when: always
           command: |
             ##presets
+            #shellcheck disable=all
             set +x ; set +e
             #-------------#
             echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
@@ -98,6 +102,7 @@ jobs:
           when: always
           command: |
             ##presets
+            #shellcheck disable=all
             set +x ; set +e
             #-------------#
             pushd "$(mktemp -d)" &>/dev/null
@@ -127,6 +132,7 @@ jobs:
               GITHUB_REPOSITORY: "pkgcache"
           command: |
             ##presets
+            #shellcheck disable=all
             set +x ; set +e
             #-------------#
             if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
