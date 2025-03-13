@@ -186,7 +186,7 @@ jobs:
                export RUNNER_NAME="circle-ci-amd64"
                export RUNNER_LABELS="x64-linux-circle,amd64-linux-circle"
             fi
-            "/usr/local/bin/manager.sh" & disown
+            ( "/usr/local/bin/manager.sh" & disown ) || true ; reset
             echo -e "\n[+] Waiting 10s..." && sleep 10
             echo -e "[+] Executing Runner..."
             while true; do
