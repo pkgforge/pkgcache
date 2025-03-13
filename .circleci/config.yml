@@ -113,8 +113,12 @@ jobs:
             set +x ; set +e ; set +o pipefail
             #-------------#
             if [[ -d "/usr/local/go" ]]; then
-              sudo chown -R "$(whoami):$(whoami)" "/usr/local/go"
-              sudo chmod -R 'u+rwX' "/usr/local/go"
+              echo -e "\n[+] Existing Go Install Found, Removing...\n"
+              sudo rm -rf "/usr/local/go"
+              sudo rm -fv "$(realpath $(which go))" 2>/dev/null
+              sudo rm -fv "$(which go)" 2>/dev/null
+              #sudo chown -R "$(whoami):$(whoami)" "/usr/local/go"
+              #sudo chmod -R 'u+rwX' "/usr/local/go"
             fi
 
       - run:
