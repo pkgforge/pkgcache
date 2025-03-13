@@ -28,7 +28,7 @@ jobs:
           command: |
             ##presets
             #shellcheck disable=all
-            set +x ; set +e
+            set +x ; set +e ; set +o pipefail
             #-------------#
             ##ENV
             export DEBIAN_FRONTEND="noninteractive"
@@ -48,7 +48,7 @@ jobs:
           command: |
             ##presets
             #shellcheck disable=all
-            set +x ; set +e
+            set +x ; set +e ; set +o pipefail
             #-------------#
             sudo apt-fast install bc coreutils curl dos2unix fdupes jq moreutils wget -y -qq
             sudo apt-fast install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null
@@ -80,9 +80,15 @@ jobs:
           command: |
             ##presets
             #shellcheck disable=all
-            set +x ; set +e
+            set +x ; set +e ; set +o pipefail
             #-------------#
-            bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh") || true
+            pushd "$(mktemp -d)" &>/dev/null
+             curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh" -o "./install.sh"
+             sed -E 's/^[[:space:]]*##[Uu][Ss][Aa][Gg][Ee][[:space:]]*$/##Usage\n#shellcheck disable=all/' -i "./install.sh"
+             chmod '+xwr' "./install.sh"
+             dos2unix --quiet "./install.sh"
+             bash "./install.sh"
+            popd &>/dev/null
 
       - run:
           name: Disable apparmor_restrict_unprivileged_userns
@@ -90,7 +96,7 @@ jobs:
           command: |
             ##presets
             #shellcheck disable=all
-            set +x ; set +e
+            set +x ; set +e ; set +o pipefail
             #-------------#
             echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
             echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
@@ -103,7 +109,7 @@ jobs:
           command: |
             ##presets
             #shellcheck disable=all
-            set +x ; set +e
+            set +x ; set +e ; set +o pipefail
             #-------------#
             pushd "$(mktemp -d)" &>/dev/null
              wget --quiet --show-progress "https://github.com/pkgforge/devscripts/releases/download/gh-$(uname -m)-$(uname -s)/runner.tar.gz" -O "./runner.tar.gz"
@@ -133,7 +139,7 @@ jobs:
           command: |
             ##presets
             #shellcheck disable=all
-            set +x ; set +e
+            set +x ; set +e ; set +o pipefail
             #-------------#
             if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
                export RUNNER_NAME="circle-ci-arm64"
