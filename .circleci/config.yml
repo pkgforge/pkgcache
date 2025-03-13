@@ -191,8 +191,8 @@ jobs:
             echo -e "[+] Executing Runner..."
             while true; do
               if [[ -s '/tmp/GHA_CI_STATUS' && "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" == "EXITED" ]]; then
-                  ( nohup pkill -INT -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null
-                  ( nohup pkill -TERM -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null
+                  ( nohup pkill -INT -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null || true
+                  ( nohup pkill -TERM -f "/usr/local/bin/manager.sh" &>/dev/null & disown ) &>/dev/null || true
                   echo -e "\n[+] Workflow Run Concluded\n"
                  sleep 3 ; exit 0
               fi
