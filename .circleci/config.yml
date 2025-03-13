@@ -196,8 +196,8 @@ jobs:
                    exit 0
                  fi
               elif [[ -s '/tmp/GHA_CI_STATUS' && "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" == "EXITED" ]]; then
-                  pkill -INT -f "/usr/local/bin/manager.sh" 2>/dev/null
-                  pkill -TERM -f "/usr/local/bin/manager.sh" 2>/dev/null
+                  ( pkill -INT -f "/usr/local/bin/manager.sh" &>/dev/null ) &>/dev/null
+                  ( pkill -TERM -f "/usr/local/bin/manager.sh" &>/dev/null ) &>/dev/null
                   echo -e "\n[+] Workflow Run Concluded\n"
                  exit 0
               fi
@@ -211,6 +211,6 @@ workflows:
           matrix:
             parameters:
               os-type: ["linux-aarch64", "linux-x86_64"]
-              runner: [1]
-              #runner: [1, 2] --> 4 Total runners
-              #runner: [1, 2, 3, 4, 5, 6] --> 12 Total Runners
+              runner: [1] #--> 2 Total Runners
+              #runner: [1, 2] #--> 4 Total Runners
+              #runner: [1, 2, 3, 4, 5, 6] #--> 12 Total Runners
