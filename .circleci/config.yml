@@ -79,7 +79,7 @@ jobs:
             ##presets
             set +x ; set +e
             #-------------#
-            bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh")
+            bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh") || true
 
       - run:
           name: Disable apparmor_restrict_unprivileged_userns
