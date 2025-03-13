@@ -34,13 +34,15 @@ jobs:
             export DEBIAN_FRONTEND="noninteractive"
             echo "DEBIAN_FRONTEND=${DEBIAN_FRONTEND}" >> "${BASH_ENV}"
             ##UPDATE
-            sudo apt update -y -qq
-            #https://github.com/ilikenwf/apt-fast?tab=readme-ov-file#quick-install
-            bash -c "$(curl -qfsSL 'https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh')"
-            if ! command -v apt-fast &>/dev/null; then
-               echo -e "[-] Failed to find apt-fast\n"
-               exit 1
-            fi
+            {
+              sudo apt update -y -qq
+              #https://github.com/ilikenwf/apt-fast?tab=readme-ov-file#quick-install
+              bash -c "$(curl -qfsSL 'https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh')"
+              if ! command -v apt-fast &>/dev/null; then
+                 echo -e "[-] Failed to find apt-fast\n"
+                 exit 1
+              fi
+            } || true
 
       - run:
           name: Install Deps
@@ -50,29 +52,31 @@ jobs:
             #shellcheck disable=all
             set +x ; set +e ; set +o pipefail
             #-------------#
-            sudo apt-fast install bc coreutils curl dos2unix fdupes jq moreutils wget -y -qq
-            sudo apt-fast install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null
-            sudo apt-fast update -y -qq 2>/dev/null
-            ##tmp
-            SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
-            ##GH ENV
-            echo "SYSTMP=${SYSTMP}" >> "${BASH_ENV}"
-            echo "GIT_TERMINAL_PROMPT=0" >> "${BASH_ENV}"
-            echo "GIT_ASKPASS=/bin/echo" >> "${BASH_ENV}"
-            git config --global "credential.helper" store
-            git config --global "user.email" "AjamX101@gmail.com"
-            git config --global "user.name" "Azathothas"
-            ##User-Agent
-            USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
-            echo "USER_AGENT=${USER_AGENT}" >> "${BASH_ENV}"
-            ##Wget
-            echo 'progress = dot:giga' | sudo tee -a "/etc/wgetrc"
-            echo 'progress = dot:giga' | tee -a "${HOME}/.wgetrc"
-            ##PrintENV
-            echo -e "\n\n" && uname -a
-            echo -e "\n\n" && env
-            echo -e "\n\n" && df -h
-            echo -e "\n\n" && echo
+            {
+              sudo apt-fast install bc coreutils curl dos2unix fdupes jq moreutils wget -y -qq
+              sudo apt-fast install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null
+              sudo apt-fast update -y -qq 2>/dev/null
+              ##tmp
+              SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+              ##GH ENV
+              echo "SYSTMP=${SYSTMP}" >> "${BASH_ENV}"
+              echo "GIT_TERMINAL_PROMPT=0" >> "${BASH_ENV}"
+              echo "GIT_ASKPASS=/bin/echo" >> "${BASH_ENV}"
+              git config --global "credential.helper" store
+              git config --global "user.email" "AjamX101@gmail.com"
+              git config --global "user.name" "Azathothas"
+              ##User-Agent
+              USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+              echo "USER_AGENT=${USER_AGENT}" >> "${BASH_ENV}"
+              ##Wget
+              echo 'progress = dot:giga' | sudo tee -a "/etc/wgetrc"
+              echo 'progress = dot:giga' | tee -a "${HOME}/.wgetrc"
+              ##PrintENV
+              echo -e "\n\n" && uname -a
+              echo -e "\n\n" && env
+              echo -e "\n\n" && df -h
+              echo -e "\n\n" && echo 
+            } || true
 
       - run:
           name: Install Addons
@@ -82,13 +86,15 @@ jobs:
             #shellcheck disable=all
             set +x ; set +e ; set +o pipefail
             #-------------#
-            pushd "$(mktemp -d)" &>/dev/null
-             curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh" -o "./install.sh"
-             sed -E 's/^[[:space:]]*##[Uu][Ss][Aa][Gg][Ee][[:space:]]*$/##Usage\n#shellcheck disable=all/' -i "./install.sh"
-             chmod '+xwr' "./install.sh"
-             dos2unix --quiet "./install.sh"
-             bash "./install.sh"
-            popd &>/dev/null
+            {
+              pushd "$(mktemp -d)" &>/dev/null
+               curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh" -o "./install.sh"
+               sed -E 's/^[[:space:]]*##[Uu][Ss][Aa][Gg][Ee][[:space:]]*$/##Usage\n#shellcheck disable=all/' -i "./install.sh"
+               chmod '+xwr' -v "./install.sh"
+               dos2unix --quiet "./install.sh"
+               bash "./install.sh"
+              popd &>/dev/null
+            } || true
 
       - run:
           name: Disable apparmor_restrict_unprivileged_userns
@@ -98,10 +104,12 @@ jobs:
             #shellcheck disable=all
             set +x ; set +e ; set +o pipefail
             #-------------#
-            echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
-            echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
-            sudo service procps restart
-            sudo sysctl -p "/etc/sysctl.conf"
+            {
+              echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
+              echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
+              sudo service procps restart
+              sudo sysctl -p "/etc/sysctl.conf"
+            } || true
 
       - run:
           name: Fetch Runner Tar
