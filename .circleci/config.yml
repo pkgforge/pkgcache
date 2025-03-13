@@ -25,6 +25,7 @@ jobs:
 
       - run:
           name: Setup PreRequisites
+          shell: /usr/bin/bash
           command: |
             ##presets
             #shellcheck disable=all
@@ -46,6 +47,7 @@ jobs:
 
       - run:
           name: Install Deps
+          shell: /usr/bin/bash
           when: on_success
           command: |
             ##presets
@@ -62,6 +64,8 @@ jobs:
               echo "SYSTMP=${SYSTMP}" >> "${BASH_ENV}"
               echo "GIT_TERMINAL_PROMPT=0" >> "${BASH_ENV}"
               echo "GIT_ASKPASS=/bin/echo" >> "${BASH_ENV}"
+              SHELL="$(realpath $(which bash) | tr -d '[:space:]')"
+              echo "SHELL=${SHELL}" >> "${BASH_ENV}"
               git config --global "credential.helper" store
               git config --global "user.email" "AjamX101@gmail.com"
               git config --global "user.name" "Azathothas"
@@ -81,6 +85,7 @@ jobs:
 
       - run:
           name: Install Addons
+          shell: /usr/bin/bash
           when: always
           command: |
             ##presets
@@ -99,6 +104,7 @@ jobs:
 
       - run:
           name: Disable apparmor_restrict_unprivileged_userns
+          shell: /usr/bin/bash
           when: always
           command: |
             ##presets
@@ -114,6 +120,7 @@ jobs:
 
       - run:
           name: Fetch Runner Tar
+          shell: /usr/bin/bash
           when: always
           command: |
             ##presets
@@ -140,6 +147,7 @@ jobs:
 
       - run:
           name: Run as External Runner
+          shell: /usr/bin/bash
           when: on_success
           environment:
               #GITHUB_PERSONAL_TOKEN: Set in Dashboard
