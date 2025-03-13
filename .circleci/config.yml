@@ -196,7 +196,10 @@ jobs:
                    exit 0
                  fi
               elif [[ -s '/tmp/GHA_CI_STATUS' && "$(cat '/tmp/GHA_CI_STATUS' | tr -d '[:space:]')" == "EXITED" ]]; then
-                 echo -e "\n[+] Workflow Run Concluded\n"
+                  pkill -INT -f "/usr/local/bin/manager.sh" 2>/dev/null
+                  pkill -TERM -f "/usr/local/bin/manager.sh" 2>/dev/null
+                  echo -e "\n[+] Workflow Run Concluded\n"
+                 exit 0
               fi
               sleep 7
             done

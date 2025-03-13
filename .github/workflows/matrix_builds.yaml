@@ -346,3 +346,14 @@ jobs:
            exit 1
           fi
         continue-on-error: false
+
+      - name: Self-Kill
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          [[ -f "/tmp/GHA_CI_STATUS" && -w "/tmp/GHA_CI_STATUS" ]] && echo "" > "/tmp/GHA_CI_STATUS"
+          if [[ -d "/tmp" && -w "/tmp" ]]; then
+            echo "EXITED" | tee "/tmp/GHA_CI_STATUS"
+          fi
+        continue-on-error: true
