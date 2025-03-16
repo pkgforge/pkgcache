@@ -113,6 +113,7 @@ jobs:
           gh workflow run "matrix_builds.yaml" \
             --repo "${GITHUB_REPOSITORY}" \
             --ref "${GITHUB_REF}" \
+            -f ci-infra="github" \
             -f host="ALL" \
             -f sbuild-url="${{ matrix.package.sbuild_url }}" \
             -f ghcr-url="${{ matrix.package.ghcr_url }}" \

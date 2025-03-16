@@ -67,7 +67,7 @@ jobs:
           set +x ; set +e
           #-------------#
           echo '[' > "./MATRIX.json.tmp"
-           if [[ "${{ github.event.inputs.ci-infra }}" == "github" ]]; then
+           if [[ "${{ github.event.inputs.ci-infra }}" == "github" || -z "${{ github.event.inputs.ci-infra }}" ]]; then
              if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
