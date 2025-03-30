@@ -388,13 +388,13 @@ jobs:
             compression-level: 0 # no compression, [Default: 6 (GNU Gzip)]
             retention-days: 30
             overwrite: true
-        continue-on-error: true     
+        continue-on-error: true
 
       - name: Attest Build Provenance [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         uses: actions/attest-build-provenance@v2.2.3
         with:
-          subject-name: "build-artifacts-${{ env.PKG_FAMILY_LOCAL }}-${{ env.UTC_TIME }}"
+          subject-name: "${{ env.PKG_FAMILY_LOCAL }}-${{ env.PKG_NAME }}-${{ env.GHCRPKG_TAG }}"
           subject-path: |
             "/tmp/BUILD.log"
             ${{ env.SBUILD_OUTDIR }}/**
