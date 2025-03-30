@@ -166,7 +166,7 @@ jobs:
            fi
            echo "DEBUG=${DEBUG}" >> "${GITHUB_ENV}"
           ##GHCRPKG_URL
-           GHCRPKG_LOCAL="$(echo "${{ github.event.inputs.ghcr-url }}" | tr -d '[:space:]')"
+           GHCRPKG_LOCAL="$(echo "${{ inputs.ghcr-url }}" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
            export GHCRPKG_LOCAL
            echo "GHCRPKG_LOCAL=${GHCRPKG_LOCAL}" >> "${GITHUB_ENV}"
           ##Logs
@@ -179,7 +179,7 @@ jobs:
            echo "KEEP_LOGS=${KEEP_LOGS}" >> "${GITHUB_ENV}"
            echo "GITHUB_TEST_BUILD=${GITHUB_TEST_BUILD}" >> "${GITHUB_ENV}"
           ##PKG_FAMILY_LOCAL
-           PKG_FAMILY_LOCAL="$(echo "${{ github.event.inputs.pkg-family }}" | tr -d '[:space:]')"
+           PKG_FAMILY_LOCAL="$(echo "${{ inputs.pkg-family }}" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
            export PKG_FAMILY_LOCAL
            echo "PKG_FAMILY_LOCAL=${PKG_FAMILY_LOCAL}" >> "${GITHUB_ENV}"
           ##Rebuild
@@ -253,7 +253,7 @@ jobs:
           sudo sysctl -p "/etc/sysctl.conf"
         continue-on-error: true
 
-      - name: BUILD (${{ github.event.inputs.ghcr-url }}) [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+      - name: BUILD (${{ env.GHCRPKG_LOCAL }}) [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
@@ -290,7 +290,7 @@ jobs:
           popd >/dev/null 2>&1
         continue-on-error: true
 
-      - name: Push Artifacts (${{ github.event.inputs.ghcr-url }}) [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+      - name: Push Artifacts (${{ env.GHCRPKG_LOCAL }}) [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
