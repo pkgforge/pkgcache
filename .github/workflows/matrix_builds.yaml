@@ -312,6 +312,7 @@ jobs:
            if [[ -n "${GHCRPKG_TAG_SRCBUILD+x}" ]]; then
             pushd "/tmp" &>/dev/null
              if [[ -s "./BUILD_ARTIFACTS.7z" && $(stat -c%s "./BUILD_ARTIFACTS.7z") -gt 1000 ]]; then
+               realpath "./BUILD_ARTIFACTS.7z" && du -sh "./BUILD_ARTIFACTS.7z"
                ghcr_push_cmd()
                  {
                   for i in {1..10}; do
