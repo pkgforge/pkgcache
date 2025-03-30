@@ -397,6 +397,7 @@ jobs:
           subject-name: "${{ env.PKG_FAMILY_LOCAL }}-${{ env.PKG_NAME }}-${{ env.GHCRPKG_TAG }}"
           subject-path: |
             "/tmp/BUILD.log"
+            "/tmp/BUILD_ARTIFACTS.7z"
             ${{ env.SBUILD_OUTDIR }}/**
             !${{ env.SBUILD_TMPDIR }}/**
           show-summary: true
