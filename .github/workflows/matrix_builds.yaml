@@ -397,7 +397,8 @@ jobs:
           subject-name: "build-logs-${{ env.PKG_FAMILY_LOCAL }}-${{ env.UTC_TIME }}"
           subject-path: |
             "/tmp/BUILD.log"
-            ${{ env.SBUILD_OUTDIR }}/**/*
+            ${{ env.SBUILD_OUTDIR }}/**
+            !${{ env.SBUILD_TMPDIR }}/**
           show-summary: true
         continue-on-error: true
 
