@@ -393,7 +393,9 @@ jobs:
         uses: actions/attest-build-provenance@v2.2.3
         with:
           subject-name: "build-logs-${{ env.PKG_FAMILY_LOCAL }}-${{ env.UTC_TIME }}"
-          subject-path: "/tmp/BUILD.log"
+          subject-path: |
+            "/tmp/BUILD.log"
+            ${{ env.SBUILD_OUTDIR }}/**/*
           show-summary: true
         continue-on-error: true
 

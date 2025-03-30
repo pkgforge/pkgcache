@@ -43,6 +43,10 @@ setup_env()
  echo "export BUILD_DIR='${BUILD_DIR}'" >> "${OCWD}/ENVPATH"
  echo "export SBUILD_OUTDIR='${SBUILD_OUTDIR}'" >> "${OCWD}/ENVPATH"
  echo "export SBUILD_TMPDIR='${SBUILD_TMPDIR}'" >> "${OCWD}/ENVPATH"
+ [[ "${GHA_MODE}" == "MATRIX" ]] && echo "INPUT_SBUILD=${INPUT_SBUILD}" >> "${GITHUB_ENV}"
+ [[ "${GHA_MODE}" == "MATRIX" ]] && echo "BUILD_DIR=${BUILD_DIR}" >> "${GITHUB_ENV}"
+ [[ "${GHA_MODE}" == "MATRIX" ]] && echo "SBUILD_OUTDIR=${SBUILD_OUTDIR}" >> "${GITHUB_ENV}"
+ [[ "${GHA_MODE}" == "MATRIX" ]] && echo "SBUILD_TMPDIR=${SBUILD_TMPDIR}" >> "${GITHUB_ENV}"
 }
 export -f setup_env
 #-------------------------------------------------------#
