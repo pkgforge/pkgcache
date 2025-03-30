@@ -328,7 +328,7 @@ jobs:
                     ghcr_push+=(--annotation "dev.pkgforge.soar.push_date=${{ env.PKG_DATE }}")
                     ghcr_push+=(--annotation "dev.pkgforge.soar.version=${{ env.PKG_VERSION }}")
                     ghcr_push+=(--annotation "org.opencontainers.image.created=${{ env.PKG_DATE }}")
-                    ghcr_push+=(--annotation "org.opencontainers.image.description=SRCBUILD for ${{ env.GHCRPKG_URL }}:${{ env.GHCRPKG_TAG }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.description=SRCBUILD for ${{ env.GHCRPKG_URL }}")
                     ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
                     ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${{ env.PKG_VERSION }}")
                     ghcr_push+=(--annotation "org.opencontainers.image.revision=${{ env.PKG_VERSION }}")
