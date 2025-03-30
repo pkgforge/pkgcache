@@ -1069,75 +1069,12 @@ popd >/dev/null 2>&1
 
 #-------------------------------------------------------#
 ##Upload SRCBUILD
-#shellcheck disable=SC2296
-upload_srcbuild_to_ghcr()
-{
-  if [[ -n "${GHCRPKG_TAG_SRCBUILD+x}" ]]; then
-   ghcr_push_cmd()
-     {
-      for i in {1..10}; do
-        unset ghcr_push ; ghcr_push=(oras push --disable-path-validation)
-        ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
-        ghcr_push+=(--annotation "com.github.package.type=container")
-        ghcr_push+=(--annotation "dev.pkgforge.soar.build_ghcrpkg-tag=${{ env.GHCRPKG_TAG }}")
-        ghcr_push+=(--annotation "dev.pkgforge.soar.build_gha=${{ env.BUILD_GHACTIONS }}")
-        ghcr_push+=(--annotation "dev.pkgforge.soar.build_id=${{ env.BUILD_ID }}")
-        ghcr_push+=(--annotation "dev.pkgforge.soar.ghcr_pkg=${{ env.GHCRPKG_URL }}:${{ env.GHCRPKG_TAG }}")
-        ghcr_push+=(--annotation "dev.pkgforge.soar.push_date=${{ env.PKG_DATE }}")
-        ghcr_push+=(--annotation "dev.pkgforge.soar.version=${{ env.PKG_VERSION }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.created=${{ env.PKG_DATE }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.description=SRCBUILD for ${{ env.GHCRPKG_URL }}:${{ env.GHCRPKG_TAG }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
-        ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${{ env.PKG_VERSION }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.revision=${{ env.PKG_VERSION }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.source=${{ env.PKG_WEBPAGE }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.title=SRCBUILD-${{ env.PKG_NAME }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.url=${{ env.PKG_SRCURL }}")
-        ghcr_push+=(--annotation "org.opencontainers.image.vendor=pkgforge")
-        ghcr_push+=(--annotation "org.opencontainers.image.version=${{ env.PKG_VERSION }}")
-        ghcr_push+=("${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}")
-        [[ -f "./BUILD_ARTIFACTS.7z" && -s "./BUILD_ARTIFACTS.7z" ]] && ghcr_push+=("./BUILD_ARTIFACTS.7z")
-        "${ghcr_push[@]}" ; sleep 5
-       #Check
-        if [[ "$(oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" == "${{ env.PKG_DATE }}" ]]; then
-          echo -e "\n[+] (ARTIFACTS) Registry --> https://${{ env.GHCRPKG_URL }}\n"
-          break
-        else
-          echo -e "\n[-] Failed to Push Artifact to ${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD} (Retrying ${i}/10)\n"
-        fi
-        sleep "$(shuf -i 500-4500 -n 1)e-3"
-      done
-     }
-     export -f ghcr_push_cmd
-     ghcr_push_cmd
-     if [[ "$(oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
-       echo -e "\n[✗] Failed to Push Artifact to ${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}\n"
-        echo -e "\n[-] Retrying ...\n"
-        ghcr_push_cmd
-         if [[ "$(oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
-           oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq .
-           echo -e "\n[✗] Failed to Push Artifact to ${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}\n"
-           return 1 || exit 1
-         fi
-     fi
-  fi
-}
-export -f upload_srcbuild_to_ghcr
 ##Cleanup
 cleanup_env()
 {
 #Cleanup Dir  
  if [[ -n "${GITHUB_TEST_BUILD+x}" || "${GHA_MODE}" == "MATRIX" ]]; then
   7z a -t7z -mx="9" -mmt="$(($(nproc)+1))" -bsp1 -bt "/tmp/BUILD_ARTIFACTS.7z" "${BUILD_DIR}" 2>/dev/null
-  pushd "/tmp" &>/dev/null
-  if [[ -s "./BUILD_ARTIFACTS.7z" && $(stat -c%s "./BUILD_ARTIFACTS.7z") -gt 1000 ]]; then
-     if [[ "${SKIP_SRCBUILD_UPLOAD}" != "YES" ]]; then
-        GHCRPKG_TAG_SRCBUILD="srcbuild.$(date --utc +"%y%m%dT%H%M%S" | tr -d '[:space:]')-${{ env.GHCRPKG_TAG }}"
-        export GHCRPKG_TAG_SRCBUILD
-        [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHCRPKG_TAG_SRCBUILD=${GHCRPKG_TAG_SRCBUILD}" >> "${GITHUB_ENV}"
-        upload_srcbuild_to_ghcr
-     fi
-  fi
  elif [[ "${KEEP_LOGS}" != "YES" ]]; then
   echo -e "\n[-] Removing ALL Logs & Files\n"
   rm -rvf "${BUILD_DIR}" 2>/dev/null
