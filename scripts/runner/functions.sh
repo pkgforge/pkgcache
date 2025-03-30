@@ -190,6 +190,7 @@ gen_json_from_sbuild()
        pkg="$(jq -r '"\(.pkg | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG="${pkg}"
        pkg_id="$(jq -r '"\(.pkg_id | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG_ID="${pkg_id}"
        pkg_type="$(jq -r '"\(.pkg_type | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG_TYPE="${pkg_type}"
+       [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_TYPE=${PKG_TYPE}" >> "${GITHUB_ENV}"
        unset PKG_REPOLOGY ; PKG_REPOLOGY=()
        PKG_REPOLOGY=("$(jq -r 'if has("repology") then (if .repology | type == "array" then .repology[0] else .repology end) else "" end' "${TMPJSON}" 2>/dev/null | tr -d '[:space:]')")
        [[ "${PKG_REPOLOGY}" == "null" ]] && unset PKG_REPOLOGY
@@ -532,6 +533,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    #PKG_SIZE="$(echo "${PKG_SIZE_RAW}" | awk '{byte=$1; if (byte<1024) printf "%.2f B\n", byte; else if (byte<1024**2) printf "%.2f KB\n", byte/1024; else if (byte<1024**3) printf "%.2f MB\n", byte/(1024**2); else printf "%.2f GB\n", byte/(1024**3)}')"
    PKG_SIZE="$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')"
    SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
+   [[ "${GHA_MODE}" == "MATRIX" ]] && echo "SBUILD_PKGVER=${SBUILD_PKGVER}" >> "${GITHUB_ENV}"
    export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM SBUILD_PKGVER
   #ghcrpkgurl 
    unset GHCRPKG_URL SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
@@ -629,6 +631,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      BUILD_ID="$(cat '/etc/machine-id' | tr -d '[:space:]')"
    fi
    export BUILD_GHACTIONS BUILD_ID
+   [[ "${GHA_MODE}" == "MATRIX" ]] && echo "BUILD_GHACTIONS=${BUILD_GHACTIONS}" >> "${GITHUB_ENV}"
+   [[ "${GHA_MODE}" == "MATRIX" ]] && echo "BUILD_ID=${BUILD_ID}" >> "${GITHUB_ENV}"
   #Generate Snapshots
    if [ -n "${GHCRPKG_URL+x}" ] && [[ "${GHCRPKG_URL}" =~ ^[^[:space:]]+$ ]]; then
     #Generate Manifest
@@ -765,6 +769,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
    if [[ -s "${GHCR_PKG}" && $(stat -c%s "${GHCR_PKG}") -gt 100 ]]; then
     #pkg_name
      PKG_NAME="$(jq -r '.pkg_name' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_NAME=${PKG_NAME}" >> "${GITHUB_ENV}"
     #build_gha
      BUILD_GHACTIONS="$(jq -r '.build_gha' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${BUILD_GHACTIONS}" == "null" ]] && BUILD_GHACTIONS=""
@@ -793,6 +798,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
        PKG_DATETMP="${PKG_DATE}"
        PKG_DATE="$(echo "${PKG_DATETMP}" | sed 's/ZZ\+/Z/Ig')" ; unset PKG_DATETMP
      fi
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_DATE=${PKG_DATE}" >> "${GITHUB_ENV}"
     #version 
      PKG_VERSION="$(jq -r '.version' "${PKG_JSON}" | tr -d '[:space:]')"
      if [[ "${PKG_VERSION}" == "latest" ]]; then
@@ -803,13 +809,17 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
        fi
      fi
      echo "export PKG_VERSION='${PKG_VERSION}'" >> "${OCWD}/ENVPATH"
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_VERSION=${PKG_VERSION}" >> "${GITHUB_ENV}"
     #version_upstream 
      PKG_VERSION_UPSTREAM="$(jq -r '.version_upstream' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_VERSION_UPSTREAM}" == "null" ]] && unset PKG_VERSION_UPSTREAM
-     echo "export PKG_VERSION_UPSTREAM='${PKG_VERSION_UPSTREAM}'" >> "${OCWD}/ENVPATH"     
+     echo "export PKG_VERSION_UPSTREAM='${PKG_VERSION_UPSTREAM}'" >> "${OCWD}/ENVPATH"
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_VERSION_UPSTREAM=${PKG_VERSION_UPSTREAM}" >> "${GITHUB_ENV}"     
     #tag 
      GHCRPKG_TAG="$(echo "${PKG_VERSION}-${HOST_TRIPLET,,}" | sed 's/[^a-zA-Z0-9._-]/_/g; s/_*$//')" ; export GHCRPKG_TAG
      echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHCRPKG_URL=${GHCRPKG_URL}" >> "${GITHUB_ENV}"
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHCRPKG_TAG=${GHCRPKG_TAG}" >> "${GITHUB_ENV}"
     #Sanity Check download_url
      generate_ghcrpkgurl
      if [ -n "${DOWNLOAD_URL+x}" ] && [[ "${DOWNLOAD_URL}" =~ ^[^[:space:]]+$ ]]; then
@@ -866,6 +876,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      if [ -z "${PKG_WEBPAGE+x}" ] || [ -z "${PKG_WEBPAGE##*[[:space:]]}" ]; then
        PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/$(echo "${GHCRPKG_URL}" | sed "s|ghcr.io/pkgforge/${PKG_REPO}||" | sed 's|^/*||; s|/*$||' | tr -d '[:space:]')" ; export PKG_WEBPAGE 
      fi
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_WEBPAGE=${PKG_WEBPAGE}" >> "${GITHUB_ENV}"
     #note 
      PKG_NOTE="$(jq -r 'if .note | type == "array" then .note[0] else .note end' "${PKG_JSON}")"
      [[ "${PKG_NOTE}" == "null" ]] && PKG_NOTE=""
@@ -889,6 +900,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      elif [[ -n "${PKG_HOMEPAGE}" ]]; then
        PKG_SRCURL="${PKG_HOMEPAGE}"
      fi
+     [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_SRCURL=${PKG_SRCURL}" >> "${GITHUB_ENV}"
     #tag 
      PKG_TAG="$(jq -r 'if .tag | type == "array" then .tag[0] else .tag end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_TAG}" == "null" ]] && PKG_TAG=""
@@ -1010,6 +1022,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
           export PUSH_SUCCESSFUL="YES"
           #rm -rf "${GHCR_PKG}" "${PKG_JSON}" 2>/dev/null
           echo "export PUSH_SUCCESSFUL=YES" >> "${OCWD}/ENVPATH"
+          [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PKG_VERSION_UPSTREAM=${PKG_VERSION_UPSTREAM}" >> "${GITHUB_ENV}"
+          [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHCRPKG_URL=${GHCRPKG_URL}" >> "${GITHUB_ENV}"
           [[ "${GHA_MODE}" == "MATRIX" ]] && echo "PUSH_SUCCESSFUL=${PUSH_SUCCESSFUL}" >> "${GITHUB_ENV}"
           break
         else
@@ -1054,18 +1068,82 @@ popd >/dev/null 2>&1
 #-------------------------------------------------------#
 
 #-------------------------------------------------------#
+##Upload SRCBUILD
+#shellcheck disable=SC2296
+upload_srcbuild_to_ghcr()
+{
+  if [[ -n "${GHCRPKG_TAG_SRCBUILD+x}" ]]; then
+   ghcr_push_cmd()
+     {
+      for i in {1..10}; do
+        unset ghcr_push ; ghcr_push=(oras push --disable-path-validation)
+        ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
+        ghcr_push+=(--annotation "com.github.package.type=container")
+        ghcr_push+=(--annotation "dev.pkgforge.soar.build_ghcrpkg-tag=${{ env.GHCRPKG_TAG }}")
+        ghcr_push+=(--annotation "dev.pkgforge.soar.build_gha=${{ env.BUILD_GHACTIONS }}")
+        ghcr_push+=(--annotation "dev.pkgforge.soar.build_id=${{ env.BUILD_ID }}")
+        ghcr_push+=(--annotation "dev.pkgforge.soar.ghcr_pkg=${{ env.GHCRPKG_URL }}:${{ env.GHCRPKG_TAG }}")
+        ghcr_push+=(--annotation "dev.pkgforge.soar.push_date=${{ env.PKG_DATE }}")
+        ghcr_push+=(--annotation "dev.pkgforge.soar.version=${{ env.PKG_VERSION }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.created=${{ env.PKG_DATE }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.description=SRCBUILD for ${{ env.GHCRPKG_URL }}:${{ env.GHCRPKG_TAG }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
+        ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${{ env.PKG_VERSION }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.revision=${{ env.PKG_VERSION }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.source=${{ env.PKG_WEBPAGE }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.title=SRCBUILD-${{ env.PKG_NAME }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.url=${{ env.PKG_SRCURL }}")
+        ghcr_push+=(--annotation "org.opencontainers.image.vendor=pkgforge")
+        ghcr_push+=(--annotation "org.opencontainers.image.version=${{ env.PKG_VERSION }}")
+        ghcr_push+=("${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}")
+        [[ -f "./BUILD_ARTIFACTS.7z" && -s "./BUILD_ARTIFACTS.7z" ]] && ghcr_push+=("./BUILD_ARTIFACTS.7z")
+        "${ghcr_push[@]}" ; sleep 5
+       #Check
+        if [[ "$(oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" == "${{ env.PKG_DATE }}" ]]; then
+          echo -e "\n[+] (ARTIFACTS) Registry --> https://${{ env.GHCRPKG_URL }}\n"
+          break
+        else
+          echo -e "\n[-] Failed to Push Artifact to ${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD} (Retrying ${i}/10)\n"
+        fi
+        sleep "$(shuf -i 500-4500 -n 1)e-3"
+      done
+     }
+     export -f ghcr_push_cmd
+     ghcr_push_cmd
+     if [[ "$(oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
+       echo -e "\n[✗] Failed to Push Artifact to ${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}\n"
+        echo -e "\n[-] Retrying ...\n"
+        ghcr_push_cmd
+         if [[ "$(oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
+           oras manifest fetch "${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}" | jq .
+           echo -e "\n[✗] Failed to Push Artifact to ${{ env.GHCRPKG_URL }}:${GHCRPKG_TAG_SRCBUILD}\n"
+           return 1 || exit 1
+         fi
+     fi
+  fi
+}
+export -f upload_srcbuild_to_ghcr
 ##Cleanup
 cleanup_env()
 {
 #Cleanup Dir  
- if [ -n "${GITHUB_TEST_BUILD+x}" ]; then
+ if [[ -n "${GITHUB_TEST_BUILD+x}" || "${GHA_MODE}" == "MATRIX" ]]; then
   7z a -t7z -mx="9" -mmt="$(($(nproc)+1))" -bsp1 -bt "/tmp/BUILD_ARTIFACTS.7z" "${BUILD_DIR}" 2>/dev/null
+  pushd "/tmp" &>/dev/null
+  if [[ -s "./BUILD_ARTIFACTS.7z" && $(stat -c%s "./BUILD_ARTIFACTS.7z") -gt 1000 ]]; then
+     if [[ "${SKIP_SRCBUILD_UPLOAD}" != "YES" ]]; then
+        GHCRPKG_TAG_SRCBUILD="srcbuild.$(date --utc +"%y%m%dT%H%M%S" | tr -d '[:space:]')-${{ env.GHCRPKG_TAG }}"
+        export GHCRPKG_TAG_SRCBUILD
+        [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHCRPKG_TAG_SRCBUILD=${GHCRPKG_TAG_SRCBUILD}" >> "${GITHUB_ENV}"
+        upload_srcbuild_to_ghcr
+     fi
+  fi
  elif [[ "${KEEP_LOGS}" != "YES" ]]; then
   echo -e "\n[-] Removing ALL Logs & Files\n"
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset ARTIFACTS_DIR BUILD_DIR BUILD_GHACTIONS BUILD_ID desktop_files icon_files ghcr_push ghcr_push_cmd GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_APPSTREAM PKG_DESKTOP PKG_FAMILY PKG_GHCR pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE pkgver PKGVER pkg_ver PKG_VER PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
+ unset ARTIFACTS_DIR BUILD_DIR BUILD_GHACTIONS BUILD_ID desktop_files icon_files ghcr_push ghcr_push_cmd GHCRPKG_URL GHCRPKG_TAG GHCRPKG_TAG_SRCBUILD INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_APPSTREAM PKG_DESKTOP PKG_FAMILY PKG_GHCR pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE pkgver PKGVER pkg_ver PKG_VER PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
