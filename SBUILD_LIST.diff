@@ -1705,6 +1705,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "subversion",
+    "description": "Enterprise-class centralized version control for the masses",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/subversion/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/subversion/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "sudachi",
     "description": "Nintendo Switch emulator forked from yuzu",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudachi/archive/wrappe/stable",
@@ -2053,6 +2061,14 @@
     "description": "CLI program to download videos from YouTube and other sites",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/yt-dlp/archive/sharun/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/yt-dlp/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "zed",
+    "description": "High-performance, multiplayer code editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/zed/archive/wrappe/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/zed/archive.wrappe.stable.yaml"
   },
   {
     "_disabled": false,
