@@ -409,6 +409,16 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        unset DWARFS_PKGS ; DWARFS_PKGS=()
        mapfile -t "DWARFS_PKGS" < <(find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -exec bash -c 'dwarfsck --input "$1" --quiet 2>/dev/null && realpath "$1"' _ "{}" \;)
        if [[ ${#DWARFS_PKGS[@]} -ne 0 ]]; then
+         echo -e "\n[+] Extracting Media from ${SBUILD_PKG} (Dwarfs)"
+         if [[ -s "${SBUILD_OUTDIR}/.DirIcon" ]]; then
+           rsync -achL "${SBUILD_OUTDIR}/.DirIcon" "${SBUILD_TMPDIR}/.DirIcon.bak"
+         fi
+         if [[ -s "${SBUILD_OUTDIR}/${PKG}.png" ]]; then
+           rsync -achL "${SBUILD_OUTDIR}/${PKG}.png" "${SBUILD_TMPDIR}/${PKG}.png.bak"
+         fi
+         if [[ -s "${SBUILD_OUTDIR}/${PKG}.svg" ]]; then
+           rsync -achL "${SBUILD_OUTDIR}/${PKG}.svg" "${SBUILD_TMPDIR}/${PKG}.svg.bak"
+         fi
           pushd "${SBUILD_TMPDIR}" &>/dev/null &&\
            for D_PKG in "${DWARFS_PKGS[@]}"; do
              dwarfsextract -i "${D_PKG}" --format="ustar" | tar -x \
@@ -420,20 +430,13 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
                '*.DirIcon' '*.png' '*.svg'
            done
           pushd "${SBUILD_OUTDIR}" &>/dev/null
-         if [[ -s "${SBUILD_OUTDIR}/.DirIcon" ]]; then
-           rsync -achL "${SBUILD_OUTDIR}/.DirIcon" "${SBUILD_TMPDIR}/.DirIcon.bak"
-         fi
-         if [[ -s "${SBUILD_OUTDIR}/${PKG}.png" ]]; then
-           rsync -achL "${SBUILD_OUTDIR}/${PKG}.png" "${SBUILD_TMPDIR}/${PKG}.png.bak"
-         fi
-         if [[ -s "${SBUILD_OUTDIR}/${PKG}.svg" ]]; then
-           rsync -achL "${SBUILD_OUTDIR}/${PKG}.svg" "${SBUILD_TMPDIR}/${PKG}.svg.bak"
-         fi
          find -L "${SBUILD_TMPDIR}" -type f,l  -regex '.*\.\(DirIcon\|png\)' \
            -not -regex '.*\(favicon\|/\(16x16\|22x22\|24x24\|32x32\|36x36\|48x48\|64x64\|72x72\|96x96\)/\).*' \
            | awk '{print length, $0}' | sort -n | awk 'NR==1 {print $2}' | xargs -I "{}" rsync -achLv "{}" "${SBUILD_TMPDIR}/${PKG}.png"
           if [[ ! -f "${SBUILD_TMPDIR}/${PKG}.png" || $(stat -c%s "${SBUILD_TMPDIR}/${PKG}.png") -le 3 ]]; then
-           find -L "${SBUILD_TMPDIR}" -regex ".*\(128x128/apps\|256x256\)/.*${PKG}.*\.\(png\)" -printf "%s %p\n" -quit | sort -n | awk 'NR==1 {print $2}' | xargs -I "{}" rsync -achLv "{}" "${SBUILD_OUTDIR}/${PKG}.png"
+            find -L "${SBUILD_TMPDIR}" -regex ".*\(128x128/apps\|256x256\)/.*${PKG}.*\.\(png\)" -printf "%s %p\n" -quit | sort -n | awk 'NR==1 {print $2}' | xargs -I "{}" rsync -achLv "{}" "${SBUILD_OUTDIR}/${PKG}.png"
+          elif [[ -s "${SBUILD_TMPDIR}/${PKG}.png" ]]; then
+            cp -fv "${SBUILD_TMPDIR}/${PKG}.png" "${SBUILD_OUTDIR}/${PKG}.png"
           fi
           if [[ ! -s "${SBUILD_OUTDIR}/${PKG}.png" || $(stat -c%s "${SBUILD_TMPDIR}/${PKG}.png") -le 3 ]]; then
              if [[ -s "${SBUILD_TMPDIR}/.DirIcon.bak" ]]; then
@@ -447,13 +450,19 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
            -not -regex '.*\(favicon\|/\(16x16\|22x22\|24x24\|32x32\|36x36\|48x48\|64x64\|72x72\|96x96\)/\).*' \
            | awk '{print length, $0}' | sort -n | awk 'NR==1 {print $2}' | xargs -I "{}" rsync -achLv "{}" "${SBUILD_TMPDIR}/${PKG}.svg"
           if [[ ! -f "${SBUILD_TMPDIR}/${PKG}.svg" || $(stat -c%s "${SBUILD_TMPDIR}/${PKG}.svg") -le 3 ]]; then
-           find -L "${SBUILD_TMPDIR}" -regex ".*\(128x128/apps\|256x256\)/.*${PKG}.*\.\(svg\)" -printf "%s %p\n" -quit | sort -n | awk 'NR==1 {print $2}' | xargs -I "{}" rsync -achLv "{}" "${SBUILD_OUTDIR}/${PKG}.svg"
+            find -L "${SBUILD_TMPDIR}" -regex ".*\(128x128/apps\|256x256\)/.*${PKG}.*\.\(svg\)" -printf "%s %p\n" -quit | sort -n | awk 'NR==1 {print $2}' | xargs -I "{}" rsync -achLv "{}" "${SBUILD_OUTDIR}/${PKG}.svg"
+          elif [[ -s "${SBUILD_TMPDIR}/${PKG}.svg" ]]; then
+            cp -fv "${SBUILD_TMPDIR}/${PKG}.svg" "${SBUILD_OUTDIR}/${PKG}.svg"
           fi
           if [[ ! -s "${SBUILD_OUTDIR}/${PKG}.png" || $(stat -c%s "${SBUILD_TMPDIR}/${PKG}.png") -le 3 ]]; then
              if [[ -s "${SBUILD_TMPDIR}/${PKG}.svg.bak" ]]; then
                cp -fv "${SBUILD_TMPDIR}/${PKG}.svg.bak" "${SBUILD_OUTDIR}/${PKG}.svg"
              fi
           fi
+       fi
+      #Icons [Display using Chafa]
+       if command -v chafa &>/dev/null; then
+         timeout -k 10s 60s find -L "${SBUILD_OUTDIR}" -maxdepth 1 -type f,l -regex '.*\.\(DirIcon\|png\|svg\)' -exec bash -c 'basename "{}" && chafa "{}"' \;
        fi
       #License
        if jq --exit-status . "${TMPJSON}" >/dev/null 2>&1; then
