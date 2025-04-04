@@ -756,8 +756,27 @@
     "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/pkgforge-dev/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.pkgforge-dev.stable.yaml",
+    "replaces": [
+      "github.com.psadi.ghostty-appimage.stable"
+    ]
+  },
+  {
+    "_disabled": true,
+    "rebuild": false,
+    "pkg_family": "ghostty",
+    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ghostty-nightly",
+    "description": "Fast, native, feature-rich terminal emulator pushing modern features (Nightly)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty-nightly/appimage/pkgforge-dev/nightly",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty-nightly/appimage.pkgforge-dev.nightly.yaml"
   },
   {
     "_disabled": false,
