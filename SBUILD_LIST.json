@@ -763,14 +763,6 @@
     ]
   },
   {
-    "_disabled": true,
-    "rebuild": false,
-    "pkg_family": "ghostty",
-    "description": "Fast, native, feature-rich terminal emulator pushing modern features",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/psadi/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty/appimage.psadi.stable.yaml"
-  },
-  {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "ghostty-nightly",
