@@ -394,6 +394,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cloudflare-warp",
+    "description": "Free VPN-like service that secures and optimizes internet traffic using Cloudflare's network",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cloudflare-warp/archive/sharun/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cloudflare-warp/archive.sharun.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "cmake",
     "description": "Cross-platform, open-source build system",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cmake/appimage/ppkg/stable",
