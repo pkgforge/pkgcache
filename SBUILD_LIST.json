@@ -266,6 +266,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bear",
+    "description": "Generate a compilation database for clang tooling",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/bear/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/bear/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "beet",
     "description": "Flexible music library manager and tagger",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/beet/archive/sharun/pypi",
@@ -422,6 +430,14 @@
     "description": "Automated All-in-One OS Command Injection and Exploitation Tool",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/commix/archive/sharun/pypi",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/commix/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "compiledb",
+    "description": "Generate Clang's JSON Compilation Database files for make-based build systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/compiledb/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/compiledb/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
