@@ -466,6 +466,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cup",
+    "description": "Easiest way to check for container image updates",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cup/static/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cup/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ddgr",
     "description": "DuckDuckGo from the terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ddgr/archive/sharun/pypi",
@@ -550,6 +558,14 @@
     "description": "Tool to validate, verify & maintain a list of IPv4 DNS servers",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dnsvalidator/archive/sharun/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/dnsvalidator/archive.sharun.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dotbins",
+    "description": "Manage CLI tool binaries in your dotfiles repository",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dotbins/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/dotbins/archive.sharun.pypi.yaml"
   },
   {
     "_disabled": false,
