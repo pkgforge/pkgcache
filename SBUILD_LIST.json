@@ -554,6 +554,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dotbins",
+    "description": "Manage CLI tool binaries in your dotfiles repository",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dotbins/archive/sharun/pypi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/dotbins/archive.sharun.pypi.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dvc",
     "description": "A version control system and experiment tracker designed for machine learning projects",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/dvc/archive/sharun/pypi",
