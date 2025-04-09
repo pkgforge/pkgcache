@@ -466,6 +466,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cup",
+    "description": "Easiest way to check for container image updates",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cup/static/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cup/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ddgr",
     "description": "DuckDuckGo from the terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ddgr/archive/sharun/pypi",
@@ -786,6 +794,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ghostty-nightly",
+    "description": "Fast, native, feature-rich terminal emulator pushing modern features (Nightly)",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty-nightly/appimage/pkgforge-dev/nightly",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty-nightly/appimage.pkgforge-dev.nightly.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ghostty",
     "description": "Fast, native, feature-rich terminal emulator pushing modern features",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty/appimage/pkgforge-dev/stable",
@@ -793,14 +809,6 @@
     "replaces": [
       "github.com.psadi.ghostty-appimage.stable"
     ]
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ghostty-nightly",
-    "description": "Fast, native, feature-rich terminal emulator pushing modern features (Nightly)",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ghostty-nightly/appimage/pkgforge-dev/nightly",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/ghostty-nightly/appimage.pkgforge-dev.nightly.yaml"
   },
   {
     "_disabled": false,
@@ -1229,7 +1237,7 @@
     "description": "Animated sprite editor & pixel art tool",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/libresprite/appimage/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/libresprite/appimage.official.stable.yaml"
-  },  
+  },
   {
     "_disabled": false,
     "rebuild": false,
@@ -1748,6 +1756,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "subversion",
+    "description": "Enterprise-class centralized version control for the masses",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/subversion/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/subversion/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "sudachi",
     "description": "Nintendo Switch emulator forked from yuzu",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudachi/archive/wrappe/stable",
@@ -1760,14 +1776,6 @@
     "description": "Memory safe implementation of sudo and su",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/sudo-rs/archive/sharun/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/sudo-rs/archive.sharun.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "subversion",
-    "description": "Enterprise-class centralized version control for the masses",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/subversion/archive/sharun/alpine",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/subversion/archive.sharun.alpine.yaml"
   },
   {
     "_disabled": false,
