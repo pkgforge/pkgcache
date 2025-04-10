@@ -487,7 +487,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
            elif [[ -s "${SBUILD_TMPDIR}/${PKG}.svg" ]]; then
              cp -fv "${SBUILD_TMPDIR}/${PKG}.svg" "${SBUILD_OUTDIR}/${PKG}.svg"
            fi
-           if [[ ! -s "${SBUILD_OUTDIR}/${PKG}.png" || $(stat -c%s "${SBUILD_TMPDIR}/${PKG}.png") -le 3 ]]; then
+           if [[ ! -s "${SBUILD_OUTDIR}/${PKG}.svg" || $(stat -c%s "${SBUILD_TMPDIR}/${PKG}.svg") -le 3 ]]; then
               if [[ -s "${SBUILD_TMPDIR}/${PKG}.svg.bak" ]]; then
                 cp -fv "${SBUILD_TMPDIR}/${PKG}.svg.bak" "${SBUILD_OUTDIR}/${PKG}.svg"
               fi
@@ -1122,6 +1122,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
            [[ -f "${i_f}" && -s "${i_f}" ]] && ghcr_push+=("${i_f}")
            [[ -f "${i_f}.sig" && -s "${i_f}.sig" ]] && ghcr_push+=("${i_f}.sig")
          done
+        [[ -f "./.DirIcon" && -s "./.DirIcon" ]] && ghcr_push+=("./.DirIcon")
         [[ -f "./${PROG}.json" && -s "./${PROG}.json" ]] && ghcr_push+=("./${PROG}.json")
         [[ -f "./${PROG}.json.sig" && -s "./${PROG}.json.sig" ]] && ghcr_push+=("./${PROG}.json.sig")
         [[ -f "./${PROG}.log" && -s "./${PROG}.log" ]] && ghcr_push+=("./${PROG}.log")
