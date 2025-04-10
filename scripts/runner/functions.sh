@@ -463,7 +463,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
            elif [[ -s "${SBUILD_TMPDIR}/.DirIcon.bak" ]]; then
              cp -fv "${SBUILD_TMPDIR}/.DirIcon.bak" "${SBUILD_OUTDIR}/.DirIcon"
            fi
-          find -L "${SBUILD_TMPDIR}" -type f,l -regex '.*\.\(DirIcon\|png\)' \
+          find -L "${SBUILD_TMPDIR}" -type f,l -regex '.*\.\(png\)' \
             -not -regex '.*\(favicon\|/\(16x16\|22x22\|24x24\|32x32\|36x36\|48x48\|64x64\|72x72\|96x96\)/\).*' \
             | awk '{print length, $0}' | sort -n | awk 'NR==1 {print $2}' | xargs -I "{}" rsync -achLv "{}" "${SBUILD_TMPDIR}/${PKG}.png"
            if [[ ! -f "${SBUILD_TMPDIR}/${PKG}.png" || $(stat -c%s "${SBUILD_TMPDIR}/${PKG}.png") -le 3 ]]; then
