@@ -466,14 +466,6 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "cup",
-    "description": "Easiest way to check for container image updates",
-    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/cup/static/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/cup/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "ddgr",
     "description": "DuckDuckGo from the terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ddgr/archive/sharun/pypi",
