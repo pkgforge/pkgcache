@@ -487,6 +487,23 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
            fi
         fi
        fi
+      #Fix Icon (Mime)
+       if [[ -s "${SBUILD_OUTDIR}/${PKG}.png" ]]; then
+         unset ICON_TYPE
+         ICON_TYPE="$(file -i "${SBUILD_OUTDIR}/${PKG}.png")"
+         if echo "${ICON_TYPE}" | grep -qiE 'image/(svg)'; then
+           mv -fv "${SBUILD_OUTDIR}/${PKG}.png" "${SBUILD_OUTDIR}/${PKG}.svg"
+           cp -fv "${SBUILD_OUTDIR}/${PKG}.svg" "${SBUILD_OUTDIR}/.DirIcon"
+         fi
+       fi
+       if [[ -s "${SBUILD_OUTDIR}/${PKG}.svg" ]]; then
+         unset ICON_TYPE
+         ICON_TYPE="$(file -i "${SBUILD_OUTDIR}/${PKG}.svg")"
+         if echo "${ICON_TYPE}" | grep -qiE 'image/(png)'; then
+           mv -fv "${SBUILD_OUTDIR}/${PKG}.svg" "${SBUILD_OUTDIR}/${PKG}.png"
+           cp -fv "${SBUILD_OUTDIR}/${PKG}.png" "${SBUILD_OUTDIR}/.DirIcon"
+         fi
+       fi
       #Fix Desktop
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -iname "*.desktop" -exec sed -E 's/^[[:space:]]*[Ee]xec[[:space:]]*=[[:space:]]*[^[:space:]]+/Exec={{pkg_path}}/' -i "{}" \;
       #Icons [Display using Chafa]
@@ -1172,7 +1189,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset ARTIFACTS_DIR BUILD_DIR BUILD_GHACTIONS BUILD_ID desktop_files icon_files ghcr_push ghcr_push_cmd D_PKG DWARFS_PKGS GHCRPKG_URL GHCRPKG_TAG GHCRPKG_TAG_SRCBUILD INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_APPSTREAM PKG_DESKTOP PKG_FAMILY PKG_GHCR pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE pkgver PKGVER pkg_ver PKG_VER PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
+ unset ARTIFACTS_DIR BUILD_DIR BUILD_GHACTIONS BUILD_ID desktop_files icon_files ghcr_push ghcr_push_cmd D_PKG DWARFS_PKGS GHCRPKG_URL GHCRPKG_TAG GHCRPKG_TAG_SRCBUILD ICON_TYPE INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_APPSTREAM PKG_DESKTOP PKG_FAMILY PKG_GHCR pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE pkgver PKGVER pkg_ver PKG_VER PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
