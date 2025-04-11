@@ -1001,6 +1001,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "hwinfo",
+    "description": "Hardware information tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/hwinfo/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/hwinfo/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "image-bootstrap",
     "description": "Generate Bootable Virtual Machine Images and write them to a Block Device",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/image-bootstrap/archive/sharun/pypi",
