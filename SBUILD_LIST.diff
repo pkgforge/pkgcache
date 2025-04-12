@@ -298,6 +298,40 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "binutils",
+    "description": {
+      "_default": "Tools for manipulating binaries (linker, assembler, etc.) [alias=bintools]",
+      "addr2line": "Converts addresses into filenames and line numbers [binutils]",
+      "ar": "A utility for creating, modifying and extracting from archives [binutils]",
+      "as": "The GNU Assembler [binutils]",
+      "c++filt": "Filter to demangle encoded C++ symbols [binutils]",
+      "coffdump": "COFF-specific dumper for objdump [binutils]",
+      "dllwrap": "Generate PE style dll [binutils]",
+      "dwp": "The DWARF packaging utility [binutils]",
+      "elfedit": "Allows alteration of ELF format files [binutils]",
+      "gprof": "Displays profiling information [binutils]",
+      "ld": "The GNU linker [binutils]",
+      "ld.bfd": "The GNU linker with BFD libraries [binutils]",
+      "ld.gold": "A new, faster, ELF only linker [binutils]",
+      "nm": "Lists symbols from object files [binutils]",
+      "objcopy": "Copies and translates object files [binutils]",
+      "objdump": "Displays information from object files [binutils]",
+      "ranlib": "Generates an index to the contents of an archive [binutils]",
+      "readelf": "Displays information from any ELF format object file [binutils]",
+      "size": "Lists the section sizes of an object or archive file [binutils]",
+      "srconv": "Sysroff conversion program [binutils]",
+      "strings": "Lists printable strings from files [binutils]",
+      "strip": "Discards symbols [binutils]",
+      "sysdump": "Sysroff object format dumper [binutils]",
+      "windmc": "Generate Windows message resources [binutils]",
+      "windres": "Manipulate Windows resources [binutils]"
+    },
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/binutils/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/binutils/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "blender",
     "description": "A fully integrated 3D graphics creation suite",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/blender/runimage/debian/stable",
@@ -758,6 +792,27 @@
     "description": "Friday Night Funkin: A rhythm game",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/funkin/runimage/debian/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/funkin/runimage.debian.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gcc",
+    "description": {
+      "_default": "GNU Compiler Collection",
+      "c++": "GNU C++ Compiler [gcc]",
+      "cpp": "GNU CPP Preprocessor [gcc]",
+      "g++": "GNU C++ Compiler Driver [gcc]",
+      "gcc-ar": "Wrapper around ar adding the --plugin option [gcc]",
+      "gcc-nm": "Wrapper around nm adding the --plugin option [gcc]",
+      "gcc-ranlib": "Wrapper around ranlib adding the --plugin option [gcc]",
+      "gcov": "Coverage testing tool [gcc]",
+      "gcov-dump": "Gcov intermediate dump tool [gcc]",
+      "gcov-tool": "Tool for manipulating gcda and gcno files [gcc]",
+      "gfortran": "GNU Fortran Compiler [gcc]",
+      "lto-dump": "Tool for dumping LTO object files [gcc]"
+    },
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gcc/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gcc/appimage.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
