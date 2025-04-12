@@ -218,6 +218,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "apptainer",
+    "description": "Standalone Linux Container Alternative to docker/podman that runs anywhere with 0 Dependency",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/apptainer/archive/wrappe/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/apptainer/archive.wrappe.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "apptainer",
+    "description": "Standalone Linux Container Alternative to docker/podman that runs anywhere with 0 Dependency",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/apptainer/archive/wrappe/musl",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/apptainer/archive.wrappe.musl.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "aqtinstall",
     "description": "Qt CLI Installer on multi-platforms",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/aqtinstall/archive/sharun/pypi",
