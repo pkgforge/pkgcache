@@ -771,20 +771,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "gcc",
-    "description": {
-      "_default": "GNU Compiler Collection",
-      "c++": "GNU C++ Compiler [gcc]",
-      "cpp": "GNU CPP Preprocessor [gcc]",
-      "g++": "GNU C++ Compiler Driver [gcc]",
-      "gcc-ar": "Wrapper around ar adding the --plugin option [gcc]",
-      "gcc-nm": "Wrapper around nm adding the --plugin option [gcc]",
-      "gcc-ranlib": "Wrapper around ranlib adding the --plugin option [gcc]",
-      "gcov": "Coverage testing tool [gcc]",
-      "gcov-dump": "Gcov intermediate dump tool [gcc]",
-      "gcov-tool": "Tool for manipulating gcda and gcno files [gcc]",
-      "gfortran": "GNU Fortran Compiler [gcc]",
-      "lto-dump": "Tool for dumping LTO object files [gcc]"
-    },
+    "description": "GNU Compiler Collection",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/gcc/appimage/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/gcc/appimage.ppkg.stable.yaml"
   },
