@@ -382,6 +382,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
      find "${SBUILD_OUTDIR}" -type f -exec sudo chmod +xwr "{}" \; 2>/dev/null
      unset ARTIFACTS_DIR ; ARTIFACTS_DIR="$(find "${SBUILD_OUTDIR}/BUILD" -name "SBUILD" -type f -exec dirname "{}" \; | xargs realpath | head -n 1 | tr -d '[:space:]')"
      if [ -d "${ARTIFACTS_DIR}" ] && [ $(du -s "${ARTIFACTS_DIR}" | cut -f1) -gt 10 ]; then
+       find -L "${ARTIFACTS_DIR}" -xtype f,l -iname "*LC_MESSAGES*" -exec rm -rvf "{}" \;
        find -L "${ARTIFACTS_DIR}" -xtype l 2>/dev/null | awk '{
          link=$0;
          cmd="readlink \""link"\"";
@@ -399,7 +400,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
          }
          close(cmd);
        }'
-       rsync -achL --exclude='*/LC_MESSAGES/LC_MESSAGES*' "${ARTIFACTS_DIR}/." "${SBUILD_OUTDIR}"
+       rsync -achL "${ARTIFACTS_DIR}/." "${SBUILD_OUTDIR}"
        rm -rf "${SBUILD_OUTDIR}/BUILD.log" 2>/dev/null
        rm -rf "${ARTIFACTS_DIR}" 2>/dev/null
      fi
