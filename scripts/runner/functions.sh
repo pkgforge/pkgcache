@@ -399,7 +399,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
          }
          close(cmd);
        }'
-       rsync -achL --safe-links "${ARTIFACTS_DIR}/." "${SBUILD_OUTDIR}"
+       rsync -achL --exclude="**/LC_MESSAGES/LC_MESSAGES/**" --exclude="**/nix/store/**" --safe-links "${ARTIFACTS_DIR}/." "${SBUILD_OUTDIR}"
        rm -rf "${SBUILD_OUTDIR}/BUILD.log" 2>/dev/null
        rm -rf "${ARTIFACTS_DIR}" 2>/dev/null
      fi
