@@ -378,10 +378,28 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
      cleanup_containers
      printf "\n" && timeout -k 5m 150m sbuild --log-level "verbose" "${INPUT_SBUILD}" --timeout-linter "120" --outdir "${SBUILD_OUTDIR}/BUILD" --keep
      printf "\n" && cleanup_containers
-     sudo chown -Rv "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
-     find "${SBUILD_OUTDIR}" -type f -exec sudo chmod -v +xwr "{}" \; 2>/dev/null
+     sudo chown -R "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
+     find "${SBUILD_OUTDIR}" -type f -exec sudo chmod +xwr "{}" \; 2>/dev/null
      unset ARTIFACTS_DIR ; ARTIFACTS_DIR="$(find "${SBUILD_OUTDIR}/BUILD" -name "SBUILD" -type f -exec dirname "{}" \; | xargs realpath | head -n 1 | tr -d '[:space:]')"
      if [ -d "${ARTIFACTS_DIR}" ] && [ $(du -s "${ARTIFACTS_DIR}" | cut -f1) -gt 10 ]; then
+       #find "${ARTIFACTS_DIR}" -type f,l -name "*LC_MESSAGES*" -exec rm -rvf "{}" \;
+       find "${ARTIFACTS_DIR}" -type l | awk '{
+         link=$0;
+         cmd="readlink \""link"\"";
+         cmd | getline target;
+         close(cmd);
+         cmd="readlink -f \""link"\" 2>/dev/null";
+         if((cmd | getline resolved) <= 0 || system("test -e \""resolved"\"") != 0) {
+           system("rm -rfv \""link"\" 2>/dev/null");
+         } else {
+           if(target == link || target == "."target || 
+              index(resolved, link) > 0 || index(link, resolved) > 0 ||
+              system("test \""resolved"\" -ef \"$(dirname \""link"\")\" || test \""resolved"\" -ef \"$(dirname $(dirname \""link"\"))\"") == 0) {
+             system("rm -rfv \""link"\" 2>/dev/null");
+           }
+         }
+         close(cmd);
+       }'
        rsync -achL "${ARTIFACTS_DIR}/." "${SBUILD_OUTDIR}"
        rm -rf "${SBUILD_OUTDIR}/BUILD.log" 2>/dev/null
        rm -rf "${ARTIFACTS_DIR}" 2>/dev/null
