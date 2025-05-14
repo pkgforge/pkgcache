@@ -1153,6 +1153,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "keepalived",
+    "description": "Health Checking for Linux Virtual Server & High-Availability",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/keepalived/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/keepalived/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "klp",
     "description": "CLI viewer for structured log files and streams (logfmt, JSONL and many others)",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/klp/archive/sharun/pypi",
