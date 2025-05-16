@@ -1980,6 +1980,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "verilator",
+    "description": "Verilog/SystemVerilog simulator",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/verilator/appimage/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/verilator/appimage.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "vesktop",
     "description": "A custom Discord App aiming to give you better performance and improve linux support",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/vesktop/appimage/official/stable",
