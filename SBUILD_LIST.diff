@@ -1457,6 +1457,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "oils",
+    "description": "Unix shell with JSON-compatible structured data",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/oils/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/oils/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "openboard",
     "description": "Interactive whiteboard software for schools and universities",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/openboard/runimage/cachyos/stable",
