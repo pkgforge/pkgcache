@@ -1532,6 +1532,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "powertop",
+    "description": "Power consumption measurement and estimation tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/powertop/archive/sharun/alpine",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/powertop/archive.sharun.alpine.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ppsspp",
     "description": "A Fast and Portable PSP emulator",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/ppsspp/appimage/pkgforge-dev/stable",
