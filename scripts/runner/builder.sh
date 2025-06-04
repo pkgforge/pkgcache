@@ -305,6 +305,14 @@ sbuild_builder()
         fi
        #} 2>&1 | ts '[%Y-%m-%dT%Hh%Mm%Ss]➜ ' | tee "${TEMP_LOG}"
        } 2>&1 | ts -s '[%H:%M:%S]➜ ' | tee "${TEMP_LOG}"
+      #Common No-Nos 
+       if grep -m1 -Eqi "wrappe.*version.*available.*required" "${TEMP_LOG}" &>/dev/null; then
+          echo -e "\n[✗] FATAL: Found Potential Outlier in Logs\n"
+          grep -Ei "wrappe.*version.*available.*required" "${TEMP_LOG}"
+          [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
+         exit 1
+       fi
+      #Dirs
        if [ -d "${OCWD}" ]; then
          source "${OCWD}/ENVPATH" ; SBUILD_PKGS=($SBUILD_PKGS)
          if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
