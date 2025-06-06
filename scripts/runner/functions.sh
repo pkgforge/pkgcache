@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.1.6" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.1.7" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -29,7 +29,11 @@ setup_env()
    export CONTINUE_SBUILD="NO"
   return 1 || exit 1
  fi
- BUILD_DIR="$(mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_$(basename "${INPUT_SBUILD}" | tr -d 'X'))"
+ if [[ -f "${SYSTMP}/GITHUB_ENV" ]]; then
+   BUILD_DIR="${SYSTMP}/_POD_BRIDGE"
+ else
+   BUILD_DIR="$(mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_$(basename "${INPUT_SBUILD}" | tr -d 'X'))"
+ fi
  SBUILD_OUTDIR="${BUILD_DIR}/SBUILD_OUTDIR"
  SBUILD_TMPDIR="${SBUILD_OUTDIR}/SBUILD_TEMP"
  mkdir -p "${SBUILD_TMPDIR}/tmp"
@@ -375,9 +379,10 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    check_sane_env
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
      #printf "\n" && timeout -k 5m 150m "${TMPXRUN}" ; printf "\n"
-     cleanup_containers
+     [[ "${INSIDE_PODMAN}" != "TRUE" ]] && cleanup_containers
      printf "\n" && timeout -k 5m 150m sbuild --log-level "verbose" "${INPUT_SBUILD}" --timeout-linter "120" --outdir "${SBUILD_OUTDIR}/BUILD" --keep
-     printf "\n" && cleanup_containers
+     printf "\n" &&\
+     [[ "${INSIDE_PODMAN}" != "TRUE" ]] && cleanup_containers
      sudo chown -R "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
      find "${SBUILD_OUTDIR}" -type f -exec sudo chmod +xwr "{}" \; 2>/dev/null
      unset ARTIFACTS_DIR ; ARTIFACTS_DIR="$(find "${SBUILD_OUTDIR}/BUILD" -name "SBUILD" -type f -exec dirname "{}" \; | xargs realpath | head -n 1 | tr -d '[:space:]')"
@@ -1208,7 +1213,11 @@ cleanup_env()
 {
 #Cleanup Dir  
  if [[ -n "${GITHUB_TEST_BUILD+x}" || "${GHA_MODE}" == "MATRIX" ]]; then
-  7z a -t7z -mx="9" -mmt="$(($(nproc)+1))" -bsp1 -bt "/tmp/BUILD_ARTIFACTS.7z" "${BUILD_DIR}" 2>/dev/null
+  pushd "$(mktemp -d)" &>/dev/null &&\
+   tar --directory="${BUILD_DIR}" --preserve-permissions --create --file="BUILD_ARTIFACTS.tar" "."
+   zstd --force "./BUILD_ARTIFACTS.tar" --verbose -o "/tmp/BUILD_ARTIFACTS.zstd"
+   rm -rvf "./BUILD_ARTIFACTS.tar" 2>/dev/null &&\
+  popd &>/dev/null
  elif [[ "${KEEP_LOGS}" != "YES" ]]; then
   echo -e "\n[-] Removing ALL Logs & Files\n"
   rm -rvf "${BUILD_DIR}" 2>/dev/null

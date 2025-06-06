@@ -57,6 +57,10 @@ sbuild_builder()
     find "${SYSTMP}" -mindepth 1 \( -type f -o -type d \) -empty -not -path "$(pwd)" -not -path "$(pwd)/*" -delete 2>/dev/null
    fi
    mkdir -p "${SYSTMP}/pkgforge"
+   if [[ "${INSIDE_PODMAN}" == "TRUE" ]]; then
+     export GITHUB_ENV="${SYSTMP}/GITHUB_ENV"
+     touch "${GITHUB_ENV}"
+   fi
   ##Get Initial Inputs
    for attempt in {1..4}; do
     BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXXXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}" && break

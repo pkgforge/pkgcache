@@ -8,11 +8,12 @@ on:
     inputs:
 
       host:
-        description: Host (Arch+OS) [ALL ==> Run on All Hosts]
+        description: Host (Arch+OS) [ALL ==> Run on All Hosts (No riscv64)]
         type: choice
         options:
           - "ALL"
           - "aarch64-Linux"
+          - "riscv64-Linux"
           - "x86_64-Linux"
 
       sbuild-url:
@@ -33,6 +34,7 @@ on:
         options:
           - "github"
           - "circle-ci"
+          - "self-hosted"
 
       debug:
         description: Debug Mode (Verbose with set -x) [Default ==> False]
@@ -63,16 +65,19 @@ jobs:
       - name: Presetup
         id: generate-matrix
         run: |
-          ##presets
+          ##Presets
           set +x ; set +e
           #-------------#
           echo '[' > "./MATRIX.json.tmp"
            if [[ "${{ github.event.inputs.ci-infra }}" == "github" || -z "${{ github.event.inputs.ci-infra }}" ]]; then
              if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               #echo '{"host": "riscv64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
+               echo '{"host": "riscv64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
                echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              fi
@@ -80,15 +85,31 @@ jobs:
              curl -X "POST" -H "content-type: application/json" -qfsSL "${{ secrets.CIRCLE_CI_WEBHOOK_URL }}?secret=${{ secrets.CIRCLE_CI_SECRET }}"
              if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "arm64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               #echo '{"host": "riscv64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                echo '{"host": "x86_64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "arm64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
+               echo '{"host": "riscv64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
                echo '{"host": "x86_64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              fi
+           elif [[ "${{ github.event.inputs.ci-infra }}" == "self-hosted" ]]; then
+             echo ""
+             if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
+               echo '{"host": "aarch64-Linux", "runner": "self-hosted-aarch64", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               #echo '{"host": "riscv64-Linux", "runner": "self-hosted-riscv64", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               echo '{"host": "x86_64-Linux", "runner": "self-hosted-x86_64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
+               echo '{"host": "aarch64-Linux", "runner": "self-hosted-aarch64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
+               echo '{"host": "riscv64-Linux", "runner": "self-hosted-riscv64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
+               echo '{"host": "x86_64-Linux", "runner": "self-hosted-x86_64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             fi
            fi
           echo ']' >> "./MATRIX.json.tmp"
-          jq 'unique_by(.runner)' "./MATRIX.json.tmp" | jq . > "./MATRIX.json"
+          jq 'unique_by(.host)' "./MATRIX.json.tmp" | jq . > "./MATRIX.json"
           ESCAPED_MATRIX="$(cat "./MATRIX.json" | jq -c .)"
           echo "runner_matrix=${ESCAPED_MATRIX}" >> "${GITHUB_OUTPUT}"
         continue-on-error: false
@@ -117,16 +138,24 @@ jobs:
         env:
           GH_TOKEN: "${{ github.token }}"
         run: |
-          ##presets
+          ##Presets
           set +x ; set +e
           #-------------#
           if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "aarch64-Linux" ]]; then
               echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
             fi
+          elif [[ "$(uname -m | tr -d '[:space:]')" == "riscv64" ]]; then
+            if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "riscv64-Linux" ]]; then
+              echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+            fi
           elif [[ "$(uname -m | tr -d '[:space:]')" == "x86_64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "x86_64-Linux" ]]; then
-              echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+               if [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
+                 echo "CONTINUE_GHRUN=TRUE" >> "${GITHUB_ENV}"
+               else
+                 echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+               fi
             fi
           fi
         continue-on-error: false
@@ -138,7 +167,7 @@ jobs:
           RO_GLTOKEN: ${{ secrets.RO_GLTOKEN }}
           MINISIGN_KEY: ${{ secrets.MINISIGN_KEY }}
         run: |
-          ##presets
+          ##Presets
           set +x ; set +e
           #-------------#
           # Check if any of the required secrets are missing
@@ -154,12 +183,25 @@ jobs:
       - name: Parse Input [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
-          ##presets
+          ##Presets
           set +x ; set +e
           #-------------#
-          export HOST_TRIPLET="$(uname -m)-$(uname -s)"
+          ##Host Triplet
+           if [[ "${{ matrix.package.host }}" == "riscv64-Linux" ]] ; then
+             export HOST_TRIPLET="riscv64-Linux"
+             if [[ "$(uname -m | tr -d '[:space:]')" == "riscv64" ]]; then
+               export ON_QEMU="NO"
+             else
+               export ON_QEMU="YES"
+             fi
+           else
+             export HOST_TRIPLET="$(uname -m)-$(uname -s)"
+             export ON_QEMU="NO"
+           fi
+           echo "HOST_TRIPLET=${HOST_TRIPLET}" >> "${GITHUB_ENV}"
+           echo "ON_QEMU=${ON_QEMU}" >> "${GITHUB_ENV}"
           ##Debug   
-           if [ "${{ github.event.inputs.debug }}" == "true" ] ; then
+           if [[ "${{ github.event.inputs.debug }}" == "true" ]] ; then
              export DEBUG="1"
            else
              export DEBUG="0"
@@ -170,7 +212,7 @@ jobs:
            export GHCRPKG_LOCAL
            echo "GHCRPKG_LOCAL=${GHCRPKG_LOCAL}" >> "${GITHUB_ENV}"
           ##Logs
-           if [ "${{ github.event.inputs.logs }}" == "false" ] ; then
+           if [[ "${{ github.event.inputs.logs }}" == "false" ]] ; then
              export KEEP_LOGS="NO"
            else
              export KEEP_LOGS="YES"
@@ -183,14 +225,14 @@ jobs:
            export PKG_FAMILY_LOCAL
            echo "PKG_FAMILY_LOCAL=${PKG_FAMILY_LOCAL}" >> "${GITHUB_ENV}"
           ##Rebuild
-           if [ "${{ github.event.inputs.rebuild }}" == "false" ] ; then
+           if [[ "${{ github.event.inputs.rebuild }}" == "false" ]] ; then
              export SBUILD_REBUILD="false"
            else
              export SBUILD_REBUILD="true"
            fi
            echo "SBUILD_REBUILD=${SBUILD_REBUILD}" >> "${GITHUB_ENV}"
            ##SBUILD_URL
-           sudo curl -qfsSL "https://bin.pkgforge.dev/${HOST_TRIPLET}/yq" -o "/usr/local/bin/yq" && \
+           sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)-$(uname -s)/yq" -o "/usr/local/bin/yq" && \
              sudo chmod 'a+x' "/usr/local/bin/yq" && command -v yq >/dev/null || exit 1
            SBUILD_FILE_URL="$(echo "${{ github.event.inputs.sbuild-url }}" | tr -d '[:space:]')"
            pushd "$(mktemp -d)" >/dev/null 2>&1
@@ -217,13 +259,18 @@ jobs:
       - name: Setup Env [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
-          ##presets
+          ##Presets
           set +x ; set +e
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
           #-------------#
           ##CoreUtils
           sudo apt update -y
           sudo apt install bc coreutils curl dos2unix fdupes jq moreutils wget -y
-          sudo apt-get install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt-get update -y 2>/dev/null
+          sudo apt install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt update -y 2>/dev/null
           ##tmp
           SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
           #GH ENV
@@ -244,13 +291,129 @@ jobs:
       - name: Disable apparmor_restrict_unprivileged_userns #Required for runimage etc
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
-          #presets
+          ##Presets
           set +x ; set +e
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
           #-------------#
           echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
           echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
           sudo service procps restart
           sudo sysctl -p "/etc/sysctl.conf"
+        continue-on-error: true
+
+      - name: If riscv64 on QEMU [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+        if: env.HOST_TRIPLET == 'riscv64-Linux' && env.ON_QEMU == 'YES' && env.CONTINUE_GHRUN != 'FALSE'
+        env:
+          #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
+          GHCR_TOKEN: "${{ github.token }}"
+        run: |
+          ##Presets
+          set +x ; set +e
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
+          echo "RISCV64_ON_QEMU=TRUE" >> "${GITHUB_ENV}"
+          echo "INSIDE_PODMAN=TRUE" >> "${GITHUB_ENV}"
+          bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh")
+          echo "${GHCR_TOKEN}" | oras login --username "Azathothas" --password-stdin "ghcr.io"
+        continue-on-error: true
+
+      - name: Set up QEMU [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        uses: docker/setup-qemu-action@v3
+        continue-on-error: true
+      - name: Set up Cross Arch [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        uses: docker/setup-buildx-action@v3
+        continue-on-error: true
+
+      - name: Install/Configure Podman [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        run: |
+          ##Presets
+          set +x ; set +e
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
+          if ! command -v podman &>/dev/null; then
+            echo -e "\n[-] Failed to find podman\n"
+            #Install Manually
+              sudo apt update -y -qq
+              sudo apt install podman -y -qq
+               if ! command -v podman &>/dev/null; then
+                  echo -e "\n[-] Failed to install Podman\n"
+                  echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+                 exit 1
+               else
+                  cat "$(systemctl show podman.service -p FragmentPath 2>/dev/null | cut -d '=' -f 2 | tr -d '[:space:]')"
+                  sudo systemctl daemon-reexec ; sudo systemctl daemon-reload
+                  sudo systemctl status podman --no-pager
+                  sudo systemctl reload "podman.service"
+                  sudo service podman reload ; sudo service podman restart ; sudo systemctl status podman --no-pager
+               fi
+          else
+            podman info
+            podman version
+          fi
+        continue-on-error: true
+
+      - name: Daemonize Podman [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        run: |
+          ##Presets
+          set +x ; set +e
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
+          ##Get Env
+          env 1>"./env.list" 2>"/dev/null"
+          ##Run
+          sudo mkdir -p "/var/lib/containers/tmp-runner01"
+          sudo chmod 1777 -v "/var/lib/containers/tmp-runner01"
+          POD_IMAGE="ghcr.io/pkgforge/devscripts/ubuntu-systemd-base:riscv64"
+          sudo podman run --platform="linux/riscv64" --detach --privileged \
+           --device "/dev/fuse" --env-file="env.list" --hostname "$(hostname)" --name="ubuntu-builder" \
+           --network="bridge" --pull="always" --systemd="always" --tz="UTC" --ulimit="host" \
+           --volume "${HOME}/.minisign:/home/runner/.minisign" \
+           --volume "/var/lib/containers/tmp-runner01:/tmp:rw,exec,dev" "${POD_IMAGE}"
+          rm -rf "./env.list" 2>/dev/null 
+          sleep 10
+          POD_ID="$(sudo podman ps --filter "name=ubuntu-builder" --format json 2>/dev/null | jq --arg P_IMG "${POD_IMAGE}" -r '.[] | select(.Image == $P_IMG) | .Id' | tr -d '"'\''[:space:]')"
+          if ! sudo podman inspect "${POD_ID}" &>/dev/null; then
+             echo -e "\n[✗] FATAL: Could NOT find \${POD_ID}\n"
+             podman ps -a
+             echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+            exit 1
+          else
+             echo "POD_IMAGE=${POD_IMAGE}" >> "${GITHUB_ENV}"
+             echo "POD_ID=${POD_ID}" >> "${GITHUB_ENV}"
+             sudo podman exec -it -u "runner" "${POD_ID}" bash -c 'echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"'
+             sudo podman exec -it -u "runner" "${POD_ID}" bash -c 'echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"'
+             #sudo podman exec -it -u "runner" "${POD_ID}" bash -c 'sudo service procps restart'
+             sudo podman exec -it -u "runner" "${POD_ID}" bash -c 'sudo sysctl -p "/etc/sysctl.conf"'
+             sudo podman exec -it -u "runner" "${POD_ID}" bash -c \
+              '
+               sudo apt update -y
+               sudo apt install bc coreutils curl dos2unix fdupes jq moreutils wget -y
+               sudo apt install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt update -y 2>/dev/null
+               mkdir -p "${HOME}/bin"
+               sudo apt update -y
+               sudo apt install dos2unix -y
+              '
+          fi
         continue-on-error: true
 
       - name: BUILD (${{ env.GHCRPKG_LOCAL }}) [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
@@ -262,9 +425,14 @@ jobs:
           GITLAB_TOKEN: "${{ secrets.RO_GLTOKEN }}"
           MINISIGN_KEY: "${{ secrets.MINISIGN_KEY }}"
         run: |
-          #Presets
+          ##Presets
           set +x ; set +e
-          #--------------#
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
           ##Main
           pushd "$(mktemp -d)" >/dev/null 2>&1
            curl -qfsSL "https://raw.githubusercontent.com/pkgforge/pkgcache/refs/heads/main/scripts/runner/builder.sh" -o "${SYSTMP}/BUILDER.sh"
@@ -276,7 +444,34 @@ jobs:
             export GHCRPKG_LOCAL="${GHCRPKG_LOCAL}"
             export SBUILD_REBUILD="${SBUILD_REBUILD}"
             export GITHUB_TEST_BUILD="${GITHUB_TEST_BUILD}"
-            bash "${SYSTMP}/BUILDER.sh" "${SBUILD_FILE_URL}" | tee "${SYSTMP}/BUILD.log" 2>&1
+           if [[ "${{ env.RISCV64_ON_QEMU }}" == "TRUE" ]]; then
+             sudo podman cp "${SYSTMP}/BUILDER.sh" "${POD_ID}:/tmp/BUILDER.sh"
+             sudo podman exec -u "runner" -w "/tmp" \
+               -e DEBUG="${DEBUG}" \
+               -e GHCR_TOKEN="${GHCR_TOKEN}" \
+               -e GITHUB_TOKEN="${GITHUB_TOKEN}" \
+               -e GITLAB_TOKEN="${GITLAB_TOKEN}" \
+               -e MINISIGN_KEY="${MINISIGN_KEY}" \
+               -e KEEP_LOGS="${KEEP_LOGS}" \
+               -e PKG_FAMILY_LOCAL="${PKG_FAMILY_LOCAL}" \
+               -e GHCRPKG_LOCAL="${GHCRPKG_LOCAL}" \
+               -e SBUILD_REBUILD="${SBUILD_REBUILD}" \
+               -e GITHUB_TEST_BUILD="${GITHUB_TEST_BUILD}" \
+               -e INSIDE_PODMAN="${INSIDE_PODMAN}" \
+               -e SBUILD_FILE_URL="${SBUILD_FILE_URL}" \
+               "${POD_ID}" \
+               bash -c 'bash "/tmp/BUILDER.sh" "${SBUILD_FILE_URL}" | tee "/tmp/BUILD.log" 2>&1'
+             sudo podman cp "${POD_ID}:/tmp/BUILD.log" "${SYSTMP}/BUILD.log"
+             sudo podman cp "${POD_ID}:/tmp/BUILD_ARTIFACTS.zstd" "${SYSTMP}/BUILD_ARTIFACTS.zstd"
+             sudo podman cp "${POD_ID}:/tmp/GITHUB_ENV" "${SYSTMP}/GITHUB_ENV"
+             mkdir -p "${SYSTMP}/_POD_BRIDGE"
+             sudo podman cp "${POD_ID}:/tmp/_POD_BRIDGE/." "${SYSTMP}/_POD_BRIDGE"
+             sudo chown -Rv "$(whoami):$(whoami)" "${SYSTMP}/BUILD.log" "${SYSTMP}/BUILD_ARTIFACTS.zstd" "${SYSTMP}/GITHUB_ENV" "${SYSTMP}/_POD_BRIDGE" 2>/dev/null
+             sudo chmod -R +xwr "${SYSTMP}/BUILD.log" "${SYSTMP}/BUILD_ARTIFACTS.zstd" "${SYSTMP}/GITHUB_ENV" "${SYSTMP}/_POD_BRIDGE" 2>/dev/null
+             cat "${SYSTMP}/GITHUB_ENV" >> "${GITHUB_ENV}"
+           else
+             bash "${SYSTMP}/BUILDER.sh" "${SBUILD_FILE_URL}" | tee "${SYSTMP}/BUILD.log" 2>&1
+           fi
            ##Purge Tokens (in case set -x & gh didn't redact)
            cat "${SYSTMP}/BUILD.log" | ansi2txt > "${SYSTMP}/BUILD.gh.log.txt"
            sed -i '/.*github_pat.*/Id' "${SYSTMP}/BUILD.gh.log.txt" 2>/dev/null
@@ -299,85 +494,93 @@ jobs:
           GITLAB_TOKEN: "${{ secrets.RO_GLTOKEN }}"
           MINISIGN_KEY: "${{ secrets.MINISIGN_KEY }}"
         run: |
-          #Presets
+          ##Presets
           set +x ; set +e
-          #--------------#
-          ##Set ENV
-          if [[ -n "${{ env.BUILD_ID }}" ]] && [[ "${{ env.BUILD_ID }}" =~ ^[^[:space:]]+$ ]]; then
-            if [[ "${SKIP_SRCBUILD_UPLOAD}" != "YES" ]]; then
-               #GHCRPKG_TAG_SRCBUILD="srcbuild.$(date --utc +"%y%m%dT%H%M%S" | tr -d '[:space:]')-${{ env.GHCRPKG_TAG }}"
-               GHCRPKG_TAG_SRCBUILD="${{ env.GHCRPKG_TAG }}"
-               GHCRPKG_URL_SRCBUILD="${{ env.GHCRPKG_LOCAL }}/${{ env.PKG_FAMILY_LOCAL }}-srcbuild-${{ env.BUILD_ID }}"
-               export GHCRPKG_TAG_SRCBUILD GHCRPKG_URL_SRCBUILD
-               echo "GHCRPKG_TAG_SRCBUILD=${GHCRPKG_TAG_SRCBUILD}" >> "${GITHUB_ENV}"
-               echo "GHCRPKG_URL_SRCBUILD=${GHCRPKG_URL_SRCBUILD}" >> "${GITHUB_ENV}"
-            fi
-           ##Push 
-            if [[ -n "${GHCRPKG_TAG_SRCBUILD+x}" ]]; then
-             pushd "/tmp" &>/dev/null
-              if [[ -s "./BUILD_ARTIFACTS.7z" && $(stat -c%s "./BUILD_ARTIFACTS.7z") -gt 1000 ]]; then
-                realpath "./BUILD_ARTIFACTS.7z" && du -sh "./BUILD_ARTIFACTS.7z"
-                ls -sh "${{ env.SBUILD_OUTDIR }}"
-                ghcr_push_cmd()
-                  {
-                   for i in {1..10}; do
-                     unset ghcr_push ; ghcr_push=(oras push --disable-path-validation)
-                     ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
-                     ghcr_push+=(--annotation "com.github.package.type=container")
-                     ghcr_push+=(--annotation "dev.pkgforge.soar.build_ghcrpkg-tag=${{ env.GHCRPKG_TAG }}")
-                     ghcr_push+=(--annotation "dev.pkgforge.soar.build_gha=${{ env.BUILD_GHACTIONS }}")
-                     ghcr_push+=(--annotation "dev.pkgforge.soar.build_id=${{ env.BUILD_ID }}")
-                     ghcr_push+=(--annotation "dev.pkgforge.soar.ghcr_pkg=${{ env.GHCRPKG_URL }}:${{ env.GHCRPKG_TAG }}")
-                     ghcr_push+=(--annotation "dev.pkgforge.soar.push_date=${{ env.PKG_DATE }}")
-                     ghcr_push+=(--annotation "dev.pkgforge.soar.version=${{ env.PKG_VERSION }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.created=${{ env.PKG_DATE }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.description=SRCBUILD for ${{ env.GHCRPKG_URL }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
-                     ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${{ env.PKG_VERSION }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.revision=${{ env.PKG_VERSION }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.source=${{ env.PKG_WEBPAGE }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.title=SRCBUILD-${{ env.PKG_FAMILY_LOCAL }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.url=${{ env.PKG_SRCURL }}")
-                     ghcr_push+=(--annotation "org.opencontainers.image.vendor=pkgforge")
-                     ghcr_push+=(--annotation "org.opencontainers.image.version=${{ env.PKG_VERSION }}")
-                     ghcr_push+=("${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}")
-                     [[ -f "./BUILD_ARTIFACTS.7z" && -s "./BUILD_ARTIFACTS.7z" ]] && ghcr_push+=("./BUILD_ARTIFACTS.7z")
-                     "${ghcr_push[@]}" ; sleep 5
-                    #Check
-                     if [[ "$(oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" == "${{ env.PKG_DATE }}" ]]; then
-                       echo -e "\n[+] (ARTIFACTS) Registry --> https://${GHCRPKG_URL_SRCBUILD}\n"
-                       break
-                     else
-                       echo -e "\n[-] Failed to Push Artifact to ${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD} (Retrying ${i}/10)\n"
-                     fi
-                     sleep "$(shuf -i 500-4500 -n 1)e-3"
-                   done
-                  }
-                  export -f ghcr_push_cmd
-                  ghcr_push_cmd
-                  if [[ "$(oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
-                    echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}\n"
-                     echo -e "\n[-] Retrying ...\n"
-                     ghcr_push_cmd
-                      if [[ "$(oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
-                        oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq .
-                        echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}\n"
-                        return 1 || exit 1
-                      fi
-                  fi
-              fi
-            fi
-           popd >/dev/null 2>&1
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
           fi
+          #-------------#
+          ##Set ENV
+           if [[ "${SKIP_SRCBUILD_UPLOAD}" != "YES" ]]; then
+              #GHCRPKG_TAG_SRCBUILD="srcbuild.$(date --utc +"%y%m%dT%H%M%S" | tr -d '[:space:]')-${{ env.GHCRPKG_TAG }}"
+              GHCRPKG_TAG_SRCBUILD="${{ env.GHCRPKG_TAG }}"
+              GHCRPKG_URL_SRCBUILD="${{ env.GHCRPKG_LOCAL }}/${{ env.PKG_FAMILY_LOCAL }}-srcbuild-${{ env.BUILD_ID }}"
+              export GHCRPKG_TAG_SRCBUILD GHCRPKG_URL_SRCBUILD
+              echo "GHCRPKG_TAG_SRCBUILD=${GHCRPKG_TAG_SRCBUILD}" >> "${GITHUB_ENV}"
+              echo "GHCRPKG_URL_SRCBUILD=${GHCRPKG_URL_SRCBUILD}" >> "${GITHUB_ENV}"
+           fi
+          ##Push
+           if [[ -n "${GHCRPKG_TAG_SRCBUILD+x}" ]]; then
+            pushd "/tmp" &>/dev/null
+             if [[ -s "./BUILD_ARTIFACTS.zstd" && $(stat -c%s "./BUILD_ARTIFACTS.zstd") -gt 1000 ]]; then
+               realpath "./BUILD_ARTIFACTS.zstd" && du -sh "./BUILD_ARTIFACTS.zstd"
+               ls -sh "${{ env.SBUILD_OUTDIR }}"
+               ghcr_push_cmd()
+                 {
+                  for i in {1..10}; do
+                    unset ghcr_push ; ghcr_push=(oras push --disable-path-validation)
+                    ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
+                    ghcr_push+=(--annotation "com.github.package.type=container")
+                    ghcr_push+=(--annotation "dev.pkgforge.soar.build_ghcrpkg-tag=${{ env.GHCRPKG_TAG }}")
+                    ghcr_push+=(--annotation "dev.pkgforge.soar.build_gha=${{ env.BUILD_GHACTIONS }}")
+                    ghcr_push+=(--annotation "dev.pkgforge.soar.build_id=${{ env.BUILD_ID }}")
+                    ghcr_push+=(--annotation "dev.pkgforge.soar.ghcr_pkg=${{ env.GHCRPKG_URL }}:${{ env.GHCRPKG_TAG }}")
+                    ghcr_push+=(--annotation "dev.pkgforge.soar.push_date=${{ env.PKG_DATE }}")
+                    ghcr_push+=(--annotation "dev.pkgforge.soar.version=${{ env.PKG_VERSION }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.created=${{ env.PKG_DATE }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.description=SRCBUILD for ${{ env.GHCRPKG_URL }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
+                    ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${{ env.PKG_VERSION }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.revision=${{ env.PKG_VERSION }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.source=${{ env.PKG_WEBPAGE }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.title=SRCBUILD-${{ env.PKG_FAMILY_LOCAL }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.url=${{ env.PKG_SRCURL }}")
+                    ghcr_push+=(--annotation "org.opencontainers.image.vendor=pkgforge")
+                    ghcr_push+=(--annotation "org.opencontainers.image.version=${{ env.PKG_VERSION }}")
+                    ghcr_push+=("${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}")
+                    [[ -f "./BUILD_ARTIFACTS.zstd" && -s "./BUILD_ARTIFACTS.zstd" ]] && ghcr_push+=("./BUILD_ARTIFACTS.zstd")
+                    "${ghcr_push[@]}" ; sleep 5
+                   #Check
+                    if [[ "$(oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" == "${{ env.PKG_DATE }}" ]]; then
+                      echo -e "\n[+] (ARTIFACTS) Registry --> https://${GHCRPKG_URL_SRCBUILD}\n"
+                      break
+                    else
+                      echo -e "\n[-] Failed to Push Artifact to ${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD} (Retrying ${i}/10)\n"
+                    fi
+                    sleep "$(shuf -i 500-4500 -n 1)e-3"
+                  done
+                 }
+                 export -f ghcr_push_cmd
+                 ghcr_push_cmd
+                 if [[ "$(oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
+                   echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}\n"
+                    echo -e "\n[-] Retrying ...\n"
+                    ghcr_push_cmd
+                     if [[ "$(oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq -r '.annotations["dev.pkgforge.soar.push_date"]' | tr -d '[:space:]')" != "${{ env.PKG_DATE }}" ]]; then
+                       oras manifest fetch "${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}" | jq .
+                       echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL_SRCBUILD}:${GHCRPKG_TAG_SRCBUILD}\n"
+                       return 1 || exit 1
+                     fi
+                 fi
+             fi
+           fi
+          popd >/dev/null 2>&1
         continue-on-error: true
-
+        
     ##Logs & Artifacts
       - name: Get DateTime [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
-          #Presets
+          ##Presets
           set +x ; set +e
-          #--------------#
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
           UTC_TIME="$(TZ='UTC' date +'%Y_%m_%dT%I_%M_%S_%p')"
           echo "UTC_TIME=${UTC_TIME}" >> "${GITHUB_ENV}"
         continue-on-error: true
@@ -389,7 +592,7 @@ jobs:
             name: Pkgcache_${{ env.PKG_FAMILY_LOCAL }}_${{ matrix.package.host }}
             path: |
               /tmp/BUILD.log
-              /tmp/BUILD_ARTIFACTS.7z
+              /tmp/BUILD_ARTIFACTS.zstd
             compression-level: 0 # no compression, [Default: 6 (GNU Gzip)]
             retention-days: 30
             overwrite: true
@@ -402,7 +605,7 @@ jobs:
           subject-name: "${{ env.PKG_FAMILY_LOCAL }}-${{ env.BUILD_ID }}-${{ env.GHCRPKG_TAG }}"
           subject-path: |
             "/tmp/BUILD.log"
-            "/tmp/BUILD_ARTIFACTS.7z"
+            "/tmp/BUILD_ARTIFACTS.zstd"
             ${{ env.SBUILD_OUTDIR }}/**
             !${{ env.SBUILD_TMPDIR }}/**
           show-summary: true
@@ -411,9 +614,14 @@ jobs:
       - name: Check Build [${{ matrix.package.ghcr_pkg }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
-          #Presets
+          ##Presets
           set +x ; set +e
-          #--------------#
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
           if [[ "${GHA_BUILD_FAILED}" == "YES" || "${SBUILD_SUCCESSFUL}" == "NO" ]]; then
             echo -e "\n[-] FATAL: Failed to Successfully Build ${{ matrix.package.ghcr_pkg }}"
            exit 1
@@ -423,9 +631,14 @@ jobs:
       - name: Check Push [${{ matrix.package.ghcr_pkg }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
-          #Presets
+          ##Presets
           set +x ; set +e
-          #--------------#
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
           if [[ "${PUSH_SUCCESSFUL}" == "NO" ]]; then
             echo -e "\n[-] FATAL: Failed to Successfully Push ==> ${{ matrix.package.ghcr_pkg }}"
            exit 1
@@ -435,9 +648,14 @@ jobs:
       - name: Self-Kill
         if: always()
         run: |
-          #Presets
+          ##Presets
           set +x ; set +e
-          #--------------#
+          #-------------#
+          ##Debug?
+          if [[ "${DEBUG}" = "1" ]] || [[ "${DEBUG}" = "ON" ]]; then
+            set -x
+          fi
+          #-------------#
           [[ -f "/tmp/GHA_CI_STATUS" && -w "/tmp/GHA_CI_STATUS" ]] && echo "" > "/tmp/GHA_CI_STATUS"
           if [[ -d "/tmp" && -w "/tmp" ]]; then
             echo "EXITED" | tee "/tmp/GHA_CI_STATUS"
