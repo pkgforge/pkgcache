@@ -213,6 +213,7 @@ pushd "$(mktemp -d)" &>/dev/null
    else
      #Add Env vars
       export NIXPKGS_ALLOW_BROKEN="1"
+      export NIXPKGS_ALLOW_INSECURE="1"
       export NIXPKGS_ALLOW_UNFREE="1"
       export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"  
      #Add Tokens

@@ -365,8 +365,9 @@ if [ "${CONTINUE}" == "YES" ]; then
    else
      #Add Env vars
       export NIXPKGS_ALLOW_BROKEN="1"
+      export NIXPKGS_ALLOW_INSECURE="1"
       export NIXPKGS_ALLOW_UNFREE="1"
-      export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"  
+      export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"
      #Add Tokens
       echo "access-tokens = github.com=${GITHUB_TOKEN}" | sudo tee -a "/etc/nix/nix.conf" >/dev/null 2>&1
      #Update Channels
