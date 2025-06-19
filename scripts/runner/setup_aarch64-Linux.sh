@@ -377,7 +377,7 @@ if [ "${CONTINUE}" == "YES" ]; then
    fi
  #----------------------# 
  #rust & cargo
-  bash <(curl -qfsSL "https://sh.rustup.rs") -y
+  bash <(curl -qfsSL "https://sh.rustup.rs") --no-modify-path -y
   #Test: PATH="${HOME}/.cargo/bin:${HOME}/.cargo/env:${PATH}" 
   if ! command -v cargo &> /dev/null; then
    echo -e "\n[-] cargo (rust) NOT Found\n"
