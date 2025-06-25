@@ -353,6 +353,7 @@ if [ "${CONTINUE}" == "YES" ]; then
      bash "./install_nix.sh"
      [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
      [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+     [[ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     rm -rf "./install_nix.sh" 2>/dev/null ; popd &>/dev/null
   fi
   #Test
