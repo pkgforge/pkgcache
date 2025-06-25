@@ -8,11 +8,12 @@ on:
     inputs:
 
       host:
-        description: Host (Arch+OS) [ALL ==> Run on All Hosts (No riscv64)]
+        description: Host (Arch+OS) [ALL ==> Run on All Hosts (No loongarch64|riscv64)]
         type: choice
         options:
           - "ALL"
           - "aarch64-Linux"
+          #- "loongarch64-Linux"
           - "riscv64-Linux"
           - "x86_64-Linux"
 
@@ -72,10 +73,13 @@ jobs:
            if [[ "${{ github.event.inputs.ci-infra }}" == "github" || -z "${{ github.event.inputs.ci-infra }}" ]]; then
              if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               #echo '{"host": "loongarch64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                #echo '{"host": "riscv64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "loongarch64-Linux" ]]; then
+               echo '{"host": "loongarch64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
                echo '{"host": "riscv64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
@@ -85,10 +89,13 @@ jobs:
              curl -X "POST" -H "content-type: application/json" -qfsSL "${{ secrets.CIRCLE_CI_WEBHOOK_URL }}?secret=${{ secrets.CIRCLE_CI_SECRET }}"
              if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "arm64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               #echo '{"host": "loongarch64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                #echo '{"host": "riscv64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                echo '{"host": "x86_64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "arm64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "loongarch64-Linux" ]]; then
+               echo '{"host": "loongarch64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
                echo '{"host": "riscv64-Linux", "runner": "amd64-linux-circle", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
@@ -98,10 +105,13 @@ jobs:
              echo ""
              if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "self-hosted-aarch64", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+               #echo '{"host": "loongarch64-Linux", "runner": "self-hosted-loongarch64", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                #echo '{"host": "riscv64-Linux", "runner": "self-hosted-riscv64", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
                echo '{"host": "x86_64-Linux", "runner": "self-hosted-x86_64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
                echo '{"host": "aarch64-Linux", "runner": "self-hosted-aarch64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+             elif [[ "${{ github.event.inputs.host }}" == "loongarch64-Linux" ]]; then
+               echo '{"host": "loongarch64-Linux", "runner": "self-hosted-loongarch64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
                echo '{"host": "riscv64-Linux", "runner": "self-hosted-riscv64", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
              elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
@@ -145,13 +155,18 @@ jobs:
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "aarch64-Linux" ]]; then
               echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
             fi
+          elif [[ "$(uname -m | tr -d '[:space:]')" == "loongarch64" ]]; then
+            if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "loongarch64-Linux" ]]; then
+              echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+            fi
           elif [[ "$(uname -m | tr -d '[:space:]')" == "riscv64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "riscv64-Linux" ]]; then
               echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
             fi
           elif [[ "$(uname -m | tr -d '[:space:]')" == "x86_64" ]]; then
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "x86_64-Linux" ]]; then
-               if [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ]]; then
+               if [[ "${{ github.event.inputs.host }}" == "riscv64-Linux" ||\
+                     "${{ github.event.inputs.host }}" == "loongarch64-Linux" ]]; then
                  echo "CONTINUE_GHRUN=TRUE" >> "${GITHUB_ENV}"
                else
                  echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
@@ -187,26 +202,44 @@ jobs:
           set +x ; set +e
           #-------------#
           ##Host Triplet
-           if [[ "${{ matrix.package.host }}" == "riscv64-Linux" ]] ; then
-             export HOST_TRIPLET="riscv64-Linux"
-             if [[ "$(uname -m | tr -d '[:space:]')" == "riscv64" ]]; then
-               export ON_QEMU="NO"
-             else
-               export ON_QEMU="YES"
+           if [[ "${{ matrix.package.host }}" != "$(uname -m)-$(uname -s)" ]] ; then
+             export CROSS_COMPILING="YES"
+             export HOST_TRIPLET_R="$(uname -m)-$(uname -s)"
+             export ON_QEMU="YES"
+             if [[ "${{ matrix.package.host }}" == "loongarch64-Linux" ]] ; then
+               export HOST_TRIPLET="loongarch64-Linux"
+             elif [[ "${{ matrix.package.host }}" == "riscv64-Linux" ]] ; then
+               export HOST_TRIPLET="riscv64-Linux"
              fi
-           else
+           elif [[ "${{ matrix.package.host }}" == "$(uname -m)-$(uname -s)" ]] ; then
+             export CROSS_COMPILING="NO"
              export HOST_TRIPLET="$(uname -m)-$(uname -s)"
+             export HOST_TRIPLET_R="${HOST_TRIPLET}"
              export ON_QEMU="NO"
            fi
+           echo "CROSS_COMPILING=${CROSS_COMPILING}" >> "${GITHUB_ENV}"
            echo "HOST_TRIPLET=${HOST_TRIPLET}" >> "${GITHUB_ENV}"
+           echo "HOST_TRIPLET_R=${HOST_TRIPLET_R}" >> "${GITHUB_ENV}"
            echo "ON_QEMU=${ON_QEMU}" >> "${GITHUB_ENV}"
-          ##Debug   
+          ##Debug
            if [[ "${{ github.event.inputs.debug }}" == "true" ]] ; then
              export DEBUG="1"
            else
              export DEBUG="0"
            fi
            echo "DEBUG=${DEBUG}" >> "${GITHUB_ENV}"
+          ##Docker Platform
+           if echo "${HOST_TRIPLET}" | grep -qiE "aarch64"; then
+             DOCKER_PLATFORM="linux/arm64"
+           elif echo "${HOST_TRIPLET}" | grep -qiE "loongarch64"; then
+             DOCKER_PLATFORM="linux/loong64"
+           elif echo "${HOST_TRIPLET}" | grep -qiE "riscv64"; then
+             DOCKER_PLATFORM="linux/riscv64"
+           elif echo "${HOST_TRIPLET}" | grep -qiE "x86_64"; then
+             DOCKER_PLATFORM="linux/amd64"
+           fi
+           echo "DOCKER_PLATFORM_ARCH=${HOST_TRIPLET%%-*}" >> "${GITHUB_ENV}"
+           echo "DOCKER_PLATFORM=${DOCKER_PLATFORM}" >> "${GITHUB_ENV}"
           ##GHCRPKG_URL
            GHCRPKG_LOCAL="$(echo "${{ inputs.ghcr-url }}" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
            export GHCRPKG_LOCAL
@@ -232,7 +265,7 @@ jobs:
            fi
            echo "SBUILD_REBUILD=${SBUILD_REBUILD}" >> "${GITHUB_ENV}"
            ##SBUILD_URL
-           sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)-$(uname -s)/yq" -o "/usr/local/bin/yq" && \
+           sudo curl -qfsSL "https://bin.pkgforge.dev/${HOST_TRIPLET_R}/yq" -o "/usr/local/bin/yq" && \
              sudo chmod 'a+x' "/usr/local/bin/yq" && command -v yq >/dev/null || exit 1
            SBUILD_FILE_URL="$(echo "${{ github.event.inputs.sbuild-url }}" | tr -d '[:space:]')"
            pushd "$(mktemp -d)" >/dev/null 2>&1
@@ -246,10 +279,20 @@ jobs:
                echo "SBUILD_FILE_URL=${SBUILD_FILE_URL}" >> "${GITHUB_ENV}"
               #Check for x_exec.host
                if yq e '.x_exec.host != null' "./SBUILD_INPUT" | grep -qi 'true'; then
+                #check if supported
                  if ! yq '.x_exec.host[]' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "${HOST_TRIPLET,,}"; then
-                   echo -e "\n[✗] WARNING: SBUILD (./SBUILD_INPUT) is NOT Supported on ${HOST_TRIPLET}\n"
-                   yq '.x_exec.host[]' "./SBUILD_INPUT"
-                   echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+                    echo -e "\n[✗] WARNING: SBUILD (./SBUILD_INPUT) is NOT Supported on ${HOST_TRIPLET}\n"
+                    yq '.x_exec.host[]' "./SBUILD_INPUT"
+                    echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+                   exit 1
+                 fi
+                #get build system
+                 if yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "docker://"; then
+                    echo "BUILD_ON_HOST=FALSE" >> "${GITHUB_ENV}"
+                    echo "BUILD_SYSTEM=DOCKER" >> "${GITHUB_ENV}"
+                 elif yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "host://"; then
+                    echo "BUILD_ON_HOST=TRUE" >> "${GITHUB_ENV}"
+                    echo "BUILD_SYSTEM=HOST" >> "${GITHUB_ENV}"
                  fi
                fi
              fi
@@ -305,8 +348,8 @@ jobs:
           sudo sysctl -p "/etc/sysctl.conf"
         continue-on-error: true
 
-      - name: If riscv64 on QEMU [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
-        if: env.HOST_TRIPLET == 'riscv64-Linux' && env.ON_QEMU == 'YES' && env.CONTINUE_GHRUN != 'FALSE'
+      - name: If Cross Compiling on QEMU HOST [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+        if: env.CROSS_COMPILING == 'YES' && env.BUILD_SYSTEM == 'HOST' && env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
           GHCR_TOKEN: "${{ github.token }}"
@@ -319,23 +362,22 @@ jobs:
             set -x
           fi
           #-------------#
-          echo "RISCV64_ON_QEMU=TRUE" >> "${GITHUB_ENV}"
           echo "INSIDE_PODMAN=TRUE" >> "${GITHUB_ENV}"
           bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh")
           echo "${GHCR_TOKEN}" | oras login --username "Azathothas" --password-stdin "ghcr.io"
         continue-on-error: true
 
       - name: Set up QEMU [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
-        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        if: env.CROSS_COMPILING == 'YES' && env.CONTINUE_GHRUN != 'FALSE'
         uses: docker/setup-qemu-action@v3
-        continue-on-error: true
+        continue-on-error: false
       - name: Set up Cross Arch [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
-        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        if: env.CROSS_COMPILING == 'YES' && env.CONTINUE_GHRUN != 'FALSE'
         uses: docker/setup-buildx-action@v3
         continue-on-error: true
 
       - name: Install/Configure Podman [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
-        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        if: env.INSIDE_PODMAN == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
         run: |
           ##Presets
           set +x ; set +e
@@ -368,7 +410,7 @@ jobs:
         continue-on-error: true
 
       - name: Daemonize Podman [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
-        if: env.RISCV64_ON_QEMU == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        if: env.INSIDE_PODMAN == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
         run: |
           ##Presets
           set +x ; set +e
@@ -383,8 +425,8 @@ jobs:
           ##Run
           sudo mkdir -p "/var/lib/containers/tmp-runner01"
           sudo chmod 1777 -v "/var/lib/containers/tmp-runner01"
-          POD_IMAGE="ghcr.io/pkgforge/devscripts/ubuntu-systemd-base:riscv64"
-          sudo podman run --platform="linux/riscv64" --detach --privileged \
+          POD_IMAGE="ghcr.io/pkgforge/devscripts/ubuntu-systemd-base:${DOCKER_PLATFORM_ARCH}"
+          sudo podman run --platform="${DOCKER_PLATFORM}" --detach --privileged \
            --device "/dev/fuse" --env-file="env.list" --hostname "$(hostname)" --name="ubuntu-builder" \
            --network="bridge" --pull="always" --systemd="always" --tz="UTC" --ulimit="host" \
            --volume "${HOME}/.minisign:/home/runner/.minisign" \
@@ -444,7 +486,7 @@ jobs:
             export GHCRPKG_LOCAL="${GHCRPKG_LOCAL}"
             export SBUILD_REBUILD="${SBUILD_REBUILD}"
             export GITHUB_TEST_BUILD="${GITHUB_TEST_BUILD}"
-           if [[ "${{ env.RISCV64_ON_QEMU }}" == "TRUE" ]]; then
+           if [[ "${{ env.INSIDE_PODMAN }}" == "TRUE" ]]; then
              sudo podman cp "${SYSTMP}/BUILDER.sh" "${POD_ID}:/tmp/BUILDER.sh"
              sudo podman exec -u "runner" -w "/tmp" \
                -e DEBUG="${DEBUG}" \
@@ -458,6 +500,7 @@ jobs:
                -e SBUILD_REBUILD="${SBUILD_REBUILD}" \
                -e GITHUB_TEST_BUILD="${GITHUB_TEST_BUILD}" \
                -e INSIDE_PODMAN="${INSIDE_PODMAN}" \
+               -e CROSS_COMPILING="${CROSS_COMPILING}" \
                -e SBUILD_FILE_URL="${SBUILD_FILE_URL}" \
                "${POD_ID}" \
                bash -c 'bash "/tmp/BUILDER.sh" "${SBUILD_FILE_URL}" | tee "/tmp/BUILD.log" 2>&1'

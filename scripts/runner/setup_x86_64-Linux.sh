@@ -278,24 +278,22 @@ if [ "${CONTINUE}" == "YES" ]; then
  else    
    install_docker
  fi
- #----------------------# 
- #Crystal
-  curl -qfsSL "https://crystal-lang.org/install.sh" | sudo bash
-  #Test
-  if ! command -v crystal &> /dev/null; then
-   echo -e "\n[-] crystal NOT Found\n"
-   #export CONTINUE="NO"
-   #return 1 || exit 1
-  else
-   crystal --version ; shards --version
-   sudo ldconfig && sudo ldconfig -p
-  fi
- #----------------------# 
- #Dockerc
-  sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)/dockerc" -o "/usr/local/bin/dockerc" && sudo chmod -v +x "/usr/local/bin/dockerc"
- #----------------------#          
+ ##----------------------# 
+ ##Crystal
+ # curl -qfsSL "https://crystal-lang.org/install.sh" | sudo bash
+ # #Test
+ # if ! command -v crystal &> /dev/null; then
+ #  echo -e "\n[-] crystal NOT Found\n"
+ #  #export CONTINUE="NO"
+ #  #return 1 || exit 1
+ # else
+ #  crystal --version ; shards --version
+ #  sudo ldconfig && sudo ldconfig -p
+ # fi
+ ##----------------------#          
  ##Install golang 
-  echo "yes" | bash <(curl -qfsSL "https://git.io/go-installer")
+  bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_golang.sh")
+  hash -r &>/dev/null
   #Test
   if ! command -v go &> /dev/null; then
    echo -e "\n[-] go NOT Found\n"
@@ -305,7 +303,7 @@ if [ "${CONTINUE}" == "YES" ]; then
    go version
    sudo ldconfig && sudo ldconfig -p
   fi
- #----------------------#          
+ #----------------------#
  ###Install Guix: https://guix.gnu.org/manual/en/html_node/Installation.html
   #curl -qfsSL "https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh" -o "./guix-install.sh"
   #if [[ ! -s "./guix-install.sh" || $(stat -c%s "./guix-install.sh") -le 10 ]]; then

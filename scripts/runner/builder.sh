@@ -42,16 +42,21 @@ sbuild_builder()
    if command -v awk >/dev/null 2>&1 && command -v sed >/dev/null 2>&1; then
     PATH="$(echo "${PATH}" | awk 'BEGIN{RS=":";ORS=":"}{gsub(/\n/,"");if(!a[$0]++)print}' | sed 's/:*$//')" ; export PATH
    fi
-   HOST_TRIPLET="$(uname -m)-$(uname -s)"
-   PKG_REPO="pkgcache"
-   if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
-    SYSTMP="$(dirname $(realpath $(mktemp -u)))" && export SYSTMP="${SYSTMP}"
+   if [[ -z "${HOST_TRIPLET+x}" || -z "${HOST_TRIPLET//[[:space:]]/}" ]]; then
+     HOST_TRIPLET="$(uname -m)-$(uname -s)"
+   fi
+   HOST_TRIPLET_R="$(uname -m)-$(uname -s)"
+   if [[ -z "${PKG_REPO+x}" || -z "${PKG_REPO//[[:space:]]/}" ]]; then
+     PKG_REPO="pkgcache"
+   fi
+   if [[ -z "${SYSTMP+x}" || -z "${SYSTMP//[[:space:]]/}" ]]; then
+    SYSTMP="$(dirname $(realpath $(mktemp -u)))"
     mkdir -p "${SYSTMP}" 2>/dev/null
    fi
    OWD_TMPDIR="$(realpath .)" ; export OWD_TMPDIR
    TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXXXX_SBUILD"
-   USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/Azathothas/Wordlists/refs/heads/main/Misc/User-Agents/ua_chrome_macos_latest.txt')"
-   export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
+   USER_AGENT="$(curl -qfsSL 'https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Misc/User-Agents/ua_firefox_macos_latest.txt')"
+   export HOST_TRIPLET HOST_TRIPLET_R PKG_REPO SYSTMP TMPDIRS USER_AGENT
    if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
     rm -rf "${SYSTMP}/pkgforge"
     find "${SYSTMP}" -mindepth 1 \( -type f -o -type d \) -empty -not -path "$(pwd)" -not -path "$(pwd)/*" -delete 2>/dev/null
@@ -126,7 +131,7 @@ sbuild_builder()
   #-------------------------------------------------------#
   ##Init
    INITSCRIPT="$(mktemp --tmpdir=${SYSTMP} XXXXXXXXX_init.sh)" && export INITSCRIPT="${INITSCRIPT}"
-   curl -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/scripts/runner/setup_${HOST_TRIPLET}.sh" -o "${INITSCRIPT}"
+   curl -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/scripts/runner/setup_${HOST_TRIPLET_R}.sh" -o "${INITSCRIPT}"
    chmod +xwr "${INITSCRIPT}" && source "${INITSCRIPT}"
    #Check
    if [ "${CONTINUE}" != "YES" ]; then
@@ -316,7 +321,7 @@ sbuild_builder()
           [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
          exit 1
        fi
-      #Dirs
+      #Dir
        if [ -d "${OCWD}" ]; then
          source "${OCWD}/ENVPATH" ; SBUILD_PKGS=($SBUILD_PKGS)
          if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
