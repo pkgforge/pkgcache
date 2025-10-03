@@ -2124,6 +2124,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "winboat",
+    "description": "Run Windows apps on Linux with seamless integration ",
+    "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/winboat/appimage/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/packages/winboat/appimage.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "wps-office",
     "description": "All-in-one Kingsoft Office Suite",
     "ghcr_pkg": "ghcr.io/pkgforge/pkgcache/wps-office/appimage/ivan-hc/stable",
